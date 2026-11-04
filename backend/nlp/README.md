@@ -1,8 +1,8 @@
 # PharmaTwin NLP — current state
 
 Implemented: ontology bindings, lexicon generation, French preprocessing,
-entity detection and intent scoring. Translator, SPARQL templates and frontend
-are still pending. No LLM API is used.
+entity detection, intent scoring and all 11 SPARQL templates. Translator and
+frontend are still pending. No LLM API is used.
 
 Tools to name in the presentation: Python, spaCy (`fr_core_news_md`), spaCy
 PhraseMatcher, RapidFuzz, RDFLib. Scoring rules operate on French lemmas and
@@ -17,7 +17,7 @@ python -m spacy download fr_core_news_md
 
 ## See results
 
-These commands print JSON in the terminal. They do not execute SPARQL yet.
+These commands print JSON in the terminal.
 
 ```powershell
 python -X utf8 -m backend.nlp.entities "Quels effets de la pilule combinee avec une migrain avec aura ?"
@@ -41,6 +41,39 @@ python -X utf8 -m unittest discover -s backend/nlp/tests -v
 
 The current suite has 13 entity question cases, 30 intent question cases, and
 a custom-lexicon replacement check. It is not the pending translator test suite.
+SPARQL tests also verify actual query results on an independent test graph,
+subclasses, inverse assertions, risk definitions, escaped inputs and binding
+replacement.
+
+## Preview and run generated SPARQL (task 6)
+
+Print a query:
+
+```powershell
+python -X utf8 -m backend.nlp.templates "Quelles molécules contient la pilule combinée ?"
+```
+
+Print the query and execute it on the corrected local OWL file:
+
+```powershell
+python -X utf8 -m backend.nlp.templates "Quelles molécules contient la pilule combinée ?" --ontology "C:\Users\arijm\Downloads\PharmaTwin_Contraceptive (2).owl"
+```
+
+All queries use SELECT DISTINCT, prefixes, ORDER BY and LIMIT (default 50,
+maximum 500). RDFLib escapes keyword literals and IRI inputs are validated.
+Queries support explicit subclass paths, the known inverse CI/molecule links,
+interaction records, direct interactions, and evidence links. Known pill-form
+values in `ontology_map.py` cover examples not typed with their specific pill
+class. This is a dataset mapping, not a general OWL reasoner. Vascular risk
+uses explicit membership; general risk and oestrogen alerts also use their
+verified condition-based definitions. Arbitrary OWL inference is not performed.
+The CLI selects one risk category from the question; Python callers can pass
+`risk_kind="general"`, `"vasculaire"` or `"oestrogenes"` to `build_query`.
+
+Detected targets are combined as alternatives (OR), not as a requirement that
+all conditions apply. A selected intent with no target can return all matching
+resources up to the limit. The keyword fallback with no keywords returns no
+rows. Task 7 will provide the teammate's stable `translate(question)` interface.
 
 ## Regenerate the lexicon after ontology changes
 

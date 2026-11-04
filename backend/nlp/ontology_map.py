@@ -27,6 +27,7 @@ C_CONTRE_INDICATION = ONTOLOGY["ContreIndication"]
 C_PROFIL_RISQUE = ONTOLOGY["ProfilAvecFacteurDeRisque"]
 C_PROFIL_RISQUE_VASCULAIRE = ONTOLOGY["ProfilRisqueVasculaire"]
 C_PROFIL_ALERTE_OESTROGENE = ONTOLOGY["ProfilAlerteOestrogene"]
+C_CONDITION_CHC = ONTOLOGY["ConditionContreIndiqueCHC"]
 
 # Object properties. The intended subject -> object is documented here so the
 # eventual templates can be checked against the corrected domain and range.
@@ -45,6 +46,12 @@ P_INTERAGIT = ONTOLOGY["interagitAvecMolecule"]
 P_JUSTIFIE_PAR = ONTOLOGY["justifiePar"]
 # resource describing a claim -> evidence source (claim representation to verify)
 P_BENEFICE = ONTOLOGY["peutProcurer"]
+P_CONCERNE_MOLECULE = ONTOLOGY["concerneMolecule"]
+P_CONTIENT_OESTROGENE = ONTOLOGY["contientOestrogene"]
+P_CONTIENT_PROGESTATIF = ONTOLOGY["contientProgestatif"]
+P_EST_CONTENU_DANS = ONTOLOGY["estContenuDans"]
+P_EFFET_MOLECULE = ONTOLOGY["estAssocieAEffet"]
+P_EVALUE_CONTRACEPTIF = ONTOLOGY["evalueContraceptif"]
 # contraceptive -> benefit
 P_A_POUR_FACTEUR_RISQUE = URIRef("https://example.org/PLACEHOLDER/pharmatwin#aPourFacteurRisque")  # TODO verify after ontology correction
 # Not declared: use profile classes/OWL definitions rather than this property.
@@ -55,6 +62,15 @@ P_EN_ALERTE_POUR = URIRef("https://example.org/PLACEHOLDER/pharmatwin#enAlertePo
 D_AGE = ONTOLOGY["age"]
 D_IMC = ONTOLOGY["imc"]
 D_FUME = ONTOLOGY["fume"]
+D_FORME = ONTOLOGY["forme"]
+
+# Explicit form values checked in the corrected file. These allow queries to
+# retrieve examples whose specific pill class has not been materialized by an
+# OWL reasoner. They are dataset mappings, not general OWL inference rules.
+CLASS_FORM_VALUES = {
+    ONTOLOGY["PiluleCombinee"]: ("pilule combinée",),
+    ONTOLOGY["PiluleProgestative"]: ("pilule progestative seule",),
+}
 
 # Stable RDF standards, independent of the project's class/property names.
 TYPE = RDF.type
