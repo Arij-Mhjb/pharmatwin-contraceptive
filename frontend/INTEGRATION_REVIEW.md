@@ -1,10 +1,34 @@
 # Patient-centered direction and integration review
 
+## Live-integration update
+
+The patient-first teaching scenario has since been implemented locally. See
+PATIENT_JOURNEY.md: profile/history/preferences, graph-backed comparisons,
+current contraception, observations, saved dated reports and export. It reuses
+the existing backend models and vocabulary. Formal ontology enrichment and
+clinical validation remain future work; preference fit is not medical clearance.
+
+The integration differences listed below are now resolved in the local changes:
+entity-list responses (including normalization of the optional fallback), search
+response unwrapping, complete profile records with conditions/pressures and
+resource IDs, condition selection by ontology ID, partial-update preservation,
+aligned form limits, CORS for port 3100, and named dataset parameters for ask.
+Ontology example profiles are read-only; user profiles support CRUD. Optional
+Fuseki authentication is configured through ignored local environment settings.
+
+Verification: 85 backend/NLP tests passed, frontend API tests/typecheck and
+production build passed, the real Fuseki smoke test passed, and browser API mode
+returned three actual molecule results. A uniquely named disposable profile was
+created, updated with condition/pressure preservation, and removed in live tests.
+The matching engine, preference/history/symptom extensions and saved reports
+below are still pending. The original findings are retained as review history.
+
 Reviewed 2026-11-04 against GitHub main commit 433fb28, which already merges
 the colleague's feature/complete-semantic-backend branch (PR #1). The local
 `.publish-repo` checkout was fast-forwarded to that commit without conflicts.
-The frontend remains local and unpushed. No colleague-owned backend code or
-ontology was changed by this review.
+The initial review did not change colleague-owned code or the ontology. The
+subsequently authorized integration fixes update backend contracts and frontend
+adapters; they do not alter the ontology or add personalized recommendations.
 
 ## Product objective
 

@@ -5,7 +5,7 @@ from backend.routes import health, profils, search, ask, contraceptifs
 
 class FakeSparql:
     def __init__(self, rows=None): self.rows=rows or []; self.queries=[]; self.updates=[]
-    def run_select(self,q): self.queries.append(q); return self.rows
+    def run_select(self,q,**kwargs): self.queries.append(q); return self.rows
     def run_update(self,q): self.updates.append(q)
 
 @pytest.fixture

@@ -1,0 +1,7 @@
+# Lightweight runtime for the primary spaCy/RapidFuzz translator.
+# The optional sentence-transformers fallback has separate dependencies in requirements.txt.
+fastapi>=0.115,<1
+uvicorn>=0.34,<1
+pydantic-settings>=2.7,<3
+httpx>=0.28,<1
+-r nlp/requirements.txt

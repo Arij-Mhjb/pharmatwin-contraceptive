@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from decimal import Decimal
+from decimal import InvalidOperation
 from typing import Any
 import httpx
 from backend.config import Settings, get_settings
@@ -14,7 +14,7 @@ def _value(binding: dict) -> Any:
         if datatype.endswith("#boolean"): return value.lower() == "true"
         if datatype.endswith("#date"): return date.fromisoformat(value).isoformat()
         if datatype.endswith("#dateTime"): return datetime.fromisoformat(value.replace("Z", "+00:00")).isoformat()
-    except (ValueError, TypeError, Decimal.InvalidOperation):
+    except (ValueError, TypeError, InvalidOperation):
         pass
     return value
 
@@ -22,10 +22,10 @@ class SparqlClient:
     def __init__(self, settings: Settings | None = None, transport=None):
         self.settings = settings or get_settings(); self.transport = transport
 
-    def run_select(self, query: str) -> list[dict]:
+    def run_select(self, query: str, *, dataset_params=None) -> list[dict]:
         try:
-            with httpx.Client(timeout=self.settings.fuseki_timeout, transport=self.transport) as client:
-                r = client.post(self.settings.query_url, data={"query": query}, headers={"Accept": "application/sparql-results+json"})
+            with httpx.Client(timeout=self.settings.fuseki_timeout, transport=self.transport, auth=self.settings.fuseki_auth) as client:
+                r = client.post(self.settings.query_url, params=dataset_params, data={"query": query}, headers={"Accept": "application/sparql-results+json"})
                 r.raise_for_status(); data = r.json()
             if "boolean" in data:
                 return [{"boolean": bool(data["boolean"])}] if data["boolean"] else []
@@ -34,7 +34,7 @@ class SparqlClient:
 
     def run_update(self, update: str) -> None:
         try:
-            with httpx.Client(timeout=self.settings.fuseki_timeout, transport=self.transport) as client:
+            with httpx.Client(timeout=self.settings.fuseki_timeout, transport=self.transport, auth=self.settings.fuseki_auth) as client:
                 r = client.post(self.settings.update_url, data={"update": update}); r.raise_for_status()
         except httpx.HTTPError as exc: raise SparqlError(f"Fuseki update failed: {exc}") from exc
 

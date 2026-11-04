@@ -9,3 +9,4 @@ backend/ai/index/
 *.bin
 *.safetensors
 fuseki-data/
+backend/data/

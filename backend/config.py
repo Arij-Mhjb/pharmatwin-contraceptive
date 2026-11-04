@@ -1,6 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import SecretStr
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -9,6 +10,8 @@ class Settings(BaseSettings):
     fuseki_base_url: str = "http://localhost:3030"
     fuseki_dataset: str = "pharmatwin"
     fuseki_timeout: float = 15.0
+    fuseki_username: str | None = None
+    fuseki_password: SecretStr | None = None
     ontology_graph: str = "https://pharmatwin.ai/graph/ontology"
     profiles_graph: str = "https://pharmatwin.ai/graph/profiles"
     inferred_graph: str = "https://pharmatwin.ai/graph/inferred"
@@ -19,10 +22,17 @@ class Settings(BaseSettings):
     model_path: str | None = None
     offline_models: bool = False
     ai_enabled: bool = True
-    cors_origins: str = "http://localhost:3000"
+    cors_origins: str = "http://localhost:3000,http://127.0.0.1:3000,http://localhost:3100,http://127.0.0.1:3100"
     max_question_length: int = 500
     result_limit: int = 100
+    patient_store_path: Path = ROOT / "backend" / "data" / "patient.sqlite3"
     model_config = SettingsConfigDict(env_file=".env", env_prefix="PHARMATWIN_", extra="ignore")
+
+    @property
+    def fuseki_auth(self):
+        if self.fuseki_username and self.fuseki_password:
+            return (self.fuseki_username, self.fuseki_password.get_secret_value())
+        return None
 
     @property
     def query_url(self): return f"{self.fuseki_base_url}/{self.fuseki_dataset}/query"

@@ -1,15 +1,16 @@
 export type Entity = { text: string; label?: string; iri: string; kind: string };
 export type Row = Record<string, unknown>;
 export type AskResponse = { intent: string; entities: Entity[]; sparql: string; results: Row[] };
-export type Profile = { id: string; age: number; imc: number; fume: boolean; conditions: string[] };
-export type ProfileInput = Omit<Profile, 'id'>;
+export type ConditionOption = { id: string; label: string; iri?: string };
+export type Profile = { id: string; identifiant: string; age: number; imc: number; fume: boolean; conditions: string[]; condition_labels?: Record<string, string>; pression_systolique?: number | null; pression_diastolique?: number | null; editable?: boolean };
+export type ProfileInput = Pick<Profile, 'identifiant' | 'age' | 'imc' | 'fume' | 'conditions' | 'pression_systolique' | 'pression_diastolique'>;
 export const MOCK = process.env.NEXT_PUBLIC_MOCK === 'true';
 const BASE = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000').replace(/\/$/, '');
 const KEY = 'pharmatwin-profiles-v1';
 const seed: Profile[] = [
-  { id: 'SYN-025', age: 25, imc: 21.4, fume: false, conditions: ['Endométriose'] },
-  { id: 'SYN-028', age: 28, imc: 24.8, fume: false, conditions: ['SOPK', 'Migraine avec aura'] },
-  { id: 'SYN-041', age: 41, imc: 31.2, fume: true, conditions: ['Hypertension'] },
+  { id: 'SYN-025', identifiant: 'SYN-025', age: 25, imc: 21.4, fume: false, conditions: ['Endometriose'] },
+  { id: 'SYN-028', identifiant: 'SYN-028', age: 28, imc: 24.8, fume: false, conditions: ['SOPK', 'MigraineAvecAura'] },
+  { id: 'SYN-041', identifiant: 'SYN-041', age: 41, imc: 31.2, fume: true, conditions: ['Hypertension'] },
 ];
 function profiles(): Profile[] {
   const saved = localStorage.getItem(KEY);
@@ -17,12 +18,17 @@ function profiles(): Profile[] {
   try { return JSON.parse(saved) as Profile[]; } catch { throw new Error('Les profils locaux sont illisibles. Effacez les données du site pour réinitialiser la démo.'); }
 }
 function save(rows: Profile[]) { localStorage.setItem(KEY, JSON.stringify(rows)); }
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
+export async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 15000);
+  const timeout = path === '/api/ask' || path.endsWith('/catalog') || path.endsWith('/assessments') ? 60000 : 15000;
+  const timer = setTimeout(() => controller.abort(), timeout);
   try {
     const response = await fetch(`${BASE}${path}`, { ...init, headers: { 'Content-Type': 'application/json', ...init?.headers }, signal: controller.signal });
-    if (!response.ok) throw new Error(`Le serveur a répondu avec une erreur (${response.status}).`);
+    if (!response.ok) {
+      const payload = await response.json().catch(() => null) as { detail?: unknown } | null;
+      const detail = typeof payload?.detail === 'string' ? ` ${payload.detail}` : '';
+      throw new Error(`Le serveur a répondu avec une erreur (${response.status}).${detail}`);
+    }
     if (response.status === 204) return undefined as T;
     return await response.json() as T;
   } catch (error) {
@@ -48,13 +54,15 @@ export async function getProfiles(filters: { age_min?: string; age_max?: string;
   await pause();
   return profiles().filter(p => (!filters.age_min || p.age >= +filters.age_min) && (!filters.age_max || p.age <= +filters.age_max) && (!filters.fume || p.fume === (filters.fume === 'true')));
 }
-export async function createProfile(input: ProfileInput): Promise<Profile> {
+export async function createProfile(input: ProfileInput): Promise<{ id: string }> {
   if (!MOCK) return request('/api/profils', { method: 'POST', body: JSON.stringify(input) });
-  const result = { ...input, id: `SYN-${crypto.randomUUID().slice(0, 8)}` };
+  if (profiles().some(p => p.id === input.identifiant)) throw new Error('Cet identifiant existe déjà.');
+  const result = { ...input, id: input.identifiant, editable: true };
   save([...profiles(), result]); return result;
 }
-export async function updateProfile(id: string, input: ProfileInput): Promise<Profile> {
-  if (!MOCK) return request(`/api/profils/${encodeURIComponent(id)}`, { method: 'PUT', body: JSON.stringify(input) });
+export async function updateProfile(id: string, input: ProfileInput): Promise<{ id: string }> {
+  const { identifiant: _identifier, ...update } = input;
+  if (!MOCK) return request(`/api/profils/${encodeURIComponent(id)}`, { method: 'PUT', body: JSON.stringify(update) });
   const result = { ...input, id }; save(profiles().map(p => p.id === id ? result : p)); return result;
 }
 export async function deleteProfile(id: string): Promise<void> {
@@ -62,7 +70,12 @@ export async function deleteProfile(id: string): Promise<void> {
   save(profiles().filter(p => p.id !== id));
 }
 export async function search(q: string): Promise<Row[]> {
-  if (!MOCK) return request(`/api/search?${new URLSearchParams({ q })}`);
+  if (!MOCK) return (await request<{ query: string; results: Row[] }>(`/api/search?${new URLSearchParams({ q })}`)).results;
   await pause();
   return ['Pilule combinée', 'Migraine avec aura', 'Endométriose', 'Rifampicine', 'SOPK', 'Profil patiente simulé'].filter(label => folded(label).includes(folded(q))).map(label => ({ label, type: 'Terme de démonstration' }));
+}
+
+export async function getConditions(): Promise<ConditionOption[]> {
+  if (!MOCK) return request('/api/ontology/conditions');
+  return [{ id: 'Endometriose', label: 'Endométriose' }, { id: 'SOPK', label: 'SOPK' }, { id: 'MigraineAvecAura', label: 'Migraine avec aura' }, { id: 'Hypertension', label: 'Hypertension' }];
 }

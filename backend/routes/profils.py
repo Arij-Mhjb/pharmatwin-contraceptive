@@ -3,6 +3,7 @@ from backend.sparql_client import SparqlClient
 from backend.models.profil import ProfilCreate, ProfilUpdate
 from backend import crud
 from backend.services.reasoning_service import refresh_profile_inference
+from backend.config import get_settings
 router = APIRouter(prefix="/profils", tags=["profiles"])
 def client(): return SparqlClient()
 @router.get("")
@@ -17,7 +18,7 @@ def create(p:ProfilCreate, c=Depends(client)):
 @router.put("/{id}")
 def update(id:str, p:ProfilUpdate, c=Depends(client)):
     try:
-        out=crud.update_profile(c,id,p); refresh_profile_inference(c,f"https://pharmatwin.ai/contraceptive#{id}"); return out
+        out=crud.update_profile(c,id,p); refresh_profile_inference(c,get_settings().namespace+id); return out
     except KeyError: raise HTTPException(404,"Profile not found")
     except ValueError as e: raise HTTPException(422,str(e))
 @router.delete("/{id}")

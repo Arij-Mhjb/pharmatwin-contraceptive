@@ -14,9 +14,9 @@ test('mock profiles persist and support filters, create, update and delete', asy
   const api = await load(true);
   assert.equal((await api.getProfiles()).length, 3);
   assert.deepEqual((await api.getProfiles({ fume: 'true', age_min: '40' })).map(p => p.id), ['SYN-041']);
-  const created = await api.createProfile({ age: 33, imc: 23, fume: false, conditions: ['SOPK'] });
+  const created = await api.createProfile({ identifiant: 'TEST-UI', age: 33, imc: 23, fume: false, conditions: ['SOPK'] });
   assert.equal((await api.getProfiles()).length, 4);
-  await api.updateProfile(created.id, { age: 34, imc: 25, fume: true, conditions: [] });
+  await api.updateProfile(created.id, { identifiant: 'TEST-UI', age: 34, imc: 25, fume: true, conditions: [] });
   assert.equal((await api.getProfiles()).find(p => p.id === created.id).age, 34);
   await api.deleteProfile(created.id);
   assert.equal((await api.getProfiles()).length, 3);
@@ -27,16 +27,19 @@ test('mock profiles persist and support filters, create, update and delete', asy
 });
 test('live mode sends the agreed paths, parameters and JSON body', async () => {
   const api = await load(false); const calls = [];
-  globalThis.fetch = async (url, init) => { calls.push({ url, init }); return new Response(JSON.stringify([]), { status: 200 }); };
+  globalThis.fetch = async (url, init) => { calls.push({ url, init }); return new Response(JSON.stringify(url.includes('/search?') ? { query: 'test', results: [{ label: 'Résultat' }] } : []), { status: 200 }); };
   await api.ask('Question de test');
   await api.getProfiles({ age_min: '20', age_max: '40', fume: 'false' });
-  await api.createProfile({ age: 25, imc: 22, fume: false, conditions: [] });
-  await api.updateProfile('test/id', { age: 26, imc: 22, fume: false, conditions: [] });
-  await api.deleteProfile('test/id'); await api.search('migraine avec aura');
+  await api.createProfile({ identifiant: 'TEST-UI', age: 25, imc: 22, fume: false, conditions: [] });
+  await api.updateProfile('test/id', { identifiant: 'TEST-UI', age: 26, imc: 22, fume: false, conditions: [] });
+  await api.deleteProfile('test/id');
+  assert.equal((await api.search('migraine avec aura'))[0].label, 'Résultat');
   assert.equal(calls[0].url, 'http://localhost:8000/api/ask');
   assert.deepEqual(JSON.parse(calls[0].init.body), { question: 'Question de test' });
   assert.ok(calls[1].url.endsWith('age_min=20&age_max=40&fume=false'));
   assert.equal(calls[2].init.method, 'POST'); assert.equal(calls[3].init.method, 'PUT');
+  assert.equal(JSON.parse(calls[2].init.body).identifiant, 'TEST-UI');
+  assert.ok(!('identifiant' in JSON.parse(calls[3].init.body)));
   assert.ok(calls[3].url.endsWith('/test%2Fid')); assert.equal(calls[4].init.method, 'DELETE');
   assert.ok(calls[5].url.endsWith('q=migraine+avec+aura'));
   globalThis.fetch = async () => new Response(null, { status: 204 });

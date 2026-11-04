@@ -13,6 +13,8 @@ def properties(): return service().properties()
 def individuals(): return service().individuals()
 @router.get("/stats")
 def stats(): return service().stats()
+@router.get("/conditions")
+def conditions(): return service().conditions()
 @router.get("/class/{id}")
 def resource(id:str):
     try: r=service().resource(safe_local_id(id))

@@ -28,6 +28,19 @@ C_PROFIL_RISQUE = ONTOLOGY["ProfilAvecFacteurDeRisque"]
 C_PROFIL_RISQUE_VASCULAIRE = ONTOLOGY["ProfilRisqueVasculaire"]
 C_PROFIL_ALERTE_OESTROGENE = ONTOLOGY["ProfilAlerteOestrogene"]
 C_CONDITION_CHC = ONTOLOGY["ConditionContreIndiqueCHC"]
+C_HORMONAL = ONTOLOGY["ContraceptifHormonal"]
+C_NON_HORMONAL = ONTOLOGY["ContraceptifNonHormonal"]
+P_MODIFIE_EFFICACITE = ONTOLOGY["modifieEfficaciteDe"]
+D_MEC = ONTOLOGY["categorieMEC"]
+D_SOURCE_TITRE = ONTOLOGY["titreSource"]
+D_SOURCE_URL = ONTOLOGY["urlSource"]
+D_SOURCE_NIVEAU = ONTOLOGY["niveauPreuve"]
+D_DESCRIPTION_EFFET = ONTOLOGY["descriptionEffet"]
+C_OBSERVATION = ONTOLOGY["Observation"]
+P_UTILISE_CONTRACEPTIF = ONTOLOGY["utiliseContraceptif"]
+P_A_OBSERVATION = ONTOLOGY["aObservation"]
+D_TYPE_OBSERVATION = ONTOLOGY["typeObservation"]
+D_VALEUR_OBSERVATION = ONTOLOGY["valeurObservation"]
 
 # Object properties. The intended subject -> object is documented here so the
 # eventual templates can be checked against the corrected domain and range.
@@ -63,6 +76,9 @@ D_AGE = ONTOLOGY["age"]
 D_IMC = ONTOLOGY["imc"]
 D_FUME = ONTOLOGY["fume"]
 D_FORME = ONTOLOGY["forme"]
+D_IDENTIFIANT = ONTOLOGY["identifiantProfil"]
+D_PRESSION_SYSTOLIQUE = ONTOLOGY["pressionSystolique"]
+D_PRESSION_DIASTOLIQUE = ONTOLOGY["pressionDiastolique"]
 
 # Explicit form values checked in the corrected file. These allow queries to
 # retrieve examples whose specific pill class has not been materialized by an

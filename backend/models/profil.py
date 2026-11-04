@@ -28,6 +28,14 @@ class ProfilUpdate(BaseModel):
     pression_diastolique: int | None = Field(default=None, ge=30, le=180)
     fume: bool | None = None
     conditions: list[str] | None = Field(default=None, max_length=30)
+    @model_validator(mode="after")
+    def valid_update(self):
+        supplied = self.model_fields_set
+        if any(getattr(self, key) is None for key in supplied - {"pression_systolique", "pression_diastolique"}):
+            raise ValueError("Required fields cannot be set to null")
+        if self.conditions is not None:
+            self.conditions = ProfilBase.valid_ids(self.conditions)
+        return self
 
 class AskRequest(BaseModel):
     question: str = Field(min_length=3, max_length=500)
