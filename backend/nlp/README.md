@@ -2,8 +2,8 @@
 
 Implemented: ontology bindings, lexicon generation, French preprocessing,
 entity detection, intent scoring, all 11 SPARQL templates and the stable
-translator interface. The full task 8 question suite and frontend are still
-pending. No LLM API is used.
+translator interface. Tasks 1–8, including the French translator regression
+suite, are implemented. The frontend is still pending. No LLM API is used.
 
 Tools to name in the presentation: Python, spaCy (`fr_core_news_md`), spaCy
 PhraseMatcher, RapidFuzz, RDFLib. Scoring rules operate on French lemmas and
@@ -40,8 +40,8 @@ python -X utf8 -m backend.nlp.entities "pilule combinée" --lexicon backend/nlp/
 python -X utf8 -m unittest discover -s backend/nlp/tests -v
 ```
 
-The current suite has 13 entity question cases, 30 intent question cases, and
-a custom-lexicon replacement check. It is not the pending translator test suite.
+The current suite has 13 entity question cases, 30 intent question cases,
+a custom-lexicon replacement check, and the task 8 translator tests below.
 SPARQL tests also verify actual query results on an independent test graph,
 subclasses, inverse assertions, risk definitions, escaped inputs and binding
 replacement.
@@ -111,10 +111,31 @@ fallback with empty entities; if even that fails, a constant empty SELECT query
 is returned. No stack traces are put in the response. Infrastructure failures
 in optional CLI file reading/query execution remain visible to the developer.
 
-Current translator tests check the response contract, normal translation,
-unknown/invalid input, risk variants, missing NLP resources and template failure
-fallback. The separate task 8 suite of 25+ end-to-end French questions remains
-pending.
+## French question regression suite (task 8)
+
+```powershell
+python -X utf8 -m unittest discover -s backend/nlp/tests -p test_translator.py -v
+```
+
+This runs 49 separately named tests: 38 French questions covering all 11 intents,
+four coverage/query-execution checks, and seven failure/contract tests. Each
+French question checks its expected intent, required entity labels, response
+format, SPARQL syntax, ordering/limit and absence of placeholder bindings.
+Expected labels are a subset: generic nouns may also be recognized as entities.
+Case-specific descriptions display the French question in verbose output.
+
+The corpus includes the professor's six example questions, missing accents,
+typos (`migrain avec aura`, `rifampicin`), SOPK, risk and alert variants, evidence,
+class listing, and unknown vocabulary. It calls the public `translate(question)`
+function using the corrected generated lexicon rather than testing only intent
+classification. The cases are in `FRENCH_CASES` in `tests/test_translator.py`.
+
+Query-execution checks use independent in-memory RDF data to verify filtering,
+interaction direction, and keyword results. Failure tests cover missing
+model/lexicon, template failure, empty/invalid inputs and emergency fallback.
+These tests do not need FastAPI, an internet connection, or the local OWL file;
+they need the installed French spaCy model and committed corrected lexicon.
+They do not establish medical correctness or general OWL inference.
 
 ## Regenerate the lexicon after ontology changes
 
