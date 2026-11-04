@@ -1,0 +1,28 @@
+services:
+  fuseki:
+    image: stain/jena-fuseki:5.1.0
+    ports: ["3030:3030"]
+    environment:
+      ADMIN_PASSWORD: ${FUSEKI_ADMIN_PASSWORD:-admin}
+      FUSEKI_DATASET_1: pharmatwin
+      TDB: "2"
+    volumes:
+      - fuseki-data:/fuseki
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3030/$/ping || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports: ["8000:8000"]
+    environment:
+      PHARMATWIN_FUSEKI_BASE_URL: http://fuseki:3030
+      PHARMATWIN_OFFLINE_MODELS: "false"
+    depends_on:
+      fuseki:
+        condition: service_healthy
+volumes:
+  fuseki-data:

@@ -1,0 +1,1477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:ptc="https://pharmatwin.ai/contraceptive#"
+  xmlns:dcterms="http://purl.org/dc/terms/"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <owl:Ontology rdf:about="https://pharmatwin.ai/contraceptive">
+    <rdfs:label xml:lang="fr">PharmaTwin Contraceptive Ontology</rdfs:label>
+    <rdfs:label xml:lang="fr">Ontologie PharmaTwin Contraceptive</rdfs:label>
+    <rdfs:comment>Ontologie pédagogique d'aide à l'analyse des contraceptifs hormonaux et de leur compatibilité avec des profils de santé féminins. Elle modélise les effets indésirables (dont les risques tumoraux, cardiovasculaires et neuropsychiatriques), les bénéfices, les contre-indications et les sources. Elle utilise des profils synthétiques, ne prescrit pas et ne remplace pas un professionnel de santé.</rdfs:comment>
+    <owl:versionInfo xml:lang="fr">2.1 – révision documentaire et technique du modèle 2.0 ; connaissances cliniques non révisées</owl:versionInfo>
+    <dcterms:title xml:lang="fr">PharmaTwin Contraceptive – ontologie pédagogique OWL 2</dcterms:title>
+    <dcterms:description xml:lang="fr">Modèle RDF/OWL de contraceptifs, molécules, effets cliniques, contre-indications, preuves documentaires et profils fictifs. Les associations cliniques sont pédagogiques et nécessitent une validation scientifique avant tout usage médical.</dcterms:description>
+    <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-11-04</dcterms:modified>
+    <dcterms:language>fr</dcterms:language>
+  </owl:Ontology>
+  <ptc:ProfilPatiente rdf:about="https://pharmatwin.ai/contraceptive#Profil_025">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:identifiantProfil>SYN-025</ptc:identifiantProfil>
+    <ptc:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">25</ptc:age>
+    <ptc:imc rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">21.4</ptc:imc>
+    <ptc:pressionSystolique rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">110</ptc:pressionSystolique>
+    <ptc:pressionDiastolique rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">68</ptc:pressionDiastolique>
+    <ptc:fume rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ptc:fume>
+    <ptc:aCondition>
+      <ptc:ConditionGynecologique rdf:about="https://pharmatwin.ai/contraceptive#CyclesIrreguliers">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomCondition>Cycles irréguliers</ptc:nomCondition>
+        <rdfs:label xml:lang="fr">Cycles irréguliers</rdfs:label>
+      </ptc:ConditionGynecologique>
+    </ptc:aCondition>
+    <ptc:aCondition>
+      <ptc:ConditionGynecologique rdf:about="https://pharmatwin.ai/contraceptive#KystesOvariens">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomCondition>Kystes ovariens</ptc:nomCondition>
+        <rdfs:label xml:lang="fr">Kystes ovariens</rdfs:label>
+      </ptc:ConditionGynecologique>
+    </ptc:aCondition>
+    <rdfs:label xml:lang="fr">Profil simulé SYN-025</rdfs:label>
+    <rdfs:comment xml:lang="fr">Profil de patiente entièrement synthétique, utilisé exclusivement dans un cadre pédagogique.</rdfs:comment>
+  </ptc:ProfilPatiente>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#titreSource">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Etude"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">titre de la source</rdfs:label>
+    <rdfs:comment xml:lang="fr">Titre ou intitulé bibliographique associé à une source de preuve.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <ptc:ProfilRisqueVasculaire rdf:about="https://pharmatwin.ai/contraceptive#Profil_041">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:identifiantProfil>SYN-041</ptc:identifiantProfil>
+    <ptc:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">41</ptc:age>
+    <ptc:imc rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">31.2</ptc:imc>
+    <ptc:pressionSystolique rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">152</ptc:pressionSystolique>
+    <ptc:pressionDiastolique rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">96</ptc:pressionDiastolique>
+    <ptc:fume rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ptc:fume>
+    <ptc:aCondition>
+      <ptc:ConditionClinique rdf:about="https://pharmatwin.ai/contraceptive#Tabagisme">
+        <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#FacteurDeRisque"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomCondition>Tabagisme actif</ptc:nomCondition>
+        <rdfs:label xml:lang="fr">Tabagisme actif</rdfs:label>
+      </ptc:ConditionClinique>
+    </ptc:aCondition>
+    <ptc:aCondition>
+      <ptc:ConditionClinique rdf:about="https://pharmatwin.ai/contraceptive#Hypertension">
+        <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#FacteurDeRisque"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomCondition>Hypertension artérielle</ptc:nomCondition>
+        <rdfs:label xml:lang="fr">Hypertension artérielle</rdfs:label>
+      </ptc:ConditionClinique>
+    </ptc:aCondition>
+    <ptc:aCondition>
+      <ptc:ConditionClinique rdf:about="https://pharmatwin.ai/contraceptive#Obesite">
+        <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#FacteurDeRisque"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomCondition>Obésité (IMC ≥ 30)</ptc:nomCondition>
+        <rdfs:label xml:lang="fr">Obésité (IMC ≥ 30)</rdfs:label>
+      </ptc:ConditionClinique>
+    </ptc:aCondition>
+    <rdfs:label xml:lang="fr">Profil simulé SYN-041</rdfs:label>
+    <rdfs:comment xml:lang="fr">Profil de patiente entièrement synthétique, utilisé exclusivement dans un cadre pédagogique.</rdfs:comment>
+  </ptc:ProfilRisqueVasculaire>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ProfilEndometriose">
+    <rdfs:label xml:lang="fr">Profil endométriose</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:nodeID="Ncad627c47840493f8345e682fa9d2648">
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+          <owl:Restriction rdf:nodeID="N38b629e673c2477faea16aaba23fd3b8">
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#aCondition">
+                <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+                <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#ConditionClinique"/>
+                <rdfs:label xml:lang="fr">a pour condition</rdfs:label>
+                <rdfs:comment xml:lang="fr">Associe un profil simulé à une condition clinique.</rdfs:comment>
+              </owl:ObjectProperty>
+            </owl:onProperty>
+            <owl:hasValue>
+              <ptc:ConditionGynecologique rdf:about="https://pharmatwin.ai/contraceptive#Endometriose">
+                <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+                <ptc:nomCondition>Endométriose</ptc:nomCondition>
+                <rdfs:label xml:lang="fr">Endométriose</rdfs:label>
+              </ptc:ConditionGynecologique>
+            </owl:hasValue>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment xml:lang="fr">Profil simulé associé à la condition endométriose.</rdfs:comment>
+  </owl:Class>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#identifiantProfil">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">identifiant du profil</rdfs:label>
+    <rdfs:comment xml:lang="fr">Identifiant non nominatif du profil de patiente simulé.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <ptc:ProfilRisqueVasculaire rdf:about="https://pharmatwin.ai/contraceptive#Profil_028">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:identifiantProfil>SYN-028</ptc:identifiantProfil>
+    <ptc:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">28</ptc:age>
+    <ptc:imc rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">24.8</ptc:imc>
+    <ptc:pressionSystolique rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">118</ptc:pressionSystolique>
+    <ptc:pressionDiastolique rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">76</ptc:pressionDiastolique>
+    <ptc:fume rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ptc:fume>
+    <ptc:aCondition>
+      <ptc:ConditionGynecologique rdf:about="https://pharmatwin.ai/contraceptive#SOPK">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomCondition>Syndrome des ovaires polykystiques</ptc:nomCondition>
+        <rdfs:label xml:lang="fr">Syndrome des ovaires polykystiques (SOPK)</rdfs:label>
+      </ptc:ConditionGynecologique>
+    </ptc:aCondition>
+    <ptc:aCondition>
+      <ptc:ConditionClinique rdf:about="https://pharmatwin.ai/contraceptive#MigraineAvecAura">
+        <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#FacteurDeRisque"/>
+        <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ConditionContreIndiqueCHC"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomCondition>Migraine avec aura</ptc:nomCondition>
+        <rdfs:label xml:lang="fr">Migraine avec aura</rdfs:label>
+      </ptc:ConditionClinique>
+    </ptc:aCondition>
+    <ptc:aCondition rdf:resource="https://pharmatwin.ai/contraceptive#CyclesIrreguliers"/>
+    <ptc:aObservation>
+      <ptc:BilanHormonal rdf:about="https://pharmatwin.ai/contraceptive#BilanAndrogenesEleves">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:typeObservation>androgènes - valeur simulée</ptc:typeObservation>
+        <ptc:valeurObservation>au-dessus de la plage de référence simulée</ptc:valeurObservation>
+        <rdfs:label xml:lang="fr">Bilan hormonal simulé – androgènes élevés</rdfs:label>
+      </ptc:BilanHormonal>
+    </ptc:aObservation>
+    <ptc:aObservation>
+      <ptc:Observation rdf:about="https://pharmatwin.ai/contraceptive#JournalAcne_Cycle1">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:typeObservation>journal de tolérance</ptc:typeObservation>
+        <ptc:cycleNumero rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ptc:cycleNumero>
+        <ptc:valeurObservation>acné modérée</ptc:valeurObservation>
+        <ptc:observeEffet rdf:resource="https://pharmatwin.ai/contraceptive#Acne"/>
+        <rdfs:label xml:lang="fr">Journal de tolérance simulé – cycle 1</rdfs:label>
+      </ptc:Observation>
+    </ptc:aObservation>
+    <ptc:utiliseContraceptif>
+      <ptc:ContraceptifHormonal rdf:about="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomContraceptif>Pilule combinée EE/drospirénone - démonstration</ptc:nomContraceptif>
+        <ptc:forme>pilule combinée</ptc:forme>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueThromboembolique"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#ModificationHumeur"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueCancerSein"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueCancerColUterin"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueTumeurHepatique"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueAVCIschemique"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#ElevationTension"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueDepression"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#LithiaseBiliaire"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#BaisseLibido"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueHyperkaliemie"/>
+        <ptc:aContreIndication rdf:resource="https://pharmatwin.ai/contraceptive#CI_CHC_MigraineAura"/>
+        <ptc:aContreIndication rdf:resource="https://pharmatwin.ai/contraceptive#CI_Hormonal_CancerSeinActuel"/>
+        <ptc:aContreIndication rdf:resource="https://pharmatwin.ai/contraceptive#CI_CHC_TumeurHepatique"/>
+        <ptc:aContreIndication rdf:resource="https://pharmatwin.ai/contraceptive#CI_CHC_AntecedentThrombose"/>
+        <ptc:aContreIndication rdf:resource="https://pharmatwin.ai/contraceptive#CI_DRSP_InsuffisanceRenale"/>
+        <ptc:contientOestrogene rdf:resource="https://pharmatwin.ai/contraceptive#Ethinylestradiol"/>
+        <ptc:contientProgestatif rdf:resource="https://pharmatwin.ai/contraceptive#Drospirenone"/>
+        <ptc:peutProcurer rdf:resource="https://pharmatwin.ai/contraceptive#ReductionRisqueCancerOvaire"/>
+        <ptc:peutProcurer rdf:resource="https://pharmatwin.ai/contraceptive#ReductionRisqueCancerEndometre"/>
+        <ptc:peutProcurer rdf:resource="https://pharmatwin.ai/contraceptive#RegularisationSaignements"/>
+        <ptc:peutProcurer rdf:resource="https://pharmatwin.ai/contraceptive#AmeliorationAcne"/>
+        <rdfs:label xml:lang="fr">Pilule EE / drospirénone (démonstration)</rdfs:label>
+      </ptc:ContraceptifHormonal>
+    </ptc:utiliseContraceptif>
+    <rdfs:label xml:lang="fr">Profil simulé SYN-028</rdfs:label>
+    <rdfs:comment xml:lang="fr">Profil de patiente entièrement synthétique, utilisé exclusivement dans un cadre pédagogique.</rdfs:comment>
+  </ptc:ProfilRisqueVasculaire>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ContraceptifAvecRisqueTumoral">
+    <rdfs:label xml:lang="fr">Contraceptif associé à un risque tumoral</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:nodeID="N72109589866d4aa8b56b26762d9fec5d">
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+          <owl:Restriction rdf:nodeID="Ne25f899c3bc64041b58174b55842a1ab">
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#peutProduire">
+                <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+                <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#EffetClinique"/>
+                <rdfs:label xml:lang="fr">peut produire l'effet</rdfs:label>
+                <rdfs:comment xml:lang="fr">Associe un contraceptif à un effet clinique potentiel, sans inférer qu’il survient chez une personne.</rdfs:comment>
+              </owl:ObjectProperty>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#RisqueTumoral"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment xml:lang="fr">Classe définie par l’existence d’au moins un lien peutProduire vers un risque tumoral.</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#metabolisePar">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#CibleBiologique"/>
+    <rdfs:label xml:lang="fr">est métabolisée par</rdfs:label>
+    <rdfs:comment xml:lang="fr">Associe une molécule à une cible biologique impliquée dans son métabolisme.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#typeObservation">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Observation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">type d'observation</rdfs:label>
+    <rdfs:comment xml:lang="fr">Type textuel d’observation dans un scénario de suivi.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <ptc:InteractionMedicamenteuse rdf:about="https://pharmatwin.ai/contraceptive#Interaction_Rifampicine_DSG">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:concerneMolecule>
+      <ptc:Molecule rdf:about="https://pharmatwin.ai/contraceptive#Rifampicine">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomMolecule>Rifampicine</ptc:nomMolecule>
+        <ptc:formuleChimique>C43H58N4O12</ptc:formuleChimique>
+        <rdfs:label xml:lang="fr">Rifampicine</rdfs:label>
+      </ptc:Molecule>
+    </ptc:concerneMolecule>
+    <ptc:concerneMolecule>
+      <ptc:Progestatif rdf:about="https://pharmatwin.ai/contraceptive#Desogestrel">
+        <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ProgestatifFaiblementAndrogenique"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomMolecule>Désogestrel</ptc:nomMolecule>
+        <ptc:formuleChimique>C22H30O</ptc:formuleChimique>
+        <ptc:profilAndrogenique>faiblement androgénique</ptc:profilAndrogenique>
+        <ptc:aAffinitePour rdf:resource="https://pharmatwin.ai/contraceptive#RecepteurProgesterone"/>
+        <ptc:metabolisePar rdf:resource="https://pharmatwin.ai/contraceptive#CYP3A4"/>
+        <rdfs:label xml:lang="fr">Désogestrel</rdfs:label>
+      </ptc:Progestatif>
+    </ptc:concerneMolecule>
+    <ptc:modifieEfficaciteDe>
+      <ptc:ContraceptifHormonal rdf:about="https://pharmatwin.ai/contraceptive#PiluleProgestative_DSG">
+        <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#PiluleProgestative"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomContraceptif>Pilule progestative désogestrel - démonstration</ptc:nomContraceptif>
+        <ptc:forme>pilule progestative seule</ptc:forme>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#SaignementsIrreguliers"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueCancerSein"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueDepression"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#BaisseLibido"/>
+        <ptc:contientProgestatif rdf:resource="https://pharmatwin.ai/contraceptive#Desogestrel"/>
+        <ptc:aContreIndication rdf:resource="https://pharmatwin.ai/contraceptive#CI_Hormonal_CancerSeinActuel"/>
+        <rdfs:label xml:lang="fr">Pilule progestative au désogestrel (démonstration)</rdfs:label>
+      </ptc:ContraceptifHormonal>
+    </ptc:modifieEfficaciteDe>
+    <ptc:niveauAlerte>à vérifier avec un professionnel</ptc:niveauAlerte>
+    <ptc:justifiePar>
+      <ptc:Etude rdf:about="https://pharmatwin.ai/contraceptive#Guide_CDC_USMEC_2024">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:titreSource>U.S. Medical Eligibility Criteria for Contraceptive Use, 2024</ptc:titreSource>
+        <ptc:urlSource rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://www.cdc.gov/mmwr/volumes/73/rr/rr7304a1.htm</ptc:urlSource>
+        <ptc:niveauPreuve>recommandation officielle</ptc:niveauPreuve>
+        <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+        <rdfs:seeAlso rdf:resource="https://www.cdc.gov/mmwr/volumes/73/rr/rr7304a1.htm"/>
+        <rdfs:label xml:lang="fr">Guide CDC – U.S. MEC 2024</rdfs:label>
+      </ptc:Etude>
+    </ptc:justifiePar>
+    <rdfs:label xml:lang="fr">Interaction rifampicine – désogestrel</rdfs:label>
+  </ptc:InteractionMedicamenteuse>
+  <owl:AllDisjointClasses rdf:nodeID="N992a007101724fd3af051c1e86b3fae9">
+    <owl:members rdf:parseType="Collection">
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#PiluleCombinee"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#PiluleProgestative"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#aAffinitePour">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#CibleBiologique"/>
+    <rdfs:label xml:lang="fr">a une affinité pour</rdfs:label>
+    <rdfs:comment xml:lang="fr">Relie une molécule à une cible biologique pour laquelle une affinité est décrite.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ProfilAlerteOestrogene">
+    <rdfs:label xml:lang="fr">Profil en alerte pour les œstrogènes</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:nodeID="Nd833b14fc5114a9cb866630560ec6d59">
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+          <owl:Restriction rdf:nodeID="Nab18c8271a964883a367b88a7382bb03">
+            <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#aCondition"/>
+            <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#ConditionContreIndiqueCHC"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment xml:lang="fr">Classe définie par l’association d’un profil à une condition contre-indiquant les CHC dans le modèle.</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#aggravePar">
+    <rdfs:label xml:lang="fr">est aggravé par</rdfs:label>
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#EffetIndesirable"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#ConditionClinique"/>
+    <rdfs:comment xml:lang="fr">Relie un effet indésirable à une condition susceptible de modifier son importance dans le modèle.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ProfilAvecFacteurDeRisque">
+    <rdfs:label xml:lang="fr">Profil avec facteur de risque</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:nodeID="N1212ce0032a14ad2919438a5a35b4da6">
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+          <owl:Restriction rdf:nodeID="Nba0b9fbe12f64b489694655719362266">
+            <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#aCondition"/>
+            <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#FacteurDeRisque"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment xml:lang="fr">Classe définie par l’existence d’une condition de type facteur de risque.</rdfs:comment>
+  </owl:Class>
+  <owl:AllDisjointClasses rdf:nodeID="Nb2f7ef826f6d443ba13058e3c1b912b9">
+    <owl:members rdf:parseType="Collection">
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ContraceptifHormonal"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ContraceptifNonHormonal"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <ptc:ProfilPatiente rdf:about="https://pharmatwin.ai/contraceptive#Profil_032">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:identifiantProfil>SYN-032</ptc:identifiantProfil>
+    <ptc:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">32</ptc:age>
+    <ptc:imc rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">22.1</ptc:imc>
+    <ptc:pressionSystolique rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">112</ptc:pressionSystolique>
+    <ptc:pressionDiastolique rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">70</ptc:pressionDiastolique>
+    <ptc:fume rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ptc:fume>
+    <ptc:aCondition rdf:resource="https://pharmatwin.ai/contraceptive#Endometriose"/>
+    <ptc:utiliseContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleProgestative_DSG"/>
+    <rdfs:label xml:lang="fr">Profil simulé SYN-032</rdfs:label>
+    <rdfs:comment xml:lang="fr">Profil de patiente entièrement synthétique, utilisé exclusivement dans un cadre pédagogique.</rdfs:comment>
+  </ptc:ProfilPatiente>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#profilAndrogenique">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Progestatif"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">profil androgénique</rdfs:label>
+    <rdfs:comment xml:lang="fr">Caractérisation textuelle du profil androgénique d’un progestatif.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#concerneCondition">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ContreIndication"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#ConditionClinique"/>
+    <rdfs:label xml:lang="fr">concerne la condition</rdfs:label>
+    <rdfs:comment xml:lang="fr">Identifie la condition clinique à laquelle se rapporte une contre-indication.</rdfs:comment>
+  </owl:ObjectProperty>
+  <ptc:ProfilPatiente rdf:about="https://pharmatwin.ai/contraceptive#Profil_046">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:identifiantProfil>SYN-046</ptc:identifiantProfil>
+    <ptc:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">46</ptc:age>
+    <ptc:imc rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">25.3</ptc:imc>
+    <ptc:pressionSystolique rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">122</ptc:pressionSystolique>
+    <ptc:pressionDiastolique rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">78</ptc:pressionDiastolique>
+    <ptc:fume rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ptc:fume>
+    <ptc:aCondition>
+      <ptc:ConditionClinique rdf:about="https://pharmatwin.ai/contraceptive#CancerSeinActuel">
+        <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ConditionOncologique"/>
+        <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ConditionContreIndiqueCHC"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomCondition>Cancer du sein actuel</ptc:nomCondition>
+        <rdfs:label xml:lang="fr">Cancer du sein actuel</rdfs:label>
+      </ptc:ConditionClinique>
+    </ptc:aCondition>
+    <rdfs:label xml:lang="fr">Profil simulé SYN-046</rdfs:label>
+    <rdfs:comment xml:lang="fr">Profil de patiente entièrement synthétique, utilisé exclusivement dans un cadre pédagogique.</rdfs:comment>
+  </ptc:ProfilPatiente>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#interagitAvecMolecule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+    <rdfs:label xml:lang="fr">interagit avec la molécule</rdfs:label>
+    <rdfs:comment xml:lang="fr">Exprime une interaction décrite entre deux molécules.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:AllDisjointClasses rdf:nodeID="N620aada557724562a411a2af8f3b8e6e">
+    <owl:members rdf:parseType="Collection">
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ProgestatifAndrogenique"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ProgestatifFaiblementAndrogenique"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ProgestatifAntiAndrogenique"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#nomCondition">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ConditionClinique"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">nom de la condition</rdfs:label>
+    <rdfs:comment xml:lang="fr">Dénomination textuelle d’une condition clinique.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#estContenuDans">
+    <rdfs:label xml:lang="fr">est contenu dans</rdfs:label>
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#contientMolecule">
+        <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+        <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+        <rdfs:label xml:lang="fr">contient la molécule</rdfs:label>
+        <rdfs:comment xml:lang="fr">Relie un contraceptif à une molécule qu’il contient.</rdfs:comment>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+    <rdfs:comment xml:lang="fr">Relation inverse de contientMolecule.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#descriptionEffet">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#EffetClinique"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">description de l'effet</rdfs:label>
+    <rdfs:comment xml:lang="fr">Texte libre de description d’un effet clinique.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#modifieEfficaciteDe">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Interaction"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+    <rdfs:label xml:lang="fr">peut modifier l'efficacité de</rdfs:label>
+    <rdfs:comment xml:lang="fr">Relie une interaction à un contraceptif dont l’efficacité pourrait être modifiée.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ProfilSOPK">
+    <rdfs:label xml:lang="fr">Profil SOPK</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:nodeID="N45fdc80780ac4070aa3edc9528477361">
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+          <owl:Restriction rdf:nodeID="N092ab3fd81d4482db305f2e008c11ddb">
+            <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#aCondition"/>
+            <owl:hasValue rdf:resource="https://pharmatwin.ai/contraceptive#SOPK"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment xml:lang="fr">Profil simulé associé au syndrome des ovaires polykystiques.</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#observeEffet">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Observation"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#EffetClinique"/>
+    <rdfs:label xml:lang="fr">observe l'effet</rdfs:label>
+    <rdfs:comment xml:lang="fr">Relie une observation à un effet clinique.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#niveauAlerte">
+    <rdfs:domain>
+      <owl:Class rdf:nodeID="Nf99c52e5517f4c1f813291acb7f36c3b">
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Interaction"/>
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ContreIndication"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">niveau d'alerte</rdfs:label>
+    <rdfs:comment xml:lang="fr">Niveau d’alerte textuel utilisé dans le scénario pédagogique ; non assimilable à une décision médicale.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <ptc:ContraceptifNonHormonal rdf:about="https://pharmatwin.ai/contraceptive#DIU_Cuivre">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomContraceptif>DIU au cuivre - démonstration</ptc:nomContraceptif>
+    <ptc:forme>DIU au cuivre</ptc:forme>
+    <ptc:peutProduire>
+      <ptc:EffetIndesirable rdf:about="https://pharmatwin.ai/contraceptive#SaignementsAbondants">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Règles plus abondantes ou plus douloureuses possibles avec le DIU au cuivre.</ptc:descriptionEffet>
+        <ptc:niveauGravite>léger à modéré</ptc:niveauGravite>
+        <rdfs:label xml:lang="fr">Saignements abondants</rdfs:label>
+      </ptc:EffetIndesirable>
+    </ptc:peutProduire>
+    <rdfs:label xml:lang="fr">DIU au cuivre (démonstration)</rdfs:label>
+  </ptc:ContraceptifNonHormonal>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#aContreIndication">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#ContreIndication"/>
+    <rdfs:label xml:lang="fr">a pour contre-indication</rdfs:label>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#concerneContraceptif">
+        <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ContreIndication"/>
+        <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+        <rdfs:label xml:lang="fr">concerne le contraceptif</rdfs:label>
+        <rdfs:comment xml:lang="fr">Identifie le contraceptif concerné par une contre-indication.</rdfs:comment>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+    <rdfs:comment xml:lang="fr">Associe un contraceptif à une contre-indication modélisée.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#estAssocieAEffet">
+    <rdfs:label xml:lang="fr">est associée à l’effet</rdfs:label>
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#EffetClinique"/>
+    <rdfs:comment xml:lang="fr">Associe une molécule à un effet clinique décrit.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#niveauPreuve">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Etude"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">niveau de preuve</rdfs:label>
+    <rdfs:comment xml:lang="fr">Nature ou niveau descriptif de preuve associé à une source ; non normalisé par une échelle clinique explicite.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#frequenceRisque">
+    <rdfs:label xml:lang="fr">fréquence du risque</rdfs:label>
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#EffetIndesirable"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="fr">Appréciation qualitative textuelle de fréquence ; ne constitue pas une probabilité quantitative validée.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#nomMolecule">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">nom de la molécule</rdfs:label>
+    <rdfs:comment xml:lang="fr">Dénomination textuelle de la molécule.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#age">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="fr">âge</rdfs:label>
+    <rdfs:comment xml:lang="fr">Âge exprimé en années révolues dans un profil fictif.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#nomCible">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#CibleBiologique"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">nom de la cible</rdfs:label>
+    <rdfs:comment xml:lang="fr">Dénomination textuelle d’une cible biologique.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#fume">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:label xml:lang="fr">tabagisme</rdfs:label>
+    <rdfs:comment xml:lang="fr">Indique le statut tabagique booléen d’un profil fictif.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#formuleChimique">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">formule chimique</rdfs:label>
+    <rdfs:comment xml:lang="fr">Formule moléculaire textuelle de la substance.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#pressionSystolique">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="fr">pression systolique</rdfs:label>
+    <rdfs:comment xml:lang="fr">Pression artérielle systolique du profil fictif, en mmHg.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#forme">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">forme contraceptive</rdfs:label>
+    <rdfs:comment xml:lang="fr">Forme ou type de présentation du contraceptif.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:AllDisjointClasses rdf:nodeID="N2607b7a0b5124a7ba943a51cd6060a0b">
+    <owl:members rdf:parseType="Collection">
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Oestrogene"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Progestatif"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <ptc:EtudeClinique rdf:about="https://pharmatwin.ai/contraceptive#Essai_Tolerance_SYN">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:titreSource>Étude fictive utilisée uniquement pour la démonstration</ptc:titreSource>
+    <ptc:urlSource rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://pharmatwin.ai/demo/evidence/SYN-001</ptc:urlSource>
+    <ptc:niveauPreuve>donnée synthétique</ptc:niveauPreuve>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleProgestative_DSG"/>
+    <rdfs:seeAlso rdf:resource="https://pharmatwin.ai/demo/evidence/SYN-001"/>
+    <rdfs:label xml:lang="fr">Étude fictive de tolérance (démonstration)</rdfs:label>
+    <rdfs:comment xml:lang="fr">Source fictive de démonstration. Ne doit jamais être présentée comme une publication scientifique réelle.</rdfs:comment>
+  </ptc:EtudeClinique>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#nomContraceptif">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">nom du contraceptif</rdfs:label>
+    <rdfs:comment xml:lang="fr">Dénomination textuelle du contraceptif étudié.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#imc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="fr">IMC</rdfs:label>
+    <rdfs:comment xml:lang="fr">Indice de masse corporelle numérique en kg/m² du profil fictif.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#utiliseContraceptif">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+    <rdfs:label xml:lang="fr">utilise le contraceptif</rdfs:label>
+    <rdfs:comment xml:lang="fr">Relie un profil fictif au contraceptif retenu dans son scénario.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#cycleNumero">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Observation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="fr">numéro du cycle</rdfs:label>
+    <rdfs:comment xml:lang="fr">Numéro ordinal du cycle représenté dans une observation fictive.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#niveauGravite">
+    <rdfs:label xml:lang="fr">niveau de gravité</rdfs:label>
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#EffetClinique"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="fr">Appréciation textuelle de gravité d’un effet clinique.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#pressionDiastolique">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="fr">pression diastolique</rdfs:label>
+    <rdfs:comment xml:lang="fr">Pression artérielle diastolique du profil fictif, en mmHg.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#aObservation">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Observation"/>
+    <rdfs:label xml:lang="fr">a pour observation</rdfs:label>
+    <rdfs:comment xml:lang="fr">Relie un profil simulé à une observation de suivi.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#valeurObservation">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Observation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="fr">valeur observée</rdfs:label>
+    <rdfs:comment xml:lang="fr">Résultat textuel d’une observation simulée.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ContraceptifAvecEffetBenefique">
+    <rdfs:label xml:lang="fr">Contraceptif associé à un effet bénéfique</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:nodeID="N221d7e13c9f847be9ab7d852cb0dfb8d">
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+          <owl:Restriction rdf:nodeID="N9ee027649b1b409f89cf4973955bb220">
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#peutProcurer">
+                <rdfs:label xml:lang="fr">peut procurer</rdfs:label>
+                <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+                <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#EffetBenefique"/>
+                <rdfs:comment xml:lang="fr">Associe un contraceptif à un effet bénéfique potentiel, sans garantie pour un individu.</rdfs:comment>
+              </owl:ObjectProperty>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#EffetBenefique"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment xml:lang="fr">Classe définie par l’existence d’au moins un lien peutProcurer vers un effet bénéfique.</rdfs:comment>
+  </owl:Class>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#categorieMEC">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#ContreIndication"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="fr">catégorie MEC</rdfs:label>
+    <rdfs:comment xml:lang="fr">Catégorie numérique utilisée selon les critères d’admissibilité médicale à la contraception ; l’interprétation dépend de la source officielle.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:AllDisjointClasses rdf:nodeID="N649ecb4741d848fe8f43322bf92b6ad4">
+    <owl:members rdf:parseType="Collection">
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ConditionClinique"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Molecule"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#CibleBiologique"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Interaction"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#EffetClinique"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ContreIndication"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Etude"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Observation"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:AllDisjointClasses rdf:nodeID="Nb4285eb1a4154380b63510b39cca34bc">
+    <owl:members rdf:parseType="Collection">
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#EffetIndesirable"/>
+      <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#EffetBenefique"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:DatatypeProperty rdf:about="https://pharmatwin.ai/contraceptive#urlSource">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Etude"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="fr">URL de la source</rdfs:label>
+    <rdfs:comment xml:lang="fr">URL bibliographique stockée comme littéral xsd:anyURI ; un lien RDF peut figurer en rdfs:seeAlso.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <ptc:RisqueCardiovasculaire rdf:about="https://pharmatwin.ai/contraceptive#ElevationTension">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:descriptionEffet>Augmentation possible de la pression artérielle sous contraceptifs combinés.</ptc:descriptionEffet>
+    <ptc:niveauGravite>modéré</ptc:niveauGravite>
+    <ptc:aggravePar rdf:resource="https://pharmatwin.ai/contraceptive#Hypertension"/>
+    <ptc:aggravePar rdf:resource="https://pharmatwin.ai/contraceptive#Obesite"/>
+    <ptc:frequenceRisque>peu fréquent</ptc:frequenceRisque>
+    <rdfs:label xml:lang="fr">Élévation de la pression artérielle</rdfs:label>
+  </ptc:RisqueCardiovasculaire>
+  <ptc:EtudeClinique rdf:about="https://pharmatwin.ai/contraceptive#Etude_Skovlund_JAMAPsy2016">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:titreSource>Association of hormonal contraception with depression (JAMA Psychiatry, 2016)</ptc:titreSource>
+    <ptc:niveauPreuve>étude de cohorte nationale (causalité débattue)</ptc:niveauPreuve>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleProgestative_DSG"/>
+    <ptc:evalueContraceptif>
+      <ptc:ContraceptifHormonal rdf:about="https://pharmatwin.ai/contraceptive#Implant_ETG">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomContraceptif>Implant étonogestrel - démonstration</ptc:nomContraceptif>
+        <ptc:forme>implant</ptc:forme>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#SaignementsIrreguliers"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueCancerSein"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueDepression"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#Acne"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#BaisseLibido"/>
+        <ptc:contientProgestatif rdf:resource="https://pharmatwin.ai/contraceptive#Etonogestrel"/>
+        <ptc:aContreIndication rdf:resource="https://pharmatwin.ai/contraceptive#CI_Hormonal_CancerSeinActuel"/>
+        <rdfs:label xml:lang="fr">Implant à l’étonogestrel (démonstration)</rdfs:label>
+      </ptc:ContraceptifHormonal>
+    </ptc:evalueContraceptif>
+    <ptc:evalueContraceptif>
+      <ptc:ContraceptifHormonal rdf:about="https://pharmatwin.ai/contraceptive#DIU_Hormonal_LNG">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomContraceptif>DIU hormonal lévonorgestrel - démonstration</ptc:nomContraceptif>
+        <ptc:forme>DIU hormonal</ptc:forme>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#SaignementsIrreguliers"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueCancerSein"/>
+        <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueDepression"/>
+        <ptc:contientProgestatif rdf:resource="https://pharmatwin.ai/contraceptive#Levonorgestrel"/>
+        <ptc:aContreIndication rdf:resource="https://pharmatwin.ai/contraceptive#CI_Hormonal_CancerSeinActuel"/>
+        <rdfs:label xml:lang="fr">DIU hormonal au lévonorgestrel (démonstration)</rdfs:label>
+      </ptc:ContraceptifHormonal>
+    </ptc:evalueContraceptif>
+    <rdfs:label xml:lang="fr">Étude Skovlund et al. (JAMA Psychiatry, 2016)</rdfs:label>
+  </ptc:EtudeClinique>
+  <ptc:RisqueTumoral rdf:about="https://pharmatwin.ai/contraceptive#RisqueMeningiome">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:descriptionEffet>Association liée à la dose et à la durée avec certains progestatifs (acétate de cyprotérone, acétate de nomégestrol, acétate de chlormadinone) ; tumeur le plus souvent bénigne mais pouvant nécessiter un traitement.</ptc:descriptionEffet>
+    <ptc:niveauGravite>grave</ptc:niveauGravite>
+    <ptc:justifiePar>
+      <ptc:Etude rdf:about="https://pharmatwin.ai/contraceptive#Etude_PRAC_Meningiome">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:titreSource>Évaluations européennes (PRAC/EMA) et ANSM sur le risque de méningiome avec certains progestatifs</ptc:titreSource>
+        <ptc:niveauPreuve>évaluation réglementaire (référence exacte à vérifier avant citation)</ptc:niveauPreuve>
+        <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA"/>
+        <rdfs:label xml:lang="fr">Évaluations réglementaires – risque de méningiome</rdfs:label>
+        <rdfs:comment xml:lang="fr">Référence réglementaire non entièrement normalisée dans les données d’origine ; document exact et date à identifier avant citation académique.</rdfs:comment>
+      </ptc:Etude>
+    </ptc:justifiePar>
+    <ptc:frequenceRisque>rare</ptc:frequenceRisque>
+    <rdfs:label xml:lang="fr">Risque de méningiome</rdfs:label>
+  </ptc:RisqueTumoral>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ProgestatifFaiblementAndrogenique">
+    <rdfs:label xml:lang="fr">Progestatif faiblement androgénique</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Progestatif"/>
+    <rdfs:comment xml:lang="fr">Sous-classe de progestatif décrite comme faiblement androgénique.</rdfs:comment>
+  </owl:Class>
+  <ptc:EffetBenefique rdf:about="https://pharmatwin.ai/contraceptive#AmeliorationAcne">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:descriptionEffet>Amélioration possible de l'acné avec des progestatifs anti-androgéniques.</ptc:descriptionEffet>
+    <rdfs:label xml:lang="fr">Amélioration de l’acné</rdfs:label>
+  </ptc:EffetBenefique>
+  <ptc:RisqueTumoral rdf:about="https://pharmatwin.ai/contraceptive#RisqueTumeurHepatique">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:descriptionEffet>Adénome hépatocellulaire, rare, décrit surtout avec une utilisation prolongée de contraceptifs combinés.</ptc:descriptionEffet>
+    <ptc:niveauGravite>grave</ptc:niveauGravite>
+    <ptc:justifiePar>
+      <ptc:Etude rdf:about="https://pharmatwin.ai/contraceptive#Monographie_IARC_100A">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:titreSource>IARC Monographs, volume 100A : contraceptifs combinés œstro-progestatifs (classement groupe 1)</ptc:titreSource>
+        <ptc:niveauPreuve>évaluation d'un organisme international</ptc:niveauPreuve>
+        <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+        <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA"/>
+        <rdfs:label xml:lang="fr">Monographie du CIRC – volume 100A</rdfs:label>
+      </ptc:Etude>
+    </ptc:justifiePar>
+    <ptc:frequenceRisque>très rare</ptc:frequenceRisque>
+    <rdfs:label xml:lang="fr">Risque de tumeur hépatique</rdfs:label>
+  </ptc:RisqueTumoral>
+  <ptc:Progestatif rdf:about="https://pharmatwin.ai/contraceptive#CyproteroneAcetate">
+    <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ProgestatifAntiAndrogenique"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomMolecule>Acétate de cyprotérone</ptc:nomMolecule>
+    <ptc:formuleChimique>C24H29ClO4</ptc:formuleChimique>
+    <ptc:profilAndrogenique>anti-androgénique</ptc:profilAndrogenique>
+    <ptc:aAffinitePour>
+      <ptc:RecepteurHormonal rdf:about="https://pharmatwin.ai/contraceptive#RecepteurProgesterone">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomCible>Récepteur de la progestérone</ptc:nomCible>
+        <rdfs:label xml:lang="fr">Récepteur de la progestérone</rdfs:label>
+      </ptc:RecepteurHormonal>
+    </ptc:aAffinitePour>
+    <ptc:aAffinitePour>
+      <ptc:RecepteurHormonal rdf:about="https://pharmatwin.ai/contraceptive#RecepteurAndrogene">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomCible>Récepteur des androgènes</ptc:nomCible>
+        <rdfs:label xml:lang="fr">Récepteur des androgènes</rdfs:label>
+      </ptc:RecepteurHormonal>
+    </ptc:aAffinitePour>
+    <ptc:estAssocieAEffet rdf:resource="https://pharmatwin.ai/contraceptive#RisqueMeningiome"/>
+    <rdfs:label xml:lang="fr">Acétate de cyprotérone</rdfs:label>
+  </ptc:Progestatif>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#InteractionMedicamenteuse">
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Interaction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N811891ddbd86436d9a5eefd6cc3f6b79">
+        <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#concerneMolecule"/>
+        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+        <owl:onClass rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="fr">Interaction médicamenteuse</rdfs:label>
+    <rdfs:comment xml:lang="fr">Interaction impliquant au moins deux molécules, selon la restriction ontologique.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ContreIndicationMetabolique">
+    <rdfs:label xml:lang="fr">Contre-indication métabolique ou rénale</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ContreIndication"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N34d7578e901b40e9b341d08398a06aa5">
+        <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#justifiePar"/>
+        <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#Etude"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="fr">Contre-indication associée à une condition métabolique ou rénale.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ConditionContreIndiqueCHC">
+    <rdfs:label xml:lang="fr">Condition contre-indiquant les contraceptifs combinés</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ConditionClinique"/>
+    <rdfs:comment xml:lang="fr">Condition considérée dans le modèle pour l’analyse des restrictions liées aux contraceptifs hormonaux combinés (CHC).</rdfs:comment>
+  </owl:Class>
+  <ptc:RisqueCardiovasculaire rdf:about="https://pharmatwin.ai/contraceptive#RisqueThromboembolique">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:descriptionEffet>Risque thromboembolique potentiel associé aux contraceptifs hormonaux combinés</ptc:descriptionEffet>
+    <ptc:justifiePar>
+      <ptc:Etude rdf:about="https://pharmatwin.ai/contraceptive#Evaluation_EMA_CHC">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:titreSource>Combined hormonal contraceptives - EMA review</ptc:titreSource>
+        <ptc:urlSource rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/referral-procedures-human-medicines/combined-hormonal-contraceptives</ptc:urlSource>
+        <ptc:niveauPreuve>évaluation réglementaire</ptc:niveauPreuve>
+        <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+        <rdfs:seeAlso rdf:resource="https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/referral-procedures-human-medicines/combined-hormonal-contraceptives"/>
+        <rdfs:label xml:lang="fr">Évaluation EMA des contraceptifs hormonaux combinés</rdfs:label>
+      </ptc:Etude>
+    </ptc:justifiePar>
+    <ptc:niveauGravite>grave</ptc:niveauGravite>
+    <ptc:frequenceRisque>rare</ptc:frequenceRisque>
+    <ptc:aggravePar rdf:resource="https://pharmatwin.ai/contraceptive#Tabagisme"/>
+    <ptc:aggravePar rdf:resource="https://pharmatwin.ai/contraceptive#Obesite"/>
+    <ptc:aggravePar>
+      <ptc:ConditionClinique rdf:about="https://pharmatwin.ai/contraceptive#AntecedentThrombose">
+        <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#FacteurDeRisque"/>
+        <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ConditionContreIndiqueCHC"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomCondition>Antécédent personnel de thrombose</ptc:nomCondition>
+        <rdfs:label xml:lang="fr">Antécédent personnel de thrombose</rdfs:label>
+      </ptc:ConditionClinique>
+    </ptc:aggravePar>
+    <rdfs:label xml:lang="fr">Risque thromboembolique</rdfs:label>
+  </ptc:RisqueCardiovasculaire>
+  <ptc:EffetMetabolique rdf:about="https://pharmatwin.ai/contraceptive#PriseDePoids">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:descriptionEffet>Prise de poids décrite avec l'injectable DMPA ; relation moins claire avec les autres méthodes.</ptc:descriptionEffet>
+    <ptc:niveauGravite>léger</ptc:niveauGravite>
+    <ptc:frequenceRisque>variable</ptc:frequenceRisque>
+    <rdfs:label xml:lang="fr">Prise de poids</rdfs:label>
+  </ptc:EffetMetabolique>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#Contraceptif">
+    <rdfs:label xml:lang="fr">Contraceptif</rdfs:label>
+    <rdfs:comment xml:lang="fr">Méthode ou produit contraceptif représenté comme entité d’étude.</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#evalueContraceptif">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Etude"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+    <rdfs:label xml:lang="fr">évalue le contraceptif</rdfs:label>
+    <rdfs:comment xml:lang="fr">Relie une source de preuve au contraceptif qu’elle examine.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#PiluleCombinee">
+    <rdfs:label xml:lang="fr">Pilule combinée</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ContraceptifHormonal"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:nodeID="N50ad8fcbc78247a388a761564c60fcca">
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+          <owl:Restriction rdf:nodeID="N92c5463c818d49fb811d931ece069971">
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#contientOestrogene">
+                <rdfs:label xml:lang="fr">contient un œstrogène</rdfs:label>
+                <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+                <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Oestrogene"/>
+                <rdfs:subPropertyOf rdf:resource="https://pharmatwin.ai/contraceptive#contientMolecule"/>
+                <rdfs:comment xml:lang="fr">Indique la présence d’un œstrogène dans un contraceptif.</rdfs:comment>
+              </owl:ObjectProperty>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#Oestrogene"/>
+          </owl:Restriction>
+          <owl:Restriction rdf:nodeID="Nd185433adfa142ae977d125bf7c796cd">
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#contientProgestatif">
+                <rdfs:label xml:lang="fr">contient un progestatif</rdfs:label>
+                <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+                <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Progestatif"/>
+                <rdfs:subPropertyOf rdf:resource="https://pharmatwin.ai/contraceptive#contientMolecule"/>
+                <rdfs:comment xml:lang="fr">Indique la présence d’un progestatif dans un contraceptif.</rdfs:comment>
+              </owl:ObjectProperty>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#Progestatif"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment xml:lang="fr">Classe caractérisée par la présence d’au moins un œstrogène et d’un progestatif.</rdfs:comment>
+  </owl:Class>
+  <ptc:ContraceptifHormonal rdf:about="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomContraceptif>Pilule combinée EE/acétate de cyprotérone - démonstration</ptc:nomContraceptif>
+    <ptc:forme>pilule combinée</ptc:forme>
+    <ptc:contientOestrogene>
+      <ptc:Oestrogene rdf:about="https://pharmatwin.ai/contraceptive#Ethinylestradiol">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomMolecule>Éthinylestradiol</ptc:nomMolecule>
+        <ptc:formuleChimique>C20H24O2</ptc:formuleChimique>
+        <ptc:aAffinitePour rdf:resource="https://pharmatwin.ai/contraceptive#RecepteurEstrogene"/>
+        <ptc:metabolisePar rdf:resource="https://pharmatwin.ai/contraceptive#CYP3A4"/>
+        <ptc:estAssocieAEffet rdf:resource="https://pharmatwin.ai/contraceptive#RisqueThromboembolique"/>
+        <ptc:estAssocieAEffet rdf:resource="https://pharmatwin.ai/contraceptive#RisqueAVCIschemique"/>
+        <ptc:estAssocieAEffet rdf:resource="https://pharmatwin.ai/contraceptive#ElevationTension"/>
+        <rdfs:label xml:lang="fr">Éthinylestradiol</rdfs:label>
+      </ptc:Oestrogene>
+    </ptc:contientOestrogene>
+    <ptc:contientProgestatif rdf:resource="https://pharmatwin.ai/contraceptive#CyproteroneAcetate"/>
+    <ptc:peutProduire>
+      <ptc:RisqueTumoral rdf:about="https://pharmatwin.ai/contraceptive#RisqueCancerSein">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Légère augmentation relative du risque de cancer du sein chez les utilisatrices actuelles ou récentes de contraceptifs hormonaux ; le risque absolu reste faible et diminue après l'arrêt.</ptc:descriptionEffet>
+        <ptc:niveauGravite>grave</ptc:niveauGravite>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Etude_Morch_NEJM2017"/>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Monographie_IARC_100A"/>
+        <ptc:frequenceRisque>risque absolu faible</ptc:frequenceRisque>
+        <rdfs:label xml:lang="fr">Risque de cancer du sein</rdfs:label>
+      </ptc:RisqueTumoral>
+    </ptc:peutProduire>
+    <ptc:peutProduire>
+      <ptc:RisqueTumoral rdf:about="https://pharmatwin.ai/contraceptive#RisqueCancerColUterin">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Risque accru en cas d'utilisation prolongée (plusieurs années), surtout avec une infection persistante par HPV ; le dépistage reste indispensable.</ptc:descriptionEffet>
+        <ptc:niveauGravite>grave</ptc:niveauGravite>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Etude_ICESCC_Lancet2007"/>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Monographie_IARC_100A"/>
+        <ptc:aggravePar rdf:resource="https://pharmatwin.ai/contraceptive#InfectionHPVPersistante"/>
+        <ptc:frequenceRisque>risque absolu faible</ptc:frequenceRisque>
+        <rdfs:label xml:lang="fr">Risque de cancer du col utérin</rdfs:label>
+      </ptc:RisqueTumoral>
+    </ptc:peutProduire>
+    <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueTumeurHepatique"/>
+    <ptc:peutProduire>
+      <ptc:RisqueCardiovasculaire rdf:about="https://pharmatwin.ai/contraceptive#RisqueAVCIschemique">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Légère augmentation du risque d'AVC ischémique et d'infarctus sous contraceptifs combinés ; risque absolu faible mais plus élevé avec le tabac, l'hypertension, la migraine avec aura et l'âge.</ptc:descriptionEffet>
+        <ptc:niveauGravite>grave</ptc:niveauGravite>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Etude_Lidegaard_NEJM2012"/>
+        <ptc:aggravePar rdf:resource="https://pharmatwin.ai/contraceptive#Tabagisme"/>
+        <ptc:aggravePar rdf:resource="https://pharmatwin.ai/contraceptive#Hypertension"/>
+        <ptc:aggravePar rdf:resource="https://pharmatwin.ai/contraceptive#MigraineAvecAura"/>
+        <ptc:frequenceRisque>rare</ptc:frequenceRisque>
+        <rdfs:label xml:lang="fr">Risque d’AVC ischémique</rdfs:label>
+      </ptc:RisqueCardiovasculaire>
+    </ptc:peutProduire>
+    <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#ElevationTension"/>
+    <ptc:peutProduire>
+      <ptc:EffetNeuropsychiatrique rdf:about="https://pharmatwin.ai/contraceptive#RisqueDepression">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Association statistique avec un diagnostic de dépression ou un traitement antidépresseur dans une grande cohorte ; la causalité individuelle est débattue et la réponse varie selon les personnes.</ptc:descriptionEffet>
+        <ptc:niveauGravite>modéré à grave</ptc:niveauGravite>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Etude_Skovlund_JAMAPsy2016"/>
+        <ptc:frequenceRisque>variable</ptc:frequenceRisque>
+        <rdfs:label xml:lang="fr">Risque de dépression</rdfs:label>
+      </ptc:EffetNeuropsychiatrique>
+    </ptc:peutProduire>
+    <ptc:peutProduire>
+      <ptc:EffetHepatobiliaire rdf:about="https://pharmatwin.ai/contraceptive#LithiaseBiliaire">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Risque modérément augmenté de calculs biliaires chez certaines utilisatrices de contraceptifs hormonaux.</ptc:descriptionEffet>
+        <ptc:niveauGravite>modéré</ptc:niveauGravite>
+        <ptc:frequenceRisque>peu fréquent</ptc:frequenceRisque>
+        <rdfs:label xml:lang="fr">Lithiase biliaire</rdfs:label>
+      </ptc:EffetHepatobiliaire>
+    </ptc:peutProduire>
+    <ptc:peutProduire>
+      <ptc:EffetNeuropsychiatrique rdf:about="https://pharmatwin.ai/contraceptive#BaisseLibido">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Baisse de libido rapportée par certaines utilisatrices ; causalité et intensité variables.</ptc:descriptionEffet>
+        <ptc:niveauGravite>léger à modéré</ptc:niveauGravite>
+        <ptc:frequenceRisque>variable</ptc:frequenceRisque>
+        <rdfs:label xml:lang="fr">Baisse de libido</rdfs:label>
+      </ptc:EffetNeuropsychiatrique>
+    </ptc:peutProduire>
+    <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueThromboembolique"/>
+    <ptc:peutProduire>
+      <ptc:EffetNeuropsychiatrique rdf:about="https://pharmatwin.ai/contraceptive#ModificationHumeur">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Symptôme rapporté dont la causalité et l'intensité varient selon les personnes</ptc:descriptionEffet>
+        <rdfs:label xml:lang="fr">Modification de l’humeur</rdfs:label>
+      </ptc:EffetNeuropsychiatrique>
+    </ptc:peutProduire>
+    <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueMeningiome"/>
+    <ptc:peutProcurer>
+      <ptc:EffetBenefique rdf:about="https://pharmatwin.ai/contraceptive#ReductionRisqueCancerOvaire">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Réduction du risque de cancer de l'ovaire avec les contraceptifs combinés, qui persiste après l'arrêt.</ptc:descriptionEffet>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Etude_Ovaire_Lancet2008"/>
+        <rdfs:label xml:lang="fr">Réduction du risque de cancer de l’ovaire</rdfs:label>
+      </ptc:EffetBenefique>
+    </ptc:peutProcurer>
+    <ptc:peutProcurer>
+      <ptc:EffetBenefique rdf:about="https://pharmatwin.ai/contraceptive#ReductionRisqueCancerEndometre">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Réduction du risque de cancer de l'endomètre avec les contraceptifs combinés.</ptc:descriptionEffet>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Etude_Endometre_LancetOncol2015"/>
+        <rdfs:label xml:lang="fr">Réduction du risque de cancer de l’endomètre</rdfs:label>
+      </ptc:EffetBenefique>
+    </ptc:peutProcurer>
+    <ptc:peutProcurer>
+      <ptc:EffetBenefique rdf:about="https://pharmatwin.ai/contraceptive#RegularisationSaignements">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Régularisation des saignements et diminution des règles douloureuses chez certaines femmes (sans traiter la cause).</ptc:descriptionEffet>
+        <rdfs:label xml:lang="fr">Régularisation des saignements</rdfs:label>
+      </ptc:EffetBenefique>
+    </ptc:peutProcurer>
+    <ptc:peutProcurer rdf:resource="https://pharmatwin.ai/contraceptive#AmeliorationAcne"/>
+    <ptc:aContreIndication>
+      <ptc:ContreIndicationVasculaire rdf:about="https://pharmatwin.ai/contraceptive#CI_CHC_MigraineAura">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:concerneCondition rdf:resource="https://pharmatwin.ai/contraceptive#MigraineAvecAura"/>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA"/>
+        <ptc:categorieMEC rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</ptc:categorieMEC>
+        <ptc:niveauAlerte>signal rouge</ptc:niveauAlerte>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Guide_CDC_USMEC_2024"/>
+        <rdfs:label xml:lang="fr">Contre-indication CHC – migraine avec aura</rdfs:label>
+      </ptc:ContreIndicationVasculaire>
+    </ptc:aContreIndication>
+    <ptc:aContreIndication>
+      <ptc:ContreIndicationOncologique rdf:about="https://pharmatwin.ai/contraceptive#CI_Hormonal_CancerSeinActuel">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:concerneCondition rdf:resource="https://pharmatwin.ai/contraceptive#CancerSeinActuel"/>
+        <ptc:niveauAlerte>signal rouge</ptc:niveauAlerte>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Guide_CDC_USMEC_2024"/>
+        <ptc:categorieMEC rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</ptc:categorieMEC>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA"/>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleProgestative_DSG"/>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#Implant_ETG"/>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#DIU_Hormonal_LNG"/>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#Injectable_DMPA"/>
+        <rdfs:label xml:lang="fr">Contre-indication hormonale – cancer du sein actuel</rdfs:label>
+      </ptc:ContreIndicationOncologique>
+    </ptc:aContreIndication>
+    <ptc:aContreIndication>
+      <ptc:ContreIndicationOncologique rdf:about="https://pharmatwin.ai/contraceptive#CI_CHC_TumeurHepatique">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:concerneCondition rdf:resource="https://pharmatwin.ai/contraceptive#TumeurHepatique"/>
+        <ptc:niveauAlerte>signal rouge</ptc:niveauAlerte>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Guide_CDC_USMEC_2024"/>
+        <ptc:categorieMEC rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</ptc:categorieMEC>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA"/>
+        <rdfs:label xml:lang="fr">Contre-indication CHC – tumeur hépatique</rdfs:label>
+      </ptc:ContreIndicationOncologique>
+    </ptc:aContreIndication>
+    <ptc:aContreIndication>
+      <ptc:ContreIndicationVasculaire rdf:about="https://pharmatwin.ai/contraceptive#CI_CHC_AntecedentThrombose">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:concerneCondition rdf:resource="https://pharmatwin.ai/contraceptive#AntecedentThrombose"/>
+        <ptc:niveauAlerte>signal rouge ou orange selon le risque de récidive (catégorie MEC à vérifier dans le tableau)</ptc:niveauAlerte>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Guide_CDC_USMEC_2024"/>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA"/>
+        <rdfs:label xml:lang="fr">Contre-indication CHC – antécédent de thrombose</rdfs:label>
+      </ptc:ContreIndicationVasculaire>
+    </ptc:aContreIndication>
+    <ptc:aContreIndication>
+      <ptc:ContreIndicationOncologique rdf:about="https://pharmatwin.ai/contraceptive#CI_CPA_Meningiome">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:concerneCondition rdf:resource="https://pharmatwin.ai/contraceptive#AntecedentMeningiome"/>
+        <ptc:niveauAlerte>signal rouge</ptc:niveauAlerte>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Etude_PRAC_Meningiome"/>
+        <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA"/>
+        <rdfs:label xml:lang="fr">Contre-indication cyprotérone – antécédent de méningiome</rdfs:label>
+      </ptc:ContreIndicationOncologique>
+    </ptc:aContreIndication>
+    <rdfs:label xml:lang="fr">Pilule EE / acétate de cyprotérone (démonstration)</rdfs:label>
+  </ptc:ContraceptifHormonal>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#Progestatif">
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+    <rdfs:label xml:lang="fr">Progestatif</rdfs:label>
+    <rdfs:comment xml:lang="fr">Molécule progestative de la classification.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#Interaction">
+    <rdfs:label xml:lang="fr">Interaction</rdfs:label>
+    <rdfs:comment xml:lang="fr">Relation pharmacologique ou clinique pouvant modifier une propriété ou une efficacité étudiée.</rdfs:comment>
+  </owl:Class>
+  <ptc:EtudeClinique rdf:about="https://pharmatwin.ai/contraceptive#Etude_Endometre_LancetOncol2015">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:titreSource>Endometrial cancer and oral contraceptives : individual participant meta-analysis (Lancet Oncol, 2015)</ptc:titreSource>
+    <ptc:niveauPreuve>méta-analyse de données individuelles</ptc:niveauPreuve>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA"/>
+    <rdfs:label xml:lang="fr">Méta-analyse sur le cancer de l’endomètre (2015)</rdfs:label>
+  </ptc:EtudeClinique>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ConditionOncologique">
+    <rdfs:label xml:lang="fr">Condition oncologique</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ConditionClinique"/>
+    <rdfs:comment xml:lang="fr">Condition clinique liée à une situation ou à un antécédent oncologique.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#RisqueTumoral">
+    <rdfs:label xml:lang="fr">Risque tumoral (cancer ou tumeur)</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#EffetIndesirable"/>
+    <rdfs:comment xml:lang="fr">Catégorie d’effets indésirables potentiels de nature tumorale.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ContreIndicationVasculaire">
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ContreIndication"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N910c5a71d7f54340abfb684eddf24bb6">
+        <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#justifiePar"/>
+        <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#Etude"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="fr">Contre-indication vasculaire</rdfs:label>
+    <rdfs:comment xml:lang="fr">Contre-indication associée à une condition vasculaire ou à un facteur de risque pertinent.</rdfs:comment>
+  </owl:Class>
+  <ptc:CibleBiologique rdf:about="https://pharmatwin.ai/contraceptive#CYP3A4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomCible>Cytochrome P450 3A4</ptc:nomCible>
+    <rdfs:label xml:lang="fr">Cytochrome P450 3A4 (CYP3A4)</rdfs:label>
+  </ptc:CibleBiologique>
+  <ptc:Progestatif rdf:about="https://pharmatwin.ai/contraceptive#Etonogestrel">
+    <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ProgestatifFaiblementAndrogenique"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomMolecule>Étonogestrel</ptc:nomMolecule>
+    <ptc:formuleChimique>C22H28O2</ptc:formuleChimique>
+    <ptc:profilAndrogenique>faiblement androgénique</ptc:profilAndrogenique>
+    <ptc:aAffinitePour rdf:resource="https://pharmatwin.ai/contraceptive#RecepteurProgesterone"/>
+    <ptc:metabolisePar rdf:resource="https://pharmatwin.ai/contraceptive#CYP3A4"/>
+    <rdfs:label xml:lang="fr">Étonogestrel</rdfs:label>
+  </ptc:Progestatif>
+  <ptc:Progestatif rdf:about="https://pharmatwin.ai/contraceptive#Drospirenone">
+    <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ProgestatifAntiAndrogenique"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomMolecule>Drospirénone</ptc:nomMolecule>
+    <ptc:formuleChimique>C24H30O3</ptc:formuleChimique>
+    <ptc:profilAndrogenique>anti-androgénique</ptc:profilAndrogenique>
+    <ptc:aAffinitePour rdf:resource="https://pharmatwin.ai/contraceptive#RecepteurProgesterone"/>
+    <ptc:aAffinitePour rdf:resource="https://pharmatwin.ai/contraceptive#RecepteurAndrogene"/>
+    <ptc:metabolisePar rdf:resource="https://pharmatwin.ai/contraceptive#CYP3A4"/>
+    <ptc:estAssocieAEffet>
+      <ptc:EffetMetabolique rdf:about="https://pharmatwin.ai/contraceptive#RisqueHyperkaliemie">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>La drospirénone a une activité anti-minéralocorticoïde : élévation possible de la kaliémie, surtout en cas d'insuffisance rénale.</ptc:descriptionEffet>
+        <ptc:niveauGravite>modéré</ptc:niveauGravite>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Etude_RCP_Drospirenone"/>
+        <ptc:aggravePar rdf:resource="https://pharmatwin.ai/contraceptive#InsuffisanceRenale"/>
+        <ptc:frequenceRisque>rare</ptc:frequenceRisque>
+        <rdfs:label xml:lang="fr">Risque d’hyperkaliémie</rdfs:label>
+      </ptc:EffetMetabolique>
+    </ptc:estAssocieAEffet>
+    <rdfs:label xml:lang="fr">Drospirénone</rdfs:label>
+  </ptc:Progestatif>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ConditionGynecologique">
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ConditionClinique"/>
+    <rdfs:label xml:lang="fr">Condition gynécologique</rdfs:label>
+    <rdfs:comment xml:lang="fr">Condition clinique relevant du domaine gynécologique.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ContraceptifHormonal">
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="Nd56c54b9c4914cc7b5e1806f7f17dff5">
+        <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#contientMolecule"/>
+        <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="fr">Contraceptif hormonal</rdfs:label>
+    <rdfs:comment xml:lang="fr">Contraceptif associé à au moins une molécule hormonale, suivant la modélisation de l’ontologie.</rdfs:comment>
+  </owl:Class>
+  <ptc:ConditionClinique rdf:about="https://pharmatwin.ai/contraceptive#TumeurHepatique">
+    <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ConditionOncologique"/>
+    <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ConditionContreIndiqueCHC"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomCondition>Tumeur hépatique (adénome ou cancer)</ptc:nomCondition>
+    <rdfs:label xml:lang="fr">Tumeur hépatique</rdfs:label>
+  </ptc:ConditionClinique>
+  <ptc:RecepteurHormonal rdf:about="https://pharmatwin.ai/contraceptive#RecepteurEstrogene">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomCible>Récepteur des œstrogènes</ptc:nomCible>
+    <rdfs:label xml:lang="fr">Récepteur des œstrogènes</rdfs:label>
+  </ptc:RecepteurHormonal>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ContreIndicationOncologique">
+    <rdfs:label xml:lang="fr">Contre-indication oncologique</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ContreIndication"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="Nde04e49d7ebb4bb4894954aa443b13c3">
+        <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#justifiePar"/>
+        <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#Etude"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="fr">Contre-indication associée à une condition oncologique.</rdfs:comment>
+  </owl:Class>
+  <ptc:EtudeClinique rdf:about="https://pharmatwin.ai/contraceptive#Etude_Morch_NEJM2017">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:titreSource>Contemporary hormonal contraception and the risk of breast cancer (N Engl J Med, 2017)</ptc:titreSource>
+    <ptc:niveauPreuve>étude de cohorte nationale</ptc:niveauPreuve>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleProgestative_DSG"/>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#Implant_ETG"/>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#DIU_Hormonal_LNG"/>
+    <rdfs:label xml:lang="fr">Étude Mørch et al. (NEJM, 2017)</rdfs:label>
+  </ptc:EtudeClinique>
+  <ptc:ConditionClinique rdf:about="https://pharmatwin.ai/contraceptive#AntecedentMeningiome">
+    <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ConditionOncologique"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomCondition>Antécédent de méningiome</ptc:nomCondition>
+    <rdfs:label xml:lang="fr">Antécédent de méningiome</rdfs:label>
+  </ptc:ConditionClinique>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#concerneMolecule">
+    <rdfs:domain rdf:resource="https://pharmatwin.ai/contraceptive#Interaction"/>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+    <rdfs:label xml:lang="fr">concerne la molécule</rdfs:label>
+    <rdfs:comment xml:lang="fr">Identifie une molécule impliquée dans une interaction.</rdfs:comment>
+  </owl:ObjectProperty>
+  <ptc:ContraceptifHormonal rdf:about="https://pharmatwin.ai/contraceptive#Injectable_DMPA">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomContraceptif>Injection trimestrielle DMPA - démonstration</ptc:nomContraceptif>
+    <ptc:forme>injectable</ptc:forme>
+    <ptc:contientProgestatif>
+      <ptc:Progestatif rdf:about="https://pharmatwin.ai/contraceptive#MedroxyprogesteroneAcetate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:nomMolecule>Acétate de médroxyprogestérone</ptc:nomMolecule>
+        <ptc:formuleChimique>C24H34O4</ptc:formuleChimique>
+        <ptc:aAffinitePour rdf:resource="https://pharmatwin.ai/contraceptive#RecepteurProgesterone"/>
+        <ptc:estAssocieAEffet rdf:resource="https://pharmatwin.ai/contraceptive#PerteDensiteOsseuse"/>
+        <ptc:estAssocieAEffet rdf:resource="https://pharmatwin.ai/contraceptive#PriseDePoids"/>
+        <rdfs:label xml:lang="fr">Acétate de médroxyprogestérone</rdfs:label>
+      </ptc:Progestatif>
+    </ptc:contientProgestatif>
+    <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueCancerSein"/>
+    <ptc:peutProduire>
+      <ptc:EffetOsseux rdf:about="https://pharmatwin.ai/contraceptive#PerteDensiteOsseuse">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Diminution de la densité minérale osseuse sous DMPA, en partie réversible à l'arrêt.</ptc:descriptionEffet>
+        <ptc:niveauGravite>modéré</ptc:niveauGravite>
+        <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Guide_CDC_USMEC_2024"/>
+        <ptc:frequenceRisque>fréquent sous DMPA</ptc:frequenceRisque>
+        <rdfs:label xml:lang="fr">Perte de densité minérale osseuse</rdfs:label>
+      </ptc:EffetOsseux>
+    </ptc:peutProduire>
+    <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#PriseDePoids"/>
+    <ptc:peutProduire>
+      <ptc:EffetIndesirable rdf:about="https://pharmatwin.ai/contraceptive#SaignementsIrreguliers">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <ptc:descriptionEffet>Modification possible du profil de saignement</ptc:descriptionEffet>
+        <ptc:niveauGravite>léger</ptc:niveauGravite>
+        <rdfs:label xml:lang="fr">Saignements irréguliers</rdfs:label>
+      </ptc:EffetIndesirable>
+    </ptc:peutProduire>
+    <ptc:peutProduire rdf:resource="https://pharmatwin.ai/contraceptive#RisqueDepression"/>
+    <ptc:aContreIndication rdf:resource="https://pharmatwin.ai/contraceptive#CI_Hormonal_CancerSeinActuel"/>
+    <rdfs:label xml:lang="fr">Contraceptif injectable DMPA (démonstration)</rdfs:label>
+  </ptc:ContraceptifHormonal>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#CibleBiologique">
+    <rdfs:label xml:lang="fr">Cible biologique</rdfs:label>
+    <rdfs:comment xml:lang="fr">Entité biologique ciblée ou associée à une molécule dans le modèle.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#Etude">
+    <rdfs:label xml:lang="fr">Source de preuve</rdfs:label>
+    <rdfs:comment xml:lang="fr">Source documentaire ou élément de preuve modélisé pour la traçabilité des énoncés.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#Oestrogene">
+    <rdfs:label xml:lang="fr">Œstrogène</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Molecule"/>
+    <rdfs:comment xml:lang="fr">Molécule appartenant à la famille des œstrogènes.</rdfs:comment>
+  </owl:Class>
+  <ptc:EtudeClinique rdf:about="https://pharmatwin.ai/contraceptive#Etude_Lidegaard_NEJM2012">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:titreSource>Thrombotic stroke and myocardial infarction with hormonal contraception (N Engl J Med, 2012)</ptc:titreSource>
+    <ptc:niveauPreuve>étude de cohorte nationale</ptc:niveauPreuve>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA"/>
+    <rdfs:label xml:lang="fr">Étude Lidegaard et al. (NEJM, 2012)</rdfs:label>
+  </ptc:EtudeClinique>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#EffetHepatobiliaire">
+    <rdfs:label xml:lang="fr">Effet hépatobiliaire</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#EffetIndesirable"/>
+    <rdfs:comment xml:lang="fr">Effet indésirable concernant le foie ou les voies biliaires.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#EffetIndesirable">
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#EffetClinique"/>
+    <rdfs:label xml:lang="fr">Effet indésirable</rdfs:label>
+    <rdfs:comment xml:lang="fr">Effet clinique défavorable potentiel associé dans le modèle à une exposition.</rdfs:comment>
+  </owl:Class>
+  <ptc:ConditionClinique rdf:about="https://pharmatwin.ai/contraceptive#InfectionHPVPersistante">
+    <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#FacteurDeRisque"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomCondition>Infection persistante par un HPV à haut risque</ptc:nomCondition>
+    <rdfs:label xml:lang="fr">Infection persistante par HPV à haut risque</rdfs:label>
+  </ptc:ConditionClinique>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ProgestatifAntiAndrogenique">
+    <rdfs:label xml:lang="fr">Progestatif anti-androgénique</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Progestatif"/>
+    <rdfs:comment xml:lang="fr">Sous-classe de progestatif décrite comme anti-androgénique.</rdfs:comment>
+  </owl:Class>
+  <ptc:EffetClinique rdf:about="https://pharmatwin.ai/contraceptive#Acne">
+    <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#EffetIndesirable"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:descriptionEffet>Acné rapportée dans le journal de tolérance simulé</ptc:descriptionEffet>
+    <ptc:niveauGravite>léger à modéré</ptc:niveauGravite>
+    <rdfs:label xml:lang="fr">Acné</rdfs:label>
+  </ptc:EffetClinique>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ProgestatifAndrogenique">
+    <rdfs:label xml:lang="fr">Progestatif androgénique</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Progestatif"/>
+    <rdfs:comment xml:lang="fr">Sous-classe de progestatif décrite comme androgénique.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#BilanHormonal">
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Observation"/>
+    <rdfs:label xml:lang="fr">Bilan hormonal simulé</rdfs:label>
+    <rdfs:comment xml:lang="fr">Observation synthétique représentant un bilan hormonal au sein d’un scénario pédagogique.</rdfs:comment>
+  </owl:Class>
+  <ptc:Etude rdf:about="https://pharmatwin.ai/contraceptive#Etude_RCP_Drospirenone">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:titreSource>Résumé des caractéristiques du produit (RCP) des contraceptifs contenant de la drospirénone</ptc:titreSource>
+    <ptc:niveauPreuve>document réglementaire (référence exacte à vérifier avant citation)</ptc:niveauPreuve>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+    <rdfs:label xml:lang="fr">Résumé des caractéristiques du produit – drospirénone</rdfs:label>
+  </ptc:Etude>
+  <ptc:Progestatif rdf:about="https://pharmatwin.ai/contraceptive#Levonorgestrel">
+    <rdf:type rdf:resource="https://pharmatwin.ai/contraceptive#ProgestatifAndrogenique"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomMolecule>Lévonorgestrel</ptc:nomMolecule>
+    <ptc:formuleChimique>C21H28O2</ptc:formuleChimique>
+    <ptc:profilAndrogenique>androgénique</ptc:profilAndrogenique>
+    <ptc:aAffinitePour rdf:resource="https://pharmatwin.ai/contraceptive#RecepteurProgesterone"/>
+    <ptc:aAffinitePour rdf:resource="https://pharmatwin.ai/contraceptive#RecepteurAndrogene"/>
+    <ptc:metabolisePar rdf:resource="https://pharmatwin.ai/contraceptive#CYP3A4"/>
+    <ptc:estAssocieAEffet rdf:resource="https://pharmatwin.ai/contraceptive#Acne"/>
+    <rdfs:label xml:lang="fr">Lévonorgestrel</rdfs:label>
+  </ptc:Progestatif>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ProfilRisqueVasculaire">
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ProfilPatiente"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N6a03765d924745dc874e94100241a22c">
+        <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#aCondition"/>
+        <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#ConditionClinique"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="fr">Profil avec facteur de risque vasculaire</rdfs:label>
+    <rdfs:comment xml:lang="fr">Profil synthétique catégorisé par les données et restrictions de risque vasculaire de l’ontologie.</rdfs:comment>
+  </owl:Class>
+  <ptc:EtudeClinique rdf:about="https://pharmatwin.ai/contraceptive#Etude_Ovaire_Lancet2008">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:titreSource>Ovarian cancer and oral contraceptives : collaborative reanalysis of 45 epidemiological studies (Lancet, 2008)</ptc:titreSource>
+    <ptc:niveauPreuve>ré-analyse collaborative de données individuelles</ptc:niveauPreuve>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA"/>
+    <rdfs:label xml:lang="fr">Analyse sur le cancer de l’ovaire (Lancet, 2008)</rdfs:label>
+  </ptc:EtudeClinique>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ContreIndication">
+    <rdfs:label xml:lang="fr">Contre-indication</rdfs:label>
+    <rdfs:comment xml:lang="fr">Restriction clinique représentée comme entité et reliée à une condition et/ou à un contraceptif.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#PiluleProgestative">
+    <rdfs:label xml:lang="fr">Pilule progestative seule</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ContraceptifHormonal"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N7f5b5575b6f04547896a548135945c84">
+        <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#contientProgestatif"/>
+        <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#Progestatif"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N6d587a48b9b34dceb294ea4c854991b5">
+        <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#contientOestrogene"/>
+        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:maxQualifiedCardinality>
+        <owl:onClass rdf:resource="https://pharmatwin.ai/contraceptive#Oestrogene"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="fr">Classe représentant une pilule progestative seule, avec restriction sur la présence d’œstrogène.</rdfs:comment>
+  </owl:Class>
+  <ptc:EtudeClinique rdf:about="https://pharmatwin.ai/contraceptive#Etude_ICESCC_Lancet2007">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:titreSource>Cervical cancer and hormonal contraceptives : collaborative reanalysis of 24 epidemiological studies (Lancet, 2007)</ptc:titreSource>
+    <ptc:niveauPreuve>ré-analyse collaborative de données individuelles</ptc:niveauPreuve>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+    <ptc:evalueContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA"/>
+    <rdfs:label xml:lang="fr">Analyse sur le cancer du col utérin (Lancet, 2007)</rdfs:label>
+  </ptc:EtudeClinique>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ContraceptifNonHormonal">
+    <rdfs:label xml:lang="fr">Contraceptif non hormonal</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+    <rdfs:comment xml:lang="fr">Contraceptif ne relevant pas de la catégorie hormonale dans la classification proposée.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#FacteurDeRisque">
+    <rdfs:label xml:lang="fr">Facteur de risque</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#ConditionClinique"/>
+    <rdfs:comment xml:lang="fr">Condition clinique jouant le rôle de facteur de risque dans le modèle.</rdfs:comment>
+  </owl:Class>
+  <ptc:ConditionClinique rdf:about="https://pharmatwin.ai/contraceptive#InsuffisanceRenale">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:nomCondition>Insuffisance rénale</ptc:nomCondition>
+    <rdfs:label xml:lang="fr">Insuffisance rénale</rdfs:label>
+  </ptc:ConditionClinique>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#EffetNeuropsychiatrique">
+    <rdfs:label xml:lang="fr">Effet neuropsychiatrique</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#EffetIndesirable"/>
+    <rdfs:comment xml:lang="fr">Effet indésirable d’ordre neurologique ou psychiatrique.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#RecepteurHormonal">
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#CibleBiologique"/>
+    <rdfs:label xml:lang="fr">Récepteur hormonal</rdfs:label>
+    <rdfs:comment xml:lang="fr">Cible biologique de type récepteur hormonal.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#Observation">
+    <rdfs:label xml:lang="fr">Observation de suivi</rdfs:label>
+    <rdfs:comment xml:lang="fr">Observation liée au suivi fictif d’un profil patient simulé.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#Molecule">
+    <rdfs:label xml:lang="fr">Molécule</rdfs:label>
+    <rdfs:comment xml:lang="fr">Substance chimique ou pharmacologique intervenant dans le modèle.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ConditionClinique">
+    <rdfs:label xml:lang="fr">Condition clinique</rdfs:label>
+    <rdfs:comment xml:lang="fr">Condition clinique ou facteur de santé utilisé pour décrire un profil simulé.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#ProfilPatiente">
+    <rdfs:label xml:lang="fr">Profil patiente simulé</rdfs:label>
+    <rdfs:comment xml:lang="fr">Profil de patiente fictive, sans données d’une personne réelle.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#EtudeClinique">
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#Etude"/>
+    <rdfs:subClassOf>
+      <owl:Restriction rdf:nodeID="N2cab0b872515412b999082aad41a7908">
+        <owl:onProperty rdf:resource="https://pharmatwin.ai/contraceptive#evalueContraceptif"/>
+        <owl:someValuesFrom rdf:resource="https://pharmatwin.ai/contraceptive#Contraceptif"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="fr">Étude clinique</rdfs:label>
+    <rdfs:comment xml:lang="fr">Source de type étude clinique ; les exemples purement synthétiques doivent être explicitement identifiés.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#RisqueCardiovasculaire">
+    <rdfs:label xml:lang="fr">Risque cardiovasculaire</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#EffetIndesirable"/>
+    <rdfs:comment xml:lang="fr">Catégorie d’effets indésirables potentiels cardiovasculaires.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#EffetMetabolique">
+    <rdfs:label xml:lang="fr">Effet métabolique</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#EffetIndesirable"/>
+    <rdfs:comment xml:lang="fr">Effet indésirable lié au métabolisme ou à ses paramètres.</rdfs:comment>
+  </owl:Class>
+  <ptc:ContreIndicationMetabolique rdf:about="https://pharmatwin.ai/contraceptive#CI_DRSP_InsuffisanceRenale">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <ptc:concerneCondition rdf:resource="https://pharmatwin.ai/contraceptive#InsuffisanceRenale"/>
+    <ptc:niveauAlerte>signal rouge pour l’insuffisance rénale sévère</ptc:niveauAlerte>
+    <ptc:justifiePar rdf:resource="https://pharmatwin.ai/contraceptive#Etude_RCP_Drospirenone"/>
+    <ptc:concerneContraceptif rdf:resource="https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP"/>
+    <rdfs:label xml:lang="fr">Contre-indication drospirénone – insuffisance rénale</rdfs:label>
+  </ptc:ContreIndicationMetabolique>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#EffetBenefique">
+    <rdfs:label xml:lang="fr">Effet bénéfique</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#EffetClinique"/>
+    <rdfs:comment xml:lang="fr">Effet clinique favorable potentiel, distinct d’un effet indésirable.</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="https://pharmatwin.ai/contraceptive#justifiePar">
+    <rdfs:domain>
+      <owl:Class rdf:nodeID="N0bf560cb6473456aabee990e366adddd">
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#ContreIndication"/>
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#EffetClinique"/>
+          <rdf:Description rdf:about="https://pharmatwin.ai/contraceptive#Interaction"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="https://pharmatwin.ai/contraceptive#Etude"/>
+    <rdfs:label xml:lang="fr">est justifié par</rdfs:label>
+    <rdfs:comment xml:lang="fr">Relie une contre-indication, un effet ou une interaction à une source documentaire.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#EffetOsseux">
+    <rdfs:label xml:lang="fr">Effet osseux</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://pharmatwin.ai/contraceptive#EffetIndesirable"/>
+    <rdfs:comment xml:lang="fr">Effet indésirable concernant l’os ou la densité minérale osseuse.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://pharmatwin.ai/contraceptive#EffetClinique">
+    <rdfs:label xml:lang="fr">Effet clinique</rdfs:label>
+    <rdfs:comment xml:lang="fr">Conséquence ou manifestation clinique considérée dans l’étude.</rdfs:comment>
+  </owl:Class>
+</rdf:RDF>
