@@ -1,0 +1,1305 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ptc: <https://pharmatwin.ai/contraceptive#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://pharmatwin.ai/contraceptive> a owl:Ontology ;
+    rdfs:label "Ontologie PharmaTwin Contraceptive"@fr,
+        "PharmaTwin Contraceptive Ontology"@fr ;
+    dcterms:description "Modèle RDF/OWL de contraceptifs, molécules, effets cliniques, contre-indications, preuves documentaires et profils fictifs. Les associations cliniques sont pédagogiques et nécessitent une validation scientifique avant tout usage médical."@fr ;
+    dcterms:language "fr" ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:title "PharmaTwin Contraceptive – ontologie pédagogique OWL 2"@fr ;
+    rdfs:comment "Ontologie pédagogique d'aide à l'analyse des contraceptifs hormonaux et de leur compatibilité avec des profils de santé féminins. Elle modélise les effets indésirables (dont les risques tumoraux, cardiovasculaires et neuropsychiatriques), les bénéfices, les contre-indications et les sources. Elle utilise des profils synthétiques, ne prescrit pas et ne remplace pas un professionnel de santé." ;
+    owl:versionInfo "2.1 – révision documentaire et technique du modèle 2.0 ; connaissances cliniques non révisées"@fr .
+
+ptc:ContraceptifAvecEffetBenefique a owl:Class ;
+    rdfs:label "Contraceptif associé à un effet bénéfique"@fr ;
+    rdfs:comment "Classe définie par l’existence d’au moins un lien peutProcurer vers un effet bénéfique."@fr ;
+    rdfs:subClassOf ptc:Contraceptif ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( ptc:Contraceptif [ a owl:Restriction ;
+                        owl:onProperty ptc:peutProcurer ;
+                        owl:someValuesFrom ptc:EffetBenefique ] ) ] .
+
+ptc:ContraceptifAvecRisqueTumoral a owl:Class ;
+    rdfs:label "Contraceptif associé à un risque tumoral"@fr ;
+    rdfs:comment "Classe définie par l’existence d’au moins un lien peutProduire vers un risque tumoral."@fr ;
+    rdfs:subClassOf ptc:Contraceptif ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( ptc:Contraceptif [ a owl:Restriction ;
+                        owl:onProperty ptc:peutProduire ;
+                        owl:someValuesFrom ptc:RisqueTumoral ] ) ] .
+
+ptc:DIU_Cuivre a owl:NamedIndividual,
+        ptc:ContraceptifNonHormonal ;
+    rdfs:label "DIU au cuivre (démonstration)"@fr ;
+    ptc:forme "DIU au cuivre" ;
+    ptc:nomContraceptif "DIU au cuivre - démonstration" ;
+    ptc:peutProduire ptc:SaignementsAbondants .
+
+ptc:Essai_Tolerance_SYN a owl:NamedIndividual,
+        ptc:EtudeClinique ;
+    rdfs:label "Étude fictive de tolérance (démonstration)"@fr ;
+    rdfs:comment "Source fictive de démonstration. Ne doit jamais être présentée comme une publication scientifique réelle."@fr ;
+    rdfs:seeAlso <https://pharmatwin.ai/demo/evidence/SYN-001> ;
+    ptc:evalueContraceptif ptc:PiluleProgestative_DSG ;
+    ptc:niveauPreuve "donnée synthétique" ;
+    ptc:titreSource "Étude fictive utilisée uniquement pour la démonstration" ;
+    ptc:urlSource "https://pharmatwin.ai/demo/evidence/SYN-001"^^xsd:anyURI .
+
+ptc:Interaction_Rifampicine_DSG a owl:NamedIndividual,
+        ptc:InteractionMedicamenteuse ;
+    rdfs:label "Interaction rifampicine – désogestrel"@fr ;
+    ptc:concerneMolecule ptc:Desogestrel,
+        ptc:Rifampicine ;
+    ptc:justifiePar ptc:Guide_CDC_USMEC_2024 ;
+    ptc:modifieEfficaciteDe ptc:PiluleProgestative_DSG ;
+    ptc:niveauAlerte "à vérifier avec un professionnel" .
+
+ptc:ProfilAlerteOestrogene a owl:Class ;
+    rdfs:label "Profil en alerte pour les œstrogènes"@fr ;
+    rdfs:comment "Classe définie par l’association d’un profil à une condition contre-indiquant les CHC dans le modèle."@fr ;
+    rdfs:subClassOf ptc:ProfilPatiente ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( ptc:ProfilPatiente [ a owl:Restriction ;
+                        owl:onProperty ptc:aCondition ;
+                        owl:someValuesFrom ptc:ConditionContreIndiqueCHC ] ) ] .
+
+ptc:ProfilAvecFacteurDeRisque a owl:Class ;
+    rdfs:label "Profil avec facteur de risque"@fr ;
+    rdfs:comment "Classe définie par l’existence d’une condition de type facteur de risque."@fr ;
+    rdfs:subClassOf ptc:ProfilPatiente ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( ptc:ProfilPatiente [ a owl:Restriction ;
+                        owl:onProperty ptc:aCondition ;
+                        owl:someValuesFrom ptc:FacteurDeRisque ] ) ] .
+
+ptc:ProfilEndometriose a owl:Class ;
+    rdfs:label "Profil endométriose"@fr ;
+    rdfs:comment "Profil simulé associé à la condition endométriose."@fr ;
+    rdfs:subClassOf ptc:ProfilPatiente ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( ptc:ProfilPatiente [ a owl:Restriction ;
+                        owl:hasValue ptc:Endometriose ;
+                        owl:onProperty ptc:aCondition ] ) ] .
+
+ptc:ProfilSOPK a owl:Class ;
+    rdfs:label "Profil SOPK"@fr ;
+    rdfs:comment "Profil simulé associé au syndrome des ovaires polykystiques."@fr ;
+    rdfs:subClassOf ptc:ProfilPatiente ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( ptc:ProfilPatiente [ a owl:Restriction ;
+                        owl:hasValue ptc:SOPK ;
+                        owl:onProperty ptc:aCondition ] ) ] .
+
+ptc:Profil_025 a owl:NamedIndividual,
+        ptc:ProfilPatiente ;
+    rdfs:label "Profil simulé SYN-025"@fr ;
+    rdfs:comment "Profil de patiente entièrement synthétique, utilisé exclusivement dans un cadre pédagogique."@fr ;
+    ptc:aCondition ptc:CyclesIrreguliers,
+        ptc:KystesOvariens ;
+    ptc:age 25 ;
+    ptc:fume false ;
+    ptc:identifiantProfil "SYN-025" ;
+    ptc:imc 21.4 ;
+    ptc:pressionDiastolique 68 ;
+    ptc:pressionSystolique 110 .
+
+ptc:Profil_028 a owl:NamedIndividual,
+        ptc:ProfilRisqueVasculaire ;
+    rdfs:label "Profil simulé SYN-028"@fr ;
+    rdfs:comment "Profil de patiente entièrement synthétique, utilisé exclusivement dans un cadre pédagogique."@fr ;
+    ptc:aCondition ptc:CyclesIrreguliers,
+        ptc:MigraineAvecAura,
+        ptc:SOPK ;
+    ptc:aObservation ptc:BilanAndrogenesEleves,
+        ptc:JournalAcne_Cycle1 ;
+    ptc:age 28 ;
+    ptc:fume false ;
+    ptc:identifiantProfil "SYN-028" ;
+    ptc:imc 24.8 ;
+    ptc:pressionDiastolique 76 ;
+    ptc:pressionSystolique 118 ;
+    ptc:utiliseContraceptif ptc:PiluleCombinee_EE_DRSP .
+
+ptc:Profil_032 a owl:NamedIndividual,
+        ptc:ProfilPatiente ;
+    rdfs:label "Profil simulé SYN-032"@fr ;
+    rdfs:comment "Profil de patiente entièrement synthétique, utilisé exclusivement dans un cadre pédagogique."@fr ;
+    ptc:aCondition ptc:Endometriose ;
+    ptc:age 32 ;
+    ptc:fume false ;
+    ptc:identifiantProfil "SYN-032" ;
+    ptc:imc 22.1 ;
+    ptc:pressionDiastolique 70 ;
+    ptc:pressionSystolique 112 ;
+    ptc:utiliseContraceptif ptc:PiluleProgestative_DSG .
+
+ptc:Profil_041 a owl:NamedIndividual,
+        ptc:ProfilRisqueVasculaire ;
+    rdfs:label "Profil simulé SYN-041"@fr ;
+    rdfs:comment "Profil de patiente entièrement synthétique, utilisé exclusivement dans un cadre pédagogique."@fr ;
+    ptc:aCondition ptc:Hypertension,
+        ptc:Obesite,
+        ptc:Tabagisme ;
+    ptc:age 41 ;
+    ptc:fume true ;
+    ptc:identifiantProfil "SYN-041" ;
+    ptc:imc 31.2 ;
+    ptc:pressionDiastolique 96 ;
+    ptc:pressionSystolique 152 .
+
+ptc:Profil_046 a owl:NamedIndividual,
+        ptc:ProfilPatiente ;
+    rdfs:label "Profil simulé SYN-046"@fr ;
+    rdfs:comment "Profil de patiente entièrement synthétique, utilisé exclusivement dans un cadre pédagogique."@fr ;
+    ptc:aCondition ptc:CancerSeinActuel ;
+    ptc:age 46 ;
+    ptc:fume false ;
+    ptc:identifiantProfil "SYN-046" ;
+    ptc:imc 25.3 ;
+    ptc:pressionDiastolique 78 ;
+    ptc:pressionSystolique 122 .
+
+ptc:aAffinitePour a owl:ObjectProperty ;
+    rdfs:label "a une affinité pour"@fr ;
+    rdfs:comment "Relie une molécule à une cible biologique pour laquelle une affinité est décrite."@fr ;
+    rdfs:domain ptc:Molecule ;
+    rdfs:range ptc:CibleBiologique .
+
+ptc:aContreIndication a owl:ObjectProperty ;
+    rdfs:label "a pour contre-indication"@fr ;
+    rdfs:comment "Associe un contraceptif à une contre-indication modélisée."@fr ;
+    rdfs:domain ptc:Contraceptif ;
+    rdfs:range ptc:ContreIndication ;
+    owl:inverseOf ptc:concerneContraceptif .
+
+ptc:aObservation a owl:ObjectProperty ;
+    rdfs:label "a pour observation"@fr ;
+    rdfs:comment "Relie un profil simulé à une observation de suivi."@fr ;
+    rdfs:domain ptc:ProfilPatiente ;
+    rdfs:range ptc:Observation .
+
+ptc:age a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "âge"@fr ;
+    rdfs:comment "Âge exprimé en années révolues dans un profil fictif."@fr ;
+    rdfs:domain ptc:ProfilPatiente ;
+    rdfs:range xsd:integer .
+
+ptc:aggravePar a owl:ObjectProperty ;
+    rdfs:label "est aggravé par"@fr ;
+    rdfs:comment "Relie un effet indésirable à une condition susceptible de modifier son importance dans le modèle."@fr ;
+    rdfs:domain ptc:EffetIndesirable ;
+    rdfs:range ptc:ConditionClinique .
+
+ptc:categorieMEC a owl:DatatypeProperty ;
+    rdfs:label "catégorie MEC"@fr ;
+    rdfs:comment "Catégorie numérique utilisée selon les critères d’admissibilité médicale à la contraception ; l’interprétation dépend de la source officielle."@fr ;
+    rdfs:domain ptc:ContreIndication ;
+    rdfs:range xsd:integer .
+
+ptc:concerneCondition a owl:ObjectProperty ;
+    rdfs:label "concerne la condition"@fr ;
+    rdfs:comment "Identifie la condition clinique à laquelle se rapporte une contre-indication."@fr ;
+    rdfs:domain ptc:ContreIndication ;
+    rdfs:range ptc:ConditionClinique .
+
+ptc:cycleNumero a owl:DatatypeProperty ;
+    rdfs:label "numéro du cycle"@fr ;
+    rdfs:comment "Numéro ordinal du cycle représenté dans une observation fictive."@fr ;
+    rdfs:domain ptc:Observation ;
+    rdfs:range xsd:integer .
+
+ptc:descriptionEffet a owl:DatatypeProperty ;
+    rdfs:label "description de l'effet"@fr ;
+    rdfs:comment "Texte libre de description d’un effet clinique."@fr ;
+    rdfs:domain ptc:EffetClinique ;
+    rdfs:range xsd:string .
+
+ptc:estAssocieAEffet a owl:ObjectProperty ;
+    rdfs:label "est associée à l’effet"@fr ;
+    rdfs:comment "Associe une molécule à un effet clinique décrit."@fr ;
+    rdfs:domain ptc:Molecule ;
+    rdfs:range ptc:EffetClinique .
+
+ptc:estContenuDans a owl:ObjectProperty ;
+    rdfs:label "est contenu dans"@fr ;
+    rdfs:comment "Relation inverse de contientMolecule."@fr ;
+    rdfs:domain ptc:Molecule ;
+    rdfs:range ptc:Contraceptif ;
+    owl:inverseOf ptc:contientMolecule .
+
+ptc:forme a owl:DatatypeProperty ;
+    rdfs:label "forme contraceptive"@fr ;
+    rdfs:comment "Forme ou type de présentation du contraceptif."@fr ;
+    rdfs:domain ptc:Contraceptif ;
+    rdfs:range xsd:string .
+
+ptc:formuleChimique a owl:DatatypeProperty ;
+    rdfs:label "formule chimique"@fr ;
+    rdfs:comment "Formule moléculaire textuelle de la substance."@fr ;
+    rdfs:domain ptc:Molecule ;
+    rdfs:range xsd:string .
+
+ptc:frequenceRisque a owl:DatatypeProperty ;
+    rdfs:label "fréquence du risque"@fr ;
+    rdfs:comment "Appréciation qualitative textuelle de fréquence ; ne constitue pas une probabilité quantitative validée."@fr ;
+    rdfs:domain ptc:EffetIndesirable ;
+    rdfs:range xsd:string .
+
+ptc:fume a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "tabagisme"@fr ;
+    rdfs:comment "Indique le statut tabagique booléen d’un profil fictif."@fr ;
+    rdfs:domain ptc:ProfilPatiente ;
+    rdfs:range xsd:boolean .
+
+ptc:identifiantProfil a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "identifiant du profil"@fr ;
+    rdfs:comment "Identifiant non nominatif du profil de patiente simulé."@fr ;
+    rdfs:domain ptc:ProfilPatiente ;
+    rdfs:range xsd:string .
+
+ptc:imc a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "IMC"@fr ;
+    rdfs:comment "Indice de masse corporelle numérique en kg/m² du profil fictif."@fr ;
+    rdfs:domain ptc:ProfilPatiente ;
+    rdfs:range xsd:decimal .
+
+ptc:interagitAvecMolecule a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "interagit avec la molécule"@fr ;
+    rdfs:comment "Exprime une interaction décrite entre deux molécules."@fr ;
+    rdfs:domain ptc:Molecule ;
+    rdfs:range ptc:Molecule .
+
+ptc:metabolisePar a owl:ObjectProperty ;
+    rdfs:label "est métabolisée par"@fr ;
+    rdfs:comment "Associe une molécule à une cible biologique impliquée dans son métabolisme."@fr ;
+    rdfs:domain ptc:Molecule ;
+    rdfs:range ptc:CibleBiologique .
+
+ptc:modifieEfficaciteDe a owl:ObjectProperty ;
+    rdfs:label "peut modifier l'efficacité de"@fr ;
+    rdfs:comment "Relie une interaction à un contraceptif dont l’efficacité pourrait être modifiée."@fr ;
+    rdfs:domain ptc:Interaction ;
+    rdfs:range ptc:Contraceptif .
+
+ptc:niveauAlerte a owl:DatatypeProperty ;
+    rdfs:label "niveau d'alerte"@fr ;
+    rdfs:comment "Niveau d’alerte textuel utilisé dans le scénario pédagogique ; non assimilable à une décision médicale."@fr ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ptc:Interaction ptc:ContreIndication ) ] ;
+    rdfs:range xsd:string .
+
+ptc:niveauGravite a owl:DatatypeProperty ;
+    rdfs:label "niveau de gravité"@fr ;
+    rdfs:comment "Appréciation textuelle de gravité d’un effet clinique."@fr ;
+    rdfs:domain ptc:EffetClinique ;
+    rdfs:range xsd:string .
+
+ptc:niveauPreuve a owl:DatatypeProperty ;
+    rdfs:label "niveau de preuve"@fr ;
+    rdfs:comment "Nature ou niveau descriptif de preuve associé à une source ; non normalisé par une échelle clinique explicite."@fr ;
+    rdfs:domain ptc:Etude ;
+    rdfs:range xsd:string .
+
+ptc:nomCible a owl:DatatypeProperty ;
+    rdfs:label "nom de la cible"@fr ;
+    rdfs:comment "Dénomination textuelle d’une cible biologique."@fr ;
+    rdfs:domain ptc:CibleBiologique ;
+    rdfs:range xsd:string .
+
+ptc:nomCondition a owl:DatatypeProperty ;
+    rdfs:label "nom de la condition"@fr ;
+    rdfs:comment "Dénomination textuelle d’une condition clinique."@fr ;
+    rdfs:domain ptc:ConditionClinique ;
+    rdfs:range xsd:string .
+
+ptc:nomContraceptif a owl:DatatypeProperty ;
+    rdfs:label "nom du contraceptif"@fr ;
+    rdfs:comment "Dénomination textuelle du contraceptif étudié."@fr ;
+    rdfs:domain ptc:Contraceptif ;
+    rdfs:range xsd:string .
+
+ptc:nomMolecule a owl:DatatypeProperty ;
+    rdfs:label "nom de la molécule"@fr ;
+    rdfs:comment "Dénomination textuelle de la molécule."@fr ;
+    rdfs:domain ptc:Molecule ;
+    rdfs:range xsd:string .
+
+ptc:observeEffet a owl:ObjectProperty ;
+    rdfs:label "observe l'effet"@fr ;
+    rdfs:comment "Relie une observation à un effet clinique."@fr ;
+    rdfs:domain ptc:Observation ;
+    rdfs:range ptc:EffetClinique .
+
+ptc:pressionDiastolique a owl:DatatypeProperty ;
+    rdfs:label "pression diastolique"@fr ;
+    rdfs:comment "Pression artérielle diastolique du profil fictif, en mmHg."@fr ;
+    rdfs:domain ptc:ProfilPatiente ;
+    rdfs:range xsd:integer .
+
+ptc:pressionSystolique a owl:DatatypeProperty ;
+    rdfs:label "pression systolique"@fr ;
+    rdfs:comment "Pression artérielle systolique du profil fictif, en mmHg."@fr ;
+    rdfs:domain ptc:ProfilPatiente ;
+    rdfs:range xsd:integer .
+
+ptc:profilAndrogenique a owl:DatatypeProperty ;
+    rdfs:label "profil androgénique"@fr ;
+    rdfs:comment "Caractérisation textuelle du profil androgénique d’un progestatif."@fr ;
+    rdfs:domain ptc:Progestatif ;
+    rdfs:range xsd:string .
+
+ptc:titreSource a owl:DatatypeProperty ;
+    rdfs:label "titre de la source"@fr ;
+    rdfs:comment "Titre ou intitulé bibliographique associé à une source de preuve."@fr ;
+    rdfs:domain ptc:Etude ;
+    rdfs:range xsd:string .
+
+ptc:typeObservation a owl:DatatypeProperty ;
+    rdfs:label "type d'observation"@fr ;
+    rdfs:comment "Type textuel d’observation dans un scénario de suivi."@fr ;
+    rdfs:domain ptc:Observation ;
+    rdfs:range xsd:string .
+
+ptc:urlSource a owl:DatatypeProperty ;
+    rdfs:label "URL de la source"@fr ;
+    rdfs:comment "URL bibliographique stockée comme littéral xsd:anyURI ; un lien RDF peut figurer en rdfs:seeAlso."@fr ;
+    rdfs:domain ptc:Etude ;
+    rdfs:range xsd:anyURI .
+
+ptc:utiliseContraceptif a owl:ObjectProperty ;
+    rdfs:label "utilise le contraceptif"@fr ;
+    rdfs:comment "Relie un profil fictif au contraceptif retenu dans son scénario."@fr ;
+    rdfs:domain ptc:ProfilPatiente ;
+    rdfs:range ptc:Contraceptif .
+
+ptc:valeurObservation a owl:DatatypeProperty ;
+    rdfs:label "valeur observée"@fr ;
+    rdfs:comment "Résultat textuel d’une observation simulée."@fr ;
+    rdfs:domain ptc:Observation ;
+    rdfs:range xsd:string .
+
+ptc:AntecedentMeningiome a owl:NamedIndividual,
+        ptc:ConditionClinique,
+        ptc:ConditionOncologique ;
+    rdfs:label "Antécédent de méningiome"@fr ;
+    ptc:nomCondition "Antécédent de méningiome" .
+
+ptc:BilanAndrogenesEleves a owl:NamedIndividual,
+        ptc:BilanHormonal ;
+    rdfs:label "Bilan hormonal simulé – androgènes élevés"@fr ;
+    ptc:typeObservation "androgènes - valeur simulée" ;
+    ptc:valeurObservation "au-dessus de la plage de référence simulée" .
+
+ptc:BilanHormonal a owl:Class ;
+    rdfs:label "Bilan hormonal simulé"@fr ;
+    rdfs:comment "Observation synthétique représentant un bilan hormonal au sein d’un scénario pédagogique."@fr ;
+    rdfs:subClassOf ptc:Observation .
+
+ptc:CI_CPA_Meningiome a owl:NamedIndividual,
+        ptc:ContreIndicationOncologique ;
+    rdfs:label "Contre-indication cyprotérone – antécédent de méningiome"@fr ;
+    ptc:concerneCondition ptc:AntecedentMeningiome ;
+    ptc:concerneContraceptif ptc:PiluleCombinee_EE_CPA ;
+    ptc:justifiePar ptc:Etude_PRAC_Meningiome ;
+    ptc:niveauAlerte "signal rouge" .
+
+ptc:CI_DRSP_InsuffisanceRenale a owl:NamedIndividual,
+        ptc:ContreIndicationMetabolique ;
+    rdfs:label "Contre-indication drospirénone – insuffisance rénale"@fr ;
+    ptc:concerneCondition ptc:InsuffisanceRenale ;
+    ptc:concerneContraceptif ptc:PiluleCombinee_EE_DRSP ;
+    ptc:justifiePar ptc:Etude_RCP_Drospirenone ;
+    ptc:niveauAlerte "signal rouge pour l’insuffisance rénale sévère" .
+
+ptc:ContreIndicationMetabolique a owl:Class ;
+    rdfs:label "Contre-indication métabolique ou rénale"@fr ;
+    rdfs:comment "Contre-indication associée à une condition métabolique ou rénale."@fr ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ptc:justifiePar ;
+            owl:someValuesFrom ptc:Etude ],
+        ptc:ContreIndication .
+
+ptc:CyproteroneAcetate a owl:NamedIndividual,
+        ptc:Progestatif,
+        ptc:ProgestatifAntiAndrogenique ;
+    rdfs:label "Acétate de cyprotérone"@fr ;
+    ptc:aAffinitePour ptc:RecepteurAndrogene,
+        ptc:RecepteurProgesterone ;
+    ptc:estAssocieAEffet ptc:RisqueMeningiome ;
+    ptc:formuleChimique "C24H29ClO4" ;
+    ptc:nomMolecule "Acétate de cyprotérone" ;
+    ptc:profilAndrogenique "anti-androgénique" .
+
+ptc:Drospirenone a owl:NamedIndividual,
+        ptc:Progestatif,
+        ptc:ProgestatifAntiAndrogenique ;
+    rdfs:label "Drospirénone"@fr ;
+    ptc:aAffinitePour ptc:RecepteurAndrogene,
+        ptc:RecepteurProgesterone ;
+    ptc:estAssocieAEffet ptc:RisqueHyperkaliemie ;
+    ptc:formuleChimique "C24H30O3" ;
+    ptc:metabolisePar ptc:CYP3A4 ;
+    ptc:nomMolecule "Drospirénone" ;
+    ptc:profilAndrogenique "anti-androgénique" .
+
+ptc:EffetHepatobiliaire a owl:Class ;
+    rdfs:label "Effet hépatobiliaire"@fr ;
+    rdfs:comment "Effet indésirable concernant le foie ou les voies biliaires."@fr ;
+    rdfs:subClassOf ptc:EffetIndesirable .
+
+ptc:EffetOsseux a owl:Class ;
+    rdfs:label "Effet osseux"@fr ;
+    rdfs:comment "Effet indésirable concernant l’os ou la densité minérale osseuse."@fr ;
+    rdfs:subClassOf ptc:EffetIndesirable .
+
+ptc:Etonogestrel a owl:NamedIndividual,
+        ptc:Progestatif,
+        ptc:ProgestatifFaiblementAndrogenique ;
+    rdfs:label "Étonogestrel"@fr ;
+    ptc:aAffinitePour ptc:RecepteurProgesterone ;
+    ptc:formuleChimique "C22H28O2" ;
+    ptc:metabolisePar ptc:CYP3A4 ;
+    ptc:nomMolecule "Étonogestrel" ;
+    ptc:profilAndrogenique "faiblement androgénique" .
+
+ptc:Etude_Endometre_LancetOncol2015 a owl:NamedIndividual,
+        ptc:EtudeClinique ;
+    rdfs:label "Méta-analyse sur le cancer de l’endomètre (2015)"@fr ;
+    ptc:evalueContraceptif ptc:PiluleCombinee_EE_CPA,
+        ptc:PiluleCombinee_EE_DRSP ;
+    ptc:niveauPreuve "méta-analyse de données individuelles" ;
+    ptc:titreSource "Endometrial cancer and oral contraceptives : individual participant meta-analysis (Lancet Oncol, 2015)" .
+
+ptc:Etude_ICESCC_Lancet2007 a owl:NamedIndividual,
+        ptc:EtudeClinique ;
+    rdfs:label "Analyse sur le cancer du col utérin (Lancet, 2007)"@fr ;
+    ptc:evalueContraceptif ptc:PiluleCombinee_EE_CPA,
+        ptc:PiluleCombinee_EE_DRSP ;
+    ptc:niveauPreuve "ré-analyse collaborative de données individuelles" ;
+    ptc:titreSource "Cervical cancer and hormonal contraceptives : collaborative reanalysis of 24 epidemiological studies (Lancet, 2007)" .
+
+ptc:Etude_Lidegaard_NEJM2012 a owl:NamedIndividual,
+        ptc:EtudeClinique ;
+    rdfs:label "Étude Lidegaard et al. (NEJM, 2012)"@fr ;
+    ptc:evalueContraceptif ptc:PiluleCombinee_EE_CPA,
+        ptc:PiluleCombinee_EE_DRSP ;
+    ptc:niveauPreuve "étude de cohorte nationale" ;
+    ptc:titreSource "Thrombotic stroke and myocardial infarction with hormonal contraception (N Engl J Med, 2012)" .
+
+ptc:Etude_Morch_NEJM2017 a owl:NamedIndividual,
+        ptc:EtudeClinique ;
+    rdfs:label "Étude Mørch et al. (NEJM, 2017)"@fr ;
+    ptc:evalueContraceptif ptc:DIU_Hormonal_LNG,
+        ptc:Implant_ETG,
+        ptc:PiluleCombinee_EE_DRSP,
+        ptc:PiluleProgestative_DSG ;
+    ptc:niveauPreuve "étude de cohorte nationale" ;
+    ptc:titreSource "Contemporary hormonal contraception and the risk of breast cancer (N Engl J Med, 2017)" .
+
+ptc:Etude_Ovaire_Lancet2008 a owl:NamedIndividual,
+        ptc:EtudeClinique ;
+    rdfs:label "Analyse sur le cancer de l’ovaire (Lancet, 2008)"@fr ;
+    ptc:evalueContraceptif ptc:PiluleCombinee_EE_CPA,
+        ptc:PiluleCombinee_EE_DRSP ;
+    ptc:niveauPreuve "ré-analyse collaborative de données individuelles" ;
+    ptc:titreSource "Ovarian cancer and oral contraceptives : collaborative reanalysis of 45 epidemiological studies (Lancet, 2008)" .
+
+ptc:Etude_Skovlund_JAMAPsy2016 a owl:NamedIndividual,
+        ptc:EtudeClinique ;
+    rdfs:label "Étude Skovlund et al. (JAMA Psychiatry, 2016)"@fr ;
+    ptc:evalueContraceptif ptc:DIU_Hormonal_LNG,
+        ptc:Implant_ETG,
+        ptc:PiluleCombinee_EE_DRSP,
+        ptc:PiluleProgestative_DSG ;
+    ptc:niveauPreuve "étude de cohorte nationale (causalité débattue)" ;
+    ptc:titreSource "Association of hormonal contraception with depression (JAMA Psychiatry, 2016)" .
+
+ptc:Evaluation_EMA_CHC a owl:NamedIndividual,
+        ptc:Etude ;
+    rdfs:label "Évaluation EMA des contraceptifs hormonaux combinés"@fr ;
+    rdfs:seeAlso <https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/referral-procedures-human-medicines/combined-hormonal-contraceptives> ;
+    ptc:evalueContraceptif ptc:PiluleCombinee_EE_DRSP ;
+    ptc:niveauPreuve "évaluation réglementaire" ;
+    ptc:titreSource "Combined hormonal contraceptives - EMA review" ;
+    ptc:urlSource "https://www.ema.europa.eu/en/human-regulatory-overview/post-authorisation/referral-procedures-human-medicines/combined-hormonal-contraceptives"^^xsd:anyURI .
+
+ptc:InfectionHPVPersistante a owl:NamedIndividual,
+        ptc:ConditionClinique,
+        ptc:FacteurDeRisque ;
+    rdfs:label "Infection persistante par HPV à haut risque"@fr ;
+    ptc:nomCondition "Infection persistante par un HPV à haut risque" .
+
+ptc:Injectable_DMPA a owl:NamedIndividual,
+        ptc:ContraceptifHormonal ;
+    rdfs:label "Contraceptif injectable DMPA (démonstration)"@fr ;
+    ptc:aContreIndication ptc:CI_Hormonal_CancerSeinActuel ;
+    ptc:contientProgestatif ptc:MedroxyprogesteroneAcetate ;
+    ptc:forme "injectable" ;
+    ptc:nomContraceptif "Injection trimestrielle DMPA - démonstration" ;
+    ptc:peutProduire ptc:PerteDensiteOsseuse,
+        ptc:PriseDePoids,
+        ptc:RisqueCancerSein,
+        ptc:RisqueDepression,
+        ptc:SaignementsIrreguliers .
+
+ptc:InteractionMedicamenteuse a owl:Class ;
+    rdfs:label "Interaction médicamenteuse"@fr ;
+    rdfs:comment "Interaction impliquant au moins deux molécules, selon la restriction ontologique."@fr ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+            owl:onClass ptc:Molecule ;
+            owl:onProperty ptc:concerneMolecule ],
+        ptc:Interaction .
+
+ptc:JournalAcne_Cycle1 a owl:NamedIndividual,
+        ptc:Observation ;
+    rdfs:label "Journal de tolérance simulé – cycle 1"@fr ;
+    ptc:cycleNumero 1 ;
+    ptc:observeEffet ptc:Acne ;
+    ptc:typeObservation "journal de tolérance" ;
+    ptc:valeurObservation "acné modérée" .
+
+ptc:KystesOvariens a owl:NamedIndividual,
+        ptc:ConditionGynecologique ;
+    rdfs:label "Kystes ovariens"@fr ;
+    ptc:nomCondition "Kystes ovariens" .
+
+ptc:Levonorgestrel a owl:NamedIndividual,
+        ptc:Progestatif,
+        ptc:ProgestatifAndrogenique ;
+    rdfs:label "Lévonorgestrel"@fr ;
+    ptc:aAffinitePour ptc:RecepteurAndrogene,
+        ptc:RecepteurProgesterone ;
+    ptc:estAssocieAEffet ptc:Acne ;
+    ptc:formuleChimique "C21H28O2" ;
+    ptc:metabolisePar ptc:CYP3A4 ;
+    ptc:nomMolecule "Lévonorgestrel" ;
+    ptc:profilAndrogenique "androgénique" .
+
+ptc:MedroxyprogesteroneAcetate a owl:NamedIndividual,
+        ptc:Progestatif ;
+    rdfs:label "Acétate de médroxyprogestérone"@fr ;
+    ptc:aAffinitePour ptc:RecepteurProgesterone ;
+    ptc:estAssocieAEffet ptc:PerteDensiteOsseuse,
+        ptc:PriseDePoids ;
+    ptc:formuleChimique "C24H34O4" ;
+    ptc:nomMolecule "Acétate de médroxyprogestérone" .
+
+ptc:PiluleCombinee a owl:Class ;
+    rdfs:label "Pilule combinée"@fr ;
+    rdfs:comment "Classe caractérisée par la présence d’au moins un œstrogène et d’un progestatif."@fr ;
+    rdfs:subClassOf ptc:ContraceptifHormonal ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( ptc:Contraceptif [ a owl:Restriction ;
+                        owl:onProperty ptc:contientOestrogene ;
+                        owl:someValuesFrom ptc:Oestrogene ] [ a owl:Restriction ;
+                        owl:onProperty ptc:contientProgestatif ;
+                        owl:someValuesFrom ptc:Progestatif ] ) ] .
+
+ptc:RecepteurEstrogene a owl:NamedIndividual,
+        ptc:RecepteurHormonal ;
+    rdfs:label "Récepteur des œstrogènes"@fr ;
+    ptc:nomCible "Récepteur des œstrogènes" .
+
+ptc:Rifampicine a owl:NamedIndividual,
+        ptc:Molecule ;
+    rdfs:label "Rifampicine"@fr ;
+    ptc:formuleChimique "C43H58N4O12" ;
+    ptc:nomMolecule "Rifampicine" .
+
+ptc:SaignementsAbondants a owl:NamedIndividual,
+        ptc:EffetIndesirable ;
+    rdfs:label "Saignements abondants"@fr ;
+    ptc:descriptionEffet "Règles plus abondantes ou plus douloureuses possibles avec le DIU au cuivre." ;
+    ptc:niveauGravite "léger à modéré" .
+
+ptc:TumeurHepatique a owl:NamedIndividual,
+        ptc:ConditionClinique,
+        ptc:ConditionContreIndiqueCHC,
+        ptc:ConditionOncologique ;
+    rdfs:label "Tumeur hépatique"@fr ;
+    ptc:nomCondition "Tumeur hépatique (adénome ou cancer)" .
+
+ptc:concerneContraceptif a owl:ObjectProperty ;
+    rdfs:label "concerne le contraceptif"@fr ;
+    rdfs:comment "Identifie le contraceptif concerné par une contre-indication."@fr ;
+    rdfs:domain ptc:ContreIndication ;
+    rdfs:range ptc:Contraceptif .
+
+ptc:concerneMolecule a owl:ObjectProperty ;
+    rdfs:label "concerne la molécule"@fr ;
+    rdfs:comment "Identifie une molécule impliquée dans une interaction."@fr ;
+    rdfs:domain ptc:Interaction ;
+    rdfs:range ptc:Molecule .
+
+ptc:evalueContraceptif a owl:ObjectProperty ;
+    rdfs:label "évalue le contraceptif"@fr ;
+    rdfs:comment "Relie une source de preuve au contraceptif qu’elle examine."@fr ;
+    rdfs:domain ptc:Etude ;
+    rdfs:range ptc:Contraceptif .
+
+ptc:peutProcurer a owl:ObjectProperty ;
+    rdfs:label "peut procurer"@fr ;
+    rdfs:comment "Associe un contraceptif à un effet bénéfique potentiel, sans garantie pour un individu."@fr ;
+    rdfs:domain ptc:Contraceptif ;
+    rdfs:range ptc:EffetBenefique .
+
+ptc:peutProduire a owl:ObjectProperty ;
+    rdfs:label "peut produire l'effet"@fr ;
+    rdfs:comment "Associe un contraceptif à un effet clinique potentiel, sans inférer qu’il survient chez une personne."@fr ;
+    rdfs:domain ptc:Contraceptif ;
+    rdfs:range ptc:EffetClinique .
+
+ptc:AmeliorationAcne a owl:NamedIndividual,
+        ptc:EffetBenefique ;
+    rdfs:label "Amélioration de l’acné"@fr ;
+    ptc:descriptionEffet "Amélioration possible de l'acné avec des progestatifs anti-androgéniques." .
+
+ptc:AntecedentThrombose a owl:NamedIndividual,
+        ptc:ConditionClinique,
+        ptc:ConditionContreIndiqueCHC,
+        ptc:FacteurDeRisque ;
+    rdfs:label "Antécédent personnel de thrombose"@fr ;
+    ptc:nomCondition "Antécédent personnel de thrombose" .
+
+ptc:CI_CHC_AntecedentThrombose a owl:NamedIndividual,
+        ptc:ContreIndicationVasculaire ;
+    rdfs:label "Contre-indication CHC – antécédent de thrombose"@fr ;
+    ptc:concerneCondition ptc:AntecedentThrombose ;
+    ptc:concerneContraceptif ptc:PiluleCombinee_EE_CPA,
+        ptc:PiluleCombinee_EE_DRSP ;
+    ptc:justifiePar ptc:Guide_CDC_USMEC_2024 ;
+    ptc:niveauAlerte "signal rouge ou orange selon le risque de récidive (catégorie MEC à vérifier dans le tableau)" .
+
+ptc:CI_CHC_MigraineAura a owl:NamedIndividual,
+        ptc:ContreIndicationVasculaire ;
+    rdfs:label "Contre-indication CHC – migraine avec aura"@fr ;
+    ptc:categorieMEC 4 ;
+    ptc:concerneCondition ptc:MigraineAvecAura ;
+    ptc:concerneContraceptif ptc:PiluleCombinee_EE_CPA,
+        ptc:PiluleCombinee_EE_DRSP ;
+    ptc:justifiePar ptc:Guide_CDC_USMEC_2024 ;
+    ptc:niveauAlerte "signal rouge" .
+
+ptc:CI_CHC_TumeurHepatique a owl:NamedIndividual,
+        ptc:ContreIndicationOncologique ;
+    rdfs:label "Contre-indication CHC – tumeur hépatique"@fr ;
+    ptc:categorieMEC 4 ;
+    ptc:concerneCondition ptc:TumeurHepatique ;
+    ptc:concerneContraceptif ptc:PiluleCombinee_EE_CPA,
+        ptc:PiluleCombinee_EE_DRSP ;
+    ptc:justifiePar ptc:Guide_CDC_USMEC_2024 ;
+    ptc:niveauAlerte "signal rouge" .
+
+ptc:CancerSeinActuel a owl:NamedIndividual,
+        ptc:ConditionClinique,
+        ptc:ConditionContreIndiqueCHC,
+        ptc:ConditionOncologique ;
+    rdfs:label "Cancer du sein actuel"@fr ;
+    ptc:nomCondition "Cancer du sein actuel" .
+
+ptc:ContraceptifNonHormonal a owl:Class ;
+    rdfs:label "Contraceptif non hormonal"@fr ;
+    rdfs:comment "Contraceptif ne relevant pas de la catégorie hormonale dans la classification proposée."@fr ;
+    rdfs:subClassOf ptc:Contraceptif .
+
+ptc:ContreIndicationVasculaire a owl:Class ;
+    rdfs:label "Contre-indication vasculaire"@fr ;
+    rdfs:comment "Contre-indication associée à une condition vasculaire ou à un facteur de risque pertinent."@fr ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ptc:justifiePar ;
+            owl:someValuesFrom ptc:Etude ],
+        ptc:ContreIndication .
+
+ptc:CyclesIrreguliers a owl:NamedIndividual,
+        ptc:ConditionGynecologique ;
+    rdfs:label "Cycles irréguliers"@fr ;
+    ptc:nomCondition "Cycles irréguliers" .
+
+ptc:Desogestrel a owl:NamedIndividual,
+        ptc:Progestatif,
+        ptc:ProgestatifFaiblementAndrogenique ;
+    rdfs:label "Désogestrel"@fr ;
+    ptc:aAffinitePour ptc:RecepteurProgesterone ;
+    ptc:formuleChimique "C22H30O" ;
+    ptc:metabolisePar ptc:CYP3A4 ;
+    ptc:nomMolecule "Désogestrel" ;
+    ptc:profilAndrogenique "faiblement androgénique" .
+
+ptc:EffetMetabolique a owl:Class ;
+    rdfs:label "Effet métabolique"@fr ;
+    rdfs:comment "Effet indésirable lié au métabolisme ou à ses paramètres."@fr ;
+    rdfs:subClassOf ptc:EffetIndesirable .
+
+ptc:Endometriose a owl:NamedIndividual,
+        ptc:ConditionGynecologique ;
+    rdfs:label "Endométriose"@fr ;
+    ptc:nomCondition "Endométriose" .
+
+ptc:Ethinylestradiol a owl:NamedIndividual,
+        ptc:Oestrogene ;
+    rdfs:label "Éthinylestradiol"@fr ;
+    ptc:aAffinitePour ptc:RecepteurEstrogene ;
+    ptc:estAssocieAEffet ptc:ElevationTension,
+        ptc:RisqueAVCIschemique,
+        ptc:RisqueThromboembolique ;
+    ptc:formuleChimique "C20H24O2" ;
+    ptc:metabolisePar ptc:CYP3A4 ;
+    ptc:nomMolecule "Éthinylestradiol" .
+
+ptc:Etude_PRAC_Meningiome a owl:NamedIndividual,
+        ptc:Etude ;
+    rdfs:label "Évaluations réglementaires – risque de méningiome"@fr ;
+    rdfs:comment "Référence réglementaire non entièrement normalisée dans les données d’origine ; document exact et date à identifier avant citation académique."@fr ;
+    ptc:evalueContraceptif ptc:PiluleCombinee_EE_CPA ;
+    ptc:niveauPreuve "évaluation réglementaire (référence exacte à vérifier avant citation)" ;
+    ptc:titreSource "Évaluations européennes (PRAC/EMA) et ANSM sur le risque de méningiome avec certains progestatifs" .
+
+ptc:Etude_RCP_Drospirenone a owl:NamedIndividual,
+        ptc:Etude ;
+    rdfs:label "Résumé des caractéristiques du produit – drospirénone"@fr ;
+    ptc:evalueContraceptif ptc:PiluleCombinee_EE_DRSP ;
+    ptc:niveauPreuve "document réglementaire (référence exacte à vérifier avant citation)" ;
+    ptc:titreSource "Résumé des caractéristiques du produit (RCP) des contraceptifs contenant de la drospirénone" .
+
+ptc:InsuffisanceRenale a owl:NamedIndividual,
+        ptc:ConditionClinique ;
+    rdfs:label "Insuffisance rénale"@fr ;
+    ptc:nomCondition "Insuffisance rénale" .
+
+ptc:LithiaseBiliaire a owl:NamedIndividual,
+        ptc:EffetHepatobiliaire ;
+    rdfs:label "Lithiase biliaire"@fr ;
+    ptc:descriptionEffet "Risque modérément augmenté de calculs biliaires chez certaines utilisatrices de contraceptifs hormonaux." ;
+    ptc:frequenceRisque "peu fréquent" ;
+    ptc:niveauGravite "modéré" .
+
+ptc:ModificationHumeur a owl:NamedIndividual,
+        ptc:EffetNeuropsychiatrique ;
+    rdfs:label "Modification de l’humeur"@fr ;
+    ptc:descriptionEffet "Symptôme rapporté dont la causalité et l'intensité varient selon les personnes" .
+
+ptc:PerteDensiteOsseuse a owl:NamedIndividual,
+        ptc:EffetOsseux ;
+    rdfs:label "Perte de densité minérale osseuse"@fr ;
+    ptc:descriptionEffet "Diminution de la densité minérale osseuse sous DMPA, en partie réversible à l'arrêt." ;
+    ptc:frequenceRisque "fréquent sous DMPA" ;
+    ptc:justifiePar ptc:Guide_CDC_USMEC_2024 ;
+    ptc:niveauGravite "modéré" .
+
+ptc:PiluleProgestative a owl:Class ;
+    rdfs:label "Pilule progestative seule"@fr ;
+    rdfs:comment "Classe représentant une pilule progestative seule, avec restriction sur la présence d’œstrogène."@fr ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onClass ptc:Oestrogene ;
+            owl:onProperty ptc:contientOestrogene ],
+        [ a owl:Restriction ;
+            owl:onProperty ptc:contientProgestatif ;
+            owl:someValuesFrom ptc:Progestatif ],
+        ptc:ContraceptifHormonal .
+
+ptc:PriseDePoids a owl:NamedIndividual,
+        ptc:EffetMetabolique ;
+    rdfs:label "Prise de poids"@fr ;
+    ptc:descriptionEffet "Prise de poids décrite avec l'injectable DMPA ; relation moins claire avec les autres méthodes." ;
+    ptc:frequenceRisque "variable" ;
+    ptc:niveauGravite "léger" .
+
+ptc:ProfilRisqueVasculaire a owl:Class ;
+    rdfs:label "Profil avec facteur de risque vasculaire"@fr ;
+    rdfs:comment "Profil synthétique catégorisé par les données et restrictions de risque vasculaire de l’ontologie."@fr ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ptc:aCondition ;
+            owl:someValuesFrom ptc:ConditionClinique ],
+        ptc:ProfilPatiente .
+
+ptc:ProgestatifAndrogenique a owl:Class ;
+    rdfs:label "Progestatif androgénique"@fr ;
+    rdfs:comment "Sous-classe de progestatif décrite comme androgénique."@fr ;
+    rdfs:subClassOf ptc:Progestatif .
+
+ptc:ReductionRisqueCancerEndometre a owl:NamedIndividual,
+        ptc:EffetBenefique ;
+    rdfs:label "Réduction du risque de cancer de l’endomètre"@fr ;
+    ptc:descriptionEffet "Réduction du risque de cancer de l'endomètre avec les contraceptifs combinés." ;
+    ptc:justifiePar ptc:Etude_Endometre_LancetOncol2015 .
+
+ptc:ReductionRisqueCancerOvaire a owl:NamedIndividual,
+        ptc:EffetBenefique ;
+    rdfs:label "Réduction du risque de cancer de l’ovaire"@fr ;
+    ptc:descriptionEffet "Réduction du risque de cancer de l'ovaire avec les contraceptifs combinés, qui persiste après l'arrêt." ;
+    ptc:justifiePar ptc:Etude_Ovaire_Lancet2008 .
+
+ptc:RegularisationSaignements a owl:NamedIndividual,
+        ptc:EffetBenefique ;
+    rdfs:label "Régularisation des saignements"@fr ;
+    ptc:descriptionEffet "Régularisation des saignements et diminution des règles douloureuses chez certaines femmes (sans traiter la cause)." .
+
+ptc:RisqueCancerColUterin a owl:NamedIndividual,
+        ptc:RisqueTumoral ;
+    rdfs:label "Risque de cancer du col utérin"@fr ;
+    ptc:aggravePar ptc:InfectionHPVPersistante ;
+    ptc:descriptionEffet "Risque accru en cas d'utilisation prolongée (plusieurs années), surtout avec une infection persistante par HPV ; le dépistage reste indispensable." ;
+    ptc:frequenceRisque "risque absolu faible" ;
+    ptc:justifiePar ptc:Etude_ICESCC_Lancet2007,
+        ptc:Monographie_IARC_100A ;
+    ptc:niveauGravite "grave" .
+
+ptc:RisqueHyperkaliemie a owl:NamedIndividual,
+        ptc:EffetMetabolique ;
+    rdfs:label "Risque d’hyperkaliémie"@fr ;
+    ptc:aggravePar ptc:InsuffisanceRenale ;
+    ptc:descriptionEffet "La drospirénone a une activité anti-minéralocorticoïde : élévation possible de la kaliémie, surtout en cas d'insuffisance rénale." ;
+    ptc:frequenceRisque "rare" ;
+    ptc:justifiePar ptc:Etude_RCP_Drospirenone ;
+    ptc:niveauGravite "modéré" .
+
+ptc:RisqueMeningiome a owl:NamedIndividual,
+        ptc:RisqueTumoral ;
+    rdfs:label "Risque de méningiome"@fr ;
+    ptc:descriptionEffet "Association liée à la dose et à la durée avec certains progestatifs (acétate de cyprotérone, acétate de nomégestrol, acétate de chlormadinone) ; tumeur le plus souvent bénigne mais pouvant nécessiter un traitement." ;
+    ptc:frequenceRisque "rare" ;
+    ptc:justifiePar ptc:Etude_PRAC_Meningiome ;
+    ptc:niveauGravite "grave" .
+
+ptc:RisqueTumeurHepatique a owl:NamedIndividual,
+        ptc:RisqueTumoral ;
+    rdfs:label "Risque de tumeur hépatique"@fr ;
+    ptc:descriptionEffet "Adénome hépatocellulaire, rare, décrit surtout avec une utilisation prolongée de contraceptifs combinés." ;
+    ptc:frequenceRisque "très rare" ;
+    ptc:justifiePar ptc:Monographie_IARC_100A ;
+    ptc:niveauGravite "grave" .
+
+ptc:SOPK a owl:NamedIndividual,
+        ptc:ConditionGynecologique ;
+    rdfs:label "Syndrome des ovaires polykystiques (SOPK)"@fr ;
+    ptc:nomCondition "Syndrome des ovaires polykystiques" .
+
+ptc:contientOestrogene a owl:ObjectProperty ;
+    rdfs:label "contient un œstrogène"@fr ;
+    rdfs:comment "Indique la présence d’un œstrogène dans un contraceptif."@fr ;
+    rdfs:domain ptc:Contraceptif ;
+    rdfs:range ptc:Oestrogene ;
+    rdfs:subPropertyOf ptc:contientMolecule .
+
+ptc:contientProgestatif a owl:ObjectProperty ;
+    rdfs:label "contient un progestatif"@fr ;
+    rdfs:comment "Indique la présence d’un progestatif dans un contraceptif."@fr ;
+    rdfs:domain ptc:Contraceptif ;
+    rdfs:range ptc:Progestatif ;
+    rdfs:subPropertyOf ptc:contientMolecule .
+
+ptc:Acne a owl:NamedIndividual,
+        ptc:EffetClinique,
+        ptc:EffetIndesirable ;
+    rdfs:label "Acné"@fr ;
+    ptc:descriptionEffet "Acné rapportée dans le journal de tolérance simulé" ;
+    ptc:niveauGravite "léger à modéré" .
+
+ptc:ConditionOncologique a owl:Class ;
+    rdfs:label "Condition oncologique"@fr ;
+    rdfs:comment "Condition clinique liée à une situation ou à un antécédent oncologique."@fr ;
+    rdfs:subClassOf ptc:ConditionClinique .
+
+ptc:ContreIndicationOncologique a owl:Class ;
+    rdfs:label "Contre-indication oncologique"@fr ;
+    rdfs:comment "Contre-indication associée à une condition oncologique."@fr ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ptc:justifiePar ;
+            owl:someValuesFrom ptc:Etude ],
+        ptc:ContreIndication .
+
+ptc:DIU_Hormonal_LNG a owl:NamedIndividual,
+        ptc:ContraceptifHormonal ;
+    rdfs:label "DIU hormonal au lévonorgestrel (démonstration)"@fr ;
+    ptc:aContreIndication ptc:CI_Hormonal_CancerSeinActuel ;
+    ptc:contientProgestatif ptc:Levonorgestrel ;
+    ptc:forme "DIU hormonal" ;
+    ptc:nomContraceptif "DIU hormonal lévonorgestrel - démonstration" ;
+    ptc:peutProduire ptc:RisqueCancerSein,
+        ptc:RisqueDepression,
+        ptc:SaignementsIrreguliers .
+
+ptc:EffetNeuropsychiatrique a owl:Class ;
+    rdfs:label "Effet neuropsychiatrique"@fr ;
+    rdfs:comment "Effet indésirable d’ordre neurologique ou psychiatrique."@fr ;
+    rdfs:subClassOf ptc:EffetIndesirable .
+
+ptc:ElevationTension a owl:NamedIndividual,
+        ptc:RisqueCardiovasculaire ;
+    rdfs:label "Élévation de la pression artérielle"@fr ;
+    ptc:aggravePar ptc:Hypertension,
+        ptc:Obesite ;
+    ptc:descriptionEffet "Augmentation possible de la pression artérielle sous contraceptifs combinés." ;
+    ptc:frequenceRisque "peu fréquent" ;
+    ptc:niveauGravite "modéré" .
+
+ptc:Hypertension a owl:NamedIndividual,
+        ptc:ConditionClinique,
+        ptc:FacteurDeRisque ;
+    rdfs:label "Hypertension artérielle"@fr ;
+    ptc:nomCondition "Hypertension artérielle" .
+
+ptc:Implant_ETG a owl:NamedIndividual,
+        ptc:ContraceptifHormonal ;
+    rdfs:label "Implant à l’étonogestrel (démonstration)"@fr ;
+    ptc:aContreIndication ptc:CI_Hormonal_CancerSeinActuel ;
+    ptc:contientProgestatif ptc:Etonogestrel ;
+    ptc:forme "implant" ;
+    ptc:nomContraceptif "Implant étonogestrel - démonstration" ;
+    ptc:peutProduire ptc:Acne,
+        ptc:BaisseLibido,
+        ptc:RisqueCancerSein,
+        ptc:RisqueDepression,
+        ptc:SaignementsIrreguliers .
+
+ptc:MigraineAvecAura a owl:NamedIndividual,
+        ptc:ConditionClinique,
+        ptc:ConditionContreIndiqueCHC,
+        ptc:FacteurDeRisque ;
+    rdfs:label "Migraine avec aura"@fr ;
+    ptc:nomCondition "Migraine avec aura" .
+
+ptc:Monographie_IARC_100A a owl:NamedIndividual,
+        ptc:Etude ;
+    rdfs:label "Monographie du CIRC – volume 100A"@fr ;
+    ptc:evalueContraceptif ptc:PiluleCombinee_EE_CPA,
+        ptc:PiluleCombinee_EE_DRSP ;
+    ptc:niveauPreuve "évaluation d'un organisme international" ;
+    ptc:titreSource "IARC Monographs, volume 100A : contraceptifs combinés œstro-progestatifs (classement groupe 1)" .
+
+ptc:Obesite a owl:NamedIndividual,
+        ptc:ConditionClinique,
+        ptc:FacteurDeRisque ;
+    rdfs:label "Obésité (IMC ≥ 30)"@fr ;
+    ptc:nomCondition "Obésité (IMC ≥ 30)" .
+
+ptc:ProgestatifAntiAndrogenique a owl:Class ;
+    rdfs:label "Progestatif anti-androgénique"@fr ;
+    rdfs:comment "Sous-classe de progestatif décrite comme anti-androgénique."@fr ;
+    rdfs:subClassOf ptc:Progestatif .
+
+ptc:ProgestatifFaiblementAndrogenique a owl:Class ;
+    rdfs:label "Progestatif faiblement androgénique"@fr ;
+    rdfs:comment "Sous-classe de progestatif décrite comme faiblement androgénique."@fr ;
+    rdfs:subClassOf ptc:Progestatif .
+
+ptc:RecepteurAndrogene a owl:NamedIndividual,
+        ptc:RecepteurHormonal ;
+    rdfs:label "Récepteur des androgènes"@fr ;
+    ptc:nomCible "Récepteur des androgènes" .
+
+ptc:RecepteurHormonal a owl:Class ;
+    rdfs:label "Récepteur hormonal"@fr ;
+    rdfs:comment "Cible biologique de type récepteur hormonal."@fr ;
+    rdfs:subClassOf ptc:CibleBiologique .
+
+ptc:RisqueAVCIschemique a owl:NamedIndividual,
+        ptc:RisqueCardiovasculaire ;
+    rdfs:label "Risque d’AVC ischémique"@fr ;
+    ptc:aggravePar ptc:Hypertension,
+        ptc:MigraineAvecAura,
+        ptc:Tabagisme ;
+    ptc:descriptionEffet "Légère augmentation du risque d'AVC ischémique et d'infarctus sous contraceptifs combinés ; risque absolu faible mais plus élevé avec le tabac, l'hypertension, la migraine avec aura et l'âge." ;
+    ptc:frequenceRisque "rare" ;
+    ptc:justifiePar ptc:Etude_Lidegaard_NEJM2012 ;
+    ptc:niveauGravite "grave" .
+
+ptc:RisqueCardiovasculaire a owl:Class ;
+    rdfs:label "Risque cardiovasculaire"@fr ;
+    rdfs:comment "Catégorie d’effets indésirables potentiels cardiovasculaires."@fr ;
+    rdfs:subClassOf ptc:EffetIndesirable .
+
+ptc:RisqueThromboembolique a owl:NamedIndividual,
+        ptc:RisqueCardiovasculaire ;
+    rdfs:label "Risque thromboembolique"@fr ;
+    ptc:aggravePar ptc:AntecedentThrombose,
+        ptc:Obesite,
+        ptc:Tabagisme ;
+    ptc:descriptionEffet "Risque thromboembolique potentiel associé aux contraceptifs hormonaux combinés" ;
+    ptc:frequenceRisque "rare" ;
+    ptc:justifiePar ptc:Evaluation_EMA_CHC ;
+    ptc:niveauGravite "grave" .
+
+ptc:Tabagisme a owl:NamedIndividual,
+        ptc:ConditionClinique,
+        ptc:FacteurDeRisque ;
+    rdfs:label "Tabagisme actif"@fr ;
+    ptc:nomCondition "Tabagisme actif" .
+
+ptc:justifiePar a owl:ObjectProperty ;
+    rdfs:label "est justifié par"@fr ;
+    rdfs:comment "Relie une contre-indication, un effet ou une interaction à une source documentaire."@fr ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ptc:ContreIndication ptc:EffetClinique ptc:Interaction ) ] ;
+    rdfs:range ptc:Etude .
+
+ptc:BaisseLibido a owl:NamedIndividual,
+        ptc:EffetNeuropsychiatrique ;
+    rdfs:label "Baisse de libido"@fr ;
+    ptc:descriptionEffet "Baisse de libido rapportée par certaines utilisatrices ; causalité et intensité variables." ;
+    ptc:frequenceRisque "variable" ;
+    ptc:niveauGravite "léger à modéré" .
+
+ptc:ConditionGynecologique a owl:Class ;
+    rdfs:label "Condition gynécologique"@fr ;
+    rdfs:comment "Condition clinique relevant du domaine gynécologique."@fr ;
+    rdfs:subClassOf ptc:ConditionClinique .
+
+ptc:SaignementsIrreguliers a owl:NamedIndividual,
+        ptc:EffetIndesirable ;
+    rdfs:label "Saignements irréguliers"@fr ;
+    ptc:descriptionEffet "Modification possible du profil de saignement" ;
+    ptc:niveauGravite "léger" .
+
+ptc:contientMolecule a owl:ObjectProperty ;
+    rdfs:label "contient la molécule"@fr ;
+    rdfs:comment "Relie un contraceptif à une molécule qu’il contient."@fr ;
+    rdfs:domain ptc:Contraceptif ;
+    rdfs:range ptc:Molecule .
+
+ptc:CYP3A4 a owl:NamedIndividual,
+        ptc:CibleBiologique ;
+    rdfs:label "Cytochrome P450 3A4 (CYP3A4)"@fr ;
+    ptc:nomCible "Cytochrome P450 3A4" .
+
+ptc:ConditionContreIndiqueCHC a owl:Class ;
+    rdfs:label "Condition contre-indiquant les contraceptifs combinés"@fr ;
+    rdfs:comment "Condition considérée dans le modèle pour l’analyse des restrictions liées aux contraceptifs hormonaux combinés (CHC)."@fr ;
+    rdfs:subClassOf ptc:ConditionClinique .
+
+ptc:Oestrogene a owl:Class ;
+    rdfs:label "Œstrogène"@fr ;
+    rdfs:comment "Molécule appartenant à la famille des œstrogènes."@fr ;
+    rdfs:subClassOf ptc:Molecule .
+
+ptc:RisqueTumoral a owl:Class ;
+    rdfs:label "Risque tumoral (cancer ou tumeur)"@fr ;
+    rdfs:comment "Catégorie d’effets indésirables potentiels de nature tumorale."@fr ;
+    rdfs:subClassOf ptc:EffetIndesirable .
+
+ptc:aCondition a owl:ObjectProperty ;
+    rdfs:label "a pour condition"@fr ;
+    rdfs:comment "Associe un profil simulé à une condition clinique."@fr ;
+    rdfs:domain ptc:ProfilPatiente ;
+    rdfs:range ptc:ConditionClinique .
+
+ptc:CI_Hormonal_CancerSeinActuel a owl:NamedIndividual,
+        ptc:ContreIndicationOncologique ;
+    rdfs:label "Contre-indication hormonale – cancer du sein actuel"@fr ;
+    ptc:categorieMEC 4 ;
+    ptc:concerneCondition ptc:CancerSeinActuel ;
+    ptc:concerneContraceptif ptc:DIU_Hormonal_LNG,
+        ptc:Implant_ETG,
+        ptc:Injectable_DMPA,
+        ptc:PiluleCombinee_EE_CPA,
+        ptc:PiluleCombinee_EE_DRSP,
+        ptc:PiluleProgestative_DSG ;
+    ptc:justifiePar ptc:Guide_CDC_USMEC_2024 ;
+    ptc:niveauAlerte "signal rouge" .
+
+ptc:CibleBiologique a owl:Class ;
+    rdfs:label "Cible biologique"@fr ;
+    rdfs:comment "Entité biologique ciblée ou associée à une molécule dans le modèle."@fr .
+
+ptc:Guide_CDC_USMEC_2024 a owl:NamedIndividual,
+        ptc:Etude ;
+    rdfs:label "Guide CDC – U.S. MEC 2024"@fr ;
+    rdfs:seeAlso <https://www.cdc.gov/mmwr/volumes/73/rr/rr7304a1.htm> ;
+    ptc:evalueContraceptif ptc:PiluleCombinee_EE_DRSP ;
+    ptc:niveauPreuve "recommandation officielle" ;
+    ptc:titreSource "U.S. Medical Eligibility Criteria for Contraceptive Use, 2024" ;
+    ptc:urlSource "https://www.cdc.gov/mmwr/volumes/73/rr/rr7304a1.htm"^^xsd:anyURI .
+
+ptc:Interaction a owl:Class ;
+    rdfs:label "Interaction"@fr ;
+    rdfs:comment "Relation pharmacologique ou clinique pouvant modifier une propriété ou une efficacité étudiée."@fr .
+
+ptc:PiluleProgestative_DSG a owl:NamedIndividual,
+        ptc:ContraceptifHormonal,
+        ptc:PiluleProgestative ;
+    rdfs:label "Pilule progestative au désogestrel (démonstration)"@fr ;
+    ptc:aContreIndication ptc:CI_Hormonal_CancerSeinActuel ;
+    ptc:contientProgestatif ptc:Desogestrel ;
+    ptc:forme "pilule progestative seule" ;
+    ptc:nomContraceptif "Pilule progestative désogestrel - démonstration" ;
+    ptc:peutProduire ptc:BaisseLibido,
+        ptc:RisqueCancerSein,
+        ptc:RisqueDepression,
+        ptc:SaignementsIrreguliers .
+
+ptc:RecepteurProgesterone a owl:NamedIndividual,
+        ptc:RecepteurHormonal ;
+    rdfs:label "Récepteur de la progestérone"@fr ;
+    ptc:nomCible "Récepteur de la progestérone" .
+
+ptc:RisqueCancerSein a owl:NamedIndividual,
+        ptc:RisqueTumoral ;
+    rdfs:label "Risque de cancer du sein"@fr ;
+    ptc:descriptionEffet "Légère augmentation relative du risque de cancer du sein chez les utilisatrices actuelles ou récentes de contraceptifs hormonaux ; le risque absolu reste faible et diminue après l'arrêt." ;
+    ptc:frequenceRisque "risque absolu faible" ;
+    ptc:justifiePar ptc:Etude_Morch_NEJM2017,
+        ptc:Monographie_IARC_100A ;
+    ptc:niveauGravite "grave" .
+
+ptc:RisqueDepression a owl:NamedIndividual,
+        ptc:EffetNeuropsychiatrique ;
+    rdfs:label "Risque de dépression"@fr ;
+    ptc:descriptionEffet "Association statistique avec un diagnostic de dépression ou un traitement antidépresseur dans une grande cohorte ; la causalité individuelle est débattue et la réponse varie selon les personnes." ;
+    ptc:frequenceRisque "variable" ;
+    ptc:justifiePar ptc:Etude_Skovlund_JAMAPsy2016 ;
+    ptc:niveauGravite "modéré à grave" .
+
+ptc:EffetBenefique a owl:Class ;
+    rdfs:label "Effet bénéfique"@fr ;
+    rdfs:comment "Effet clinique favorable potentiel, distinct d’un effet indésirable."@fr ;
+    rdfs:subClassOf ptc:EffetClinique .
+
+ptc:EtudeClinique a owl:Class ;
+    rdfs:label "Étude clinique"@fr ;
+    rdfs:comment "Source de type étude clinique ; les exemples purement synthétiques doivent être explicitement identifiés."@fr ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ptc:evalueContraceptif ;
+            owl:someValuesFrom ptc:Contraceptif ],
+        ptc:Etude .
+
+ptc:FacteurDeRisque a owl:Class ;
+    rdfs:label "Facteur de risque"@fr ;
+    rdfs:comment "Condition clinique jouant le rôle de facteur de risque dans le modèle."@fr ;
+    rdfs:subClassOf ptc:ConditionClinique .
+
+ptc:Observation a owl:Class ;
+    rdfs:label "Observation de suivi"@fr ;
+    rdfs:comment "Observation liée au suivi fictif d’un profil patient simulé."@fr .
+
+ptc:ContraceptifHormonal a owl:Class ;
+    rdfs:label "Contraceptif hormonal"@fr ;
+    rdfs:comment "Contraceptif associé à au moins une molécule hormonale, suivant la modélisation de l’ontologie."@fr ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ptc:contientMolecule ;
+            owl:someValuesFrom ptc:Molecule ],
+        ptc:Contraceptif .
+
+ptc:ContreIndication a owl:Class ;
+    rdfs:label "Contre-indication"@fr ;
+    rdfs:comment "Restriction clinique représentée comme entité et reliée à une condition et/ou à un contraceptif."@fr .
+
+ptc:EffetClinique a owl:Class ;
+    rdfs:label "Effet clinique"@fr ;
+    rdfs:comment "Conséquence ou manifestation clinique considérée dans l’étude."@fr .
+
+ptc:PiluleCombinee_EE_CPA a owl:NamedIndividual,
+        ptc:ContraceptifHormonal ;
+    rdfs:label "Pilule EE / acétate de cyprotérone (démonstration)"@fr ;
+    ptc:aContreIndication ptc:CI_CHC_AntecedentThrombose,
+        ptc:CI_CHC_MigraineAura,
+        ptc:CI_CHC_TumeurHepatique,
+        ptc:CI_CPA_Meningiome,
+        ptc:CI_Hormonal_CancerSeinActuel ;
+    ptc:contientOestrogene ptc:Ethinylestradiol ;
+    ptc:contientProgestatif ptc:CyproteroneAcetate ;
+    ptc:forme "pilule combinée" ;
+    ptc:nomContraceptif "Pilule combinée EE/acétate de cyprotérone - démonstration" ;
+    ptc:peutProcurer ptc:AmeliorationAcne,
+        ptc:ReductionRisqueCancerEndometre,
+        ptc:ReductionRisqueCancerOvaire,
+        ptc:RegularisationSaignements ;
+    ptc:peutProduire ptc:BaisseLibido,
+        ptc:ElevationTension,
+        ptc:LithiaseBiliaire,
+        ptc:ModificationHumeur,
+        ptc:RisqueAVCIschemique,
+        ptc:RisqueCancerColUterin,
+        ptc:RisqueCancerSein,
+        ptc:RisqueDepression,
+        ptc:RisqueMeningiome,
+        ptc:RisqueThromboembolique,
+        ptc:RisqueTumeurHepatique .
+
+ptc:EffetIndesirable a owl:Class ;
+    rdfs:label "Effet indésirable"@fr ;
+    rdfs:comment "Effet clinique défavorable potentiel associé dans le modèle à une exposition."@fr ;
+    rdfs:subClassOf ptc:EffetClinique .
+
+ptc:Progestatif a owl:Class ;
+    rdfs:label "Progestatif"@fr ;
+    rdfs:comment "Molécule progestative de la classification."@fr ;
+    rdfs:subClassOf ptc:Molecule .
+
+ptc:Etude a owl:Class ;
+    rdfs:label "Source de preuve"@fr ;
+    rdfs:comment "Source documentaire ou élément de preuve modélisé pour la traçabilité des énoncés."@fr .
+
+ptc:Molecule a owl:Class ;
+    rdfs:label "Molécule"@fr ;
+    rdfs:comment "Substance chimique ou pharmacologique intervenant dans le modèle."@fr .
+
+ptc:PiluleCombinee_EE_DRSP a owl:NamedIndividual,
+        ptc:ContraceptifHormonal ;
+    rdfs:label "Pilule EE / drospirénone (démonstration)"@fr ;
+    ptc:aContreIndication ptc:CI_CHC_AntecedentThrombose,
+        ptc:CI_CHC_MigraineAura,
+        ptc:CI_CHC_TumeurHepatique,
+        ptc:CI_DRSP_InsuffisanceRenale,
+        ptc:CI_Hormonal_CancerSeinActuel ;
+    ptc:contientOestrogene ptc:Ethinylestradiol ;
+    ptc:contientProgestatif ptc:Drospirenone ;
+    ptc:forme "pilule combinée" ;
+    ptc:nomContraceptif "Pilule combinée EE/drospirénone - démonstration" ;
+    ptc:peutProcurer ptc:AmeliorationAcne,
+        ptc:ReductionRisqueCancerEndometre,
+        ptc:ReductionRisqueCancerOvaire,
+        ptc:RegularisationSaignements ;
+    ptc:peutProduire ptc:BaisseLibido,
+        ptc:ElevationTension,
+        ptc:LithiaseBiliaire,
+        ptc:ModificationHumeur,
+        ptc:RisqueAVCIschemique,
+        ptc:RisqueCancerColUterin,
+        ptc:RisqueCancerSein,
+        ptc:RisqueDepression,
+        ptc:RisqueHyperkaliemie,
+        ptc:RisqueThromboembolique,
+        ptc:RisqueTumeurHepatique .
+
+ptc:ConditionClinique a owl:Class ;
+    rdfs:label "Condition clinique"@fr ;
+    rdfs:comment "Condition clinique ou facteur de santé utilisé pour décrire un profil simulé."@fr .
+
+ptc:Contraceptif a owl:Class ;
+    rdfs:label "Contraceptif"@fr ;
+    rdfs:comment "Méthode ou produit contraceptif représenté comme entité d’étude."@fr .
+
+ptc:ProfilPatiente a owl:Class ;
+    rdfs:label "Profil patiente simulé"@fr ;
+    rdfs:comment "Profil de patiente fictive, sans données d’une personne réelle."@fr .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ptc:Oestrogene ptc:Progestatif ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ptc:PiluleCombinee ptc:PiluleProgestative ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ptc:ContraceptifHormonal ptc:ContraceptifNonHormonal ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ptc:ProgestatifAndrogenique ptc:ProgestatifFaiblementAndrogenique ptc:ProgestatifAntiAndrogenique ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ptc:ProfilPatiente ptc:ConditionClinique ptc:Contraceptif ptc:Molecule ptc:CibleBiologique ptc:Interaction ptc:EffetClinique ptc:ContreIndication ptc:Etude ptc:Observation ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ptc:EffetIndesirable ptc:EffetBenefique ) .
+

@@ -1,0 +1,2 @@
+@prefix ptc: <https://pharmatwin.ai/contraceptive#> .
+# Reserved for class assertions exported from HermiT or refreshed by the backend.
