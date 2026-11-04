@@ -12,6 +12,7 @@ from urllib.parse import urlsplit
 from rdflib import Literal, URIRef
 
 from . import ontology_map as m
+from .preprocess import normalize
 
 
 def iri(value) -> str:
@@ -159,11 +160,16 @@ def lister_classe(entities=(), *, limit=50, **_):
 
 def recherche_libre(entities=(), *, keywords=(), limit=50, **_):
     # RDFLib escapes quotes, backslashes and newlines as RDF string literals.
-    words = list(dict.fromkeys(str(word).strip().lower() for word in keywords if str(word).strip()))[:12]
+    words = list(dict.fromkeys(normalize(str(word)) for word in keywords if str(word).strip()))[:12]
+    label_text = "LCASE(STR(?matchedLabel))"
+    for pattern, replacement in (("œ", "oe"), ("æ", "ae"), ("[àâäáãå]", "a"),
+                                 ("[éèêë]", "e"), ("[îïíì]", "i"), ("[ôöóòõ]", "o"),
+                                 ("[ùûüú]", "u"), ("ç", "c"), ("[ÿý]", "y")):
+        label_text = f"REPLACE({label_text}, {Literal(pattern).n3()}, {Literal(replacement).n3()})"
     body = f"?result {iri(m.LABEL)} ?matchedLabel .\nFILTER (isIRI(?result))\n"
     if words:
         body += "FILTER (" + " || ".join(
-            f"CONTAINS(LCASE(STR(?matchedLabel)), {Literal(word).n3()})" for word in words
+            f"CONTAINS({label_text}, {Literal(word).n3()})" for word in words
         ) + ")"
     else:
         body += "FILTER (false)"  # Empty input must not expose the entire graph.
@@ -186,7 +192,7 @@ if __name__ == "__main__":
     import argparse
     from rdflib import Graph
     from .entities import EntityExtractor
-    from .intent import detect_intent
+    from .intent import detect_intent, detect_risk_kind
     from .preprocess import normalize, preprocess
 
     parser = argparse.ArgumentParser(description="Preview SPARQL; optionally execute against a local ontology")
@@ -197,8 +203,7 @@ if __name__ == "__main__":
     data = preprocess(args.question, nlp=extractor.nlp)
     entities = extractor.extract(args.question)
     intent = detect_intent(data, entities)
-    text = normalize(args.question)
-    risk = "oestrogenes" if "alerte" in text or "oestrog" in text else "vasculaire" if "vasculaire" in text else "general"
+    risk = detect_risk_kind(args.question)
     query = build_query(intent, entities, keywords=data.keywords, risk_kind=risk)
     print(f"Intent: {intent}\n\n{query}")
     if args.ontology:

@@ -88,6 +88,16 @@ def detect_intent(question: str | PreprocessedQuestion, entities=()) -> str:
     return best if scores[best] else "recherche_libre"
 
 
+def detect_risk_kind(question: str) -> str:
+    """Select a risk query variant from wording, independent of the schema."""
+    text = normalize(question)
+    if "oestrog" in text:
+        return "oestrogenes"
+    if "vasculaire" in text:
+        return "vasculaire"
+    return "general"
+
+
 if __name__ == "__main__":
     from .entities import EntityExtractor
 

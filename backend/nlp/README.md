@@ -1,8 +1,9 @@
 # PharmaTwin NLP — current state
 
 Implemented: ontology bindings, lexicon generation, French preprocessing,
-entity detection, intent scoring and all 11 SPARQL templates. Translator and
-frontend are still pending. No LLM API is used.
+entity detection, intent scoring, all 11 SPARQL templates and the stable
+translator interface. The full task 8 question suite and frontend are still
+pending. No LLM API is used.
 
 Tools to name in the presentation: Python, spaCy (`fr_core_news_md`), spaCy
 PhraseMatcher, RapidFuzz, RDFLib. Scoring rules operate on French lemmas and
@@ -73,7 +74,47 @@ The CLI selects one risk category from the question; Python callers can pass
 Detected targets are combined as alternatives (OR), not as a requirement that
 all conditions apply. A selected intent with no target can return all matching
 resources up to the limit. The keyword fallback with no keywords returns no
-rows. Task 7 will provide the teammate's stable `translate(question)` interface.
+rows.
+
+## Translator and FastAPI integration (task 7)
+
+```python
+from backend.nlp.translator import translate
+
+response = translate("Quels sont les effets indésirables de la pilule combinée ?")
+# Exactly three keys: intent (str), entities (list), sparql (str).
+# Your FastAPI handler executes response["sparql"] and adds its results.
+```
+
+The translator performs no HTTP calls and no query execution. It lazily caches
+the NLP model and lexicon for repeated requests. Restart the backend after
+regenerating a lexicon at the same path. It reads `PHARMATWIN_LEXICON` before
+loading an extractor, with corrected `lexicon.json` as the default.
+
+See the JSON response:
+
+```powershell
+python -X utf8 -m backend.nlp.translator "Quelles molécules interagissent avec la Rifampicine ?"
+```
+
+Optional local query execution for development:
+
+```powershell
+python -X utf8 -m backend.nlp.translator "Quelles molécules contient la pilule combinée ?" --ontology "C:\Users\arijm\Downloads\PharmaTwin_Contraceptive (2).owl"
+```
+
+Unknown questions use label keyword searching, with case/accent normalization
+and escaped literals. Non-string and empty inputs return an empty search query.
+Questions are limited to their first 4,000 characters. Missing model/lexicon,
+invalid lexical IRIs or query-building errors are logged and produce a keyword
+fallback with empty entities; if even that fails, a constant empty SELECT query
+is returned. No stack traces are put in the response. Infrastructure failures
+in optional CLI file reading/query execution remain visible to the developer.
+
+Current translator tests check the response contract, normal translation,
+unknown/invalid input, risk variants, missing NLP resources and template failure
+fallback. The separate task 8 suite of 25+ end-to-end French questions remains
+pending.
 
 ## Regenerate the lexicon after ontology changes
 
