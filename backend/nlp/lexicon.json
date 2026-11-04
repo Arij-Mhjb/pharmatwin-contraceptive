@@ -1,0 +1,694 @@
+{
+  "Acné": {
+    "iri": "https://pharmatwin.ai/contraceptive#Acne",
+    "kind": "individual"
+  },
+  "Acétate de cyprotérone": {
+    "iri": "https://pharmatwin.ai/contraceptive#CyproteroneAcetate",
+    "kind": "individual"
+  },
+  "Acétate de médroxyprogestérone": {
+    "iri": "https://pharmatwin.ai/contraceptive#MedroxyprogesteroneAcetate",
+    "kind": "individual"
+  },
+  "Amélioration de l’acné": {
+    "iri": "https://pharmatwin.ai/contraceptive#AmeliorationAcne",
+    "kind": "individual"
+  },
+  "Analyse sur le cancer de l’ovaire (Lancet, 2008)": {
+    "iri": "https://pharmatwin.ai/contraceptive#Etude_Ovaire_Lancet2008",
+    "kind": "individual"
+  },
+  "Analyse sur le cancer du col utérin (Lancet, 2007)": {
+    "iri": "https://pharmatwin.ai/contraceptive#Etude_ICESCC_Lancet2007",
+    "kind": "individual"
+  },
+  "Antécédent de méningiome": {
+    "iri": "https://pharmatwin.ai/contraceptive#AntecedentMeningiome",
+    "kind": "individual"
+  },
+  "Antécédent personnel de thrombose": {
+    "iri": "https://pharmatwin.ai/contraceptive#AntecedentThrombose",
+    "kind": "individual"
+  },
+  "Baisse de libido": {
+    "iri": "https://pharmatwin.ai/contraceptive#BaisseLibido",
+    "kind": "individual"
+  },
+  "Bilan hormonal simulé": {
+    "iri": "https://pharmatwin.ai/contraceptive#BilanHormonal",
+    "kind": "class"
+  },
+  "Bilan hormonal simulé – androgènes élevés": {
+    "iri": "https://pharmatwin.ai/contraceptive#BilanAndrogenesEleves",
+    "kind": "individual"
+  },
+  "CYP3A4": {
+    "iri": "https://pharmatwin.ai/contraceptive#CYP3A4",
+    "kind": "individual"
+  },
+  "Cancer du sein actuel": {
+    "iri": "https://pharmatwin.ai/contraceptive#CancerSeinActuel",
+    "kind": "individual"
+  },
+  "Cible biologique": {
+    "iri": "https://pharmatwin.ai/contraceptive#CibleBiologique",
+    "kind": "class"
+  },
+  "Condition clinique": {
+    "iri": "https://pharmatwin.ai/contraceptive#ConditionClinique",
+    "kind": "class"
+  },
+  "Condition contre-indiquant les contraceptifs combinés": {
+    "iri": "https://pharmatwin.ai/contraceptive#ConditionContreIndiqueCHC",
+    "kind": "class"
+  },
+  "Condition gynécologique": {
+    "iri": "https://pharmatwin.ai/contraceptive#ConditionGynecologique",
+    "kind": "class"
+  },
+  "Condition oncologique": {
+    "iri": "https://pharmatwin.ai/contraceptive#ConditionOncologique",
+    "kind": "class"
+  },
+  "Contraceptif": {
+    "iri": "https://pharmatwin.ai/contraceptive#Contraceptif",
+    "kind": "class"
+  },
+  "Contraceptif associé à un effet bénéfique": {
+    "iri": "https://pharmatwin.ai/contraceptive#ContraceptifAvecEffetBenefique",
+    "kind": "class"
+  },
+  "Contraceptif associé à un risque tumoral": {
+    "iri": "https://pharmatwin.ai/contraceptive#ContraceptifAvecRisqueTumoral",
+    "kind": "class"
+  },
+  "Contraceptif hormonal": {
+    "iri": "https://pharmatwin.ai/contraceptive#ContraceptifHormonal",
+    "kind": "class"
+  },
+  "Contraceptif injectable DMPA (démonstration)": {
+    "iri": "https://pharmatwin.ai/contraceptive#Injectable_DMPA",
+    "kind": "individual"
+  },
+  "Contraceptif non hormonal": {
+    "iri": "https://pharmatwin.ai/contraceptive#ContraceptifNonHormonal",
+    "kind": "class"
+  },
+  "Contre-indication": {
+    "iri": "https://pharmatwin.ai/contraceptive#ContreIndication",
+    "kind": "class"
+  },
+  "Contre-indication CHC – antécédent de thrombose": {
+    "iri": "https://pharmatwin.ai/contraceptive#CI_CHC_AntecedentThrombose",
+    "kind": "individual"
+  },
+  "Contre-indication CHC – migraine avec aura": {
+    "iri": "https://pharmatwin.ai/contraceptive#CI_CHC_MigraineAura",
+    "kind": "individual"
+  },
+  "Contre-indication CHC – tumeur hépatique": {
+    "iri": "https://pharmatwin.ai/contraceptive#CI_CHC_TumeurHepatique",
+    "kind": "individual"
+  },
+  "Contre-indication cyprotérone – antécédent de méningiome": {
+    "iri": "https://pharmatwin.ai/contraceptive#CI_CPA_Meningiome",
+    "kind": "individual"
+  },
+  "Contre-indication drospirénone – insuffisance rénale": {
+    "iri": "https://pharmatwin.ai/contraceptive#CI_DRSP_InsuffisanceRenale",
+    "kind": "individual"
+  },
+  "Contre-indication hormonale – cancer du sein actuel": {
+    "iri": "https://pharmatwin.ai/contraceptive#CI_Hormonal_CancerSeinActuel",
+    "kind": "individual"
+  },
+  "Contre-indication métabolique ou rénale": {
+    "iri": "https://pharmatwin.ai/contraceptive#ContreIndicationMetabolique",
+    "kind": "class"
+  },
+  "Contre-indication oncologique": {
+    "iri": "https://pharmatwin.ai/contraceptive#ContreIndicationOncologique",
+    "kind": "class"
+  },
+  "Contre-indication vasculaire": {
+    "iri": "https://pharmatwin.ai/contraceptive#ContreIndicationVasculaire",
+    "kind": "class"
+  },
+  "Cycles irréguliers": {
+    "iri": "https://pharmatwin.ai/contraceptive#CyclesIrreguliers",
+    "kind": "individual"
+  },
+  "Cytochrome P450 3A4 (CYP3A4)": {
+    "iri": "https://pharmatwin.ai/contraceptive#CYP3A4",
+    "kind": "individual"
+  },
+  "DIU au cuivre (démonstration)": {
+    "iri": "https://pharmatwin.ai/contraceptive#DIU_Cuivre",
+    "kind": "individual"
+  },
+  "DIU hormonal au lévonorgestrel (démonstration)": {
+    "iri": "https://pharmatwin.ai/contraceptive#DIU_Hormonal_LNG",
+    "kind": "individual"
+  },
+  "Drospirénone": {
+    "iri": "https://pharmatwin.ai/contraceptive#Drospirenone",
+    "kind": "individual"
+  },
+  "Désogestrel": {
+    "iri": "https://pharmatwin.ai/contraceptive#Desogestrel",
+    "kind": "individual"
+  },
+  "Effet bénéfique": {
+    "iri": "https://pharmatwin.ai/contraceptive#EffetBenefique",
+    "kind": "class"
+  },
+  "Effet clinique": {
+    "iri": "https://pharmatwin.ai/contraceptive#EffetClinique",
+    "kind": "class"
+  },
+  "Effet hépatobiliaire": {
+    "iri": "https://pharmatwin.ai/contraceptive#EffetHepatobiliaire",
+    "kind": "class"
+  },
+  "Effet indésirable": {
+    "iri": "https://pharmatwin.ai/contraceptive#EffetIndesirable",
+    "kind": "class"
+  },
+  "Effet métabolique": {
+    "iri": "https://pharmatwin.ai/contraceptive#EffetMetabolique",
+    "kind": "class"
+  },
+  "Effet neuropsychiatrique": {
+    "iri": "https://pharmatwin.ai/contraceptive#EffetNeuropsychiatrique",
+    "kind": "class"
+  },
+  "Effet osseux": {
+    "iri": "https://pharmatwin.ai/contraceptive#EffetOsseux",
+    "kind": "class"
+  },
+  "Endométriose": {
+    "iri": "https://pharmatwin.ai/contraceptive#Endometriose",
+    "kind": "individual"
+  },
+  "Facteur de risque": {
+    "iri": "https://pharmatwin.ai/contraceptive#FacteurDeRisque",
+    "kind": "class"
+  },
+  "Guide CDC – U.S. MEC 2024": {
+    "iri": "https://pharmatwin.ai/contraceptive#Guide_CDC_USMEC_2024",
+    "kind": "individual"
+  },
+  "Hypertension artérielle": {
+    "iri": "https://pharmatwin.ai/contraceptive#Hypertension",
+    "kind": "individual"
+  },
+  "IMC": {
+    "iri": "https://pharmatwin.ai/contraceptive#imc",
+    "kind": "dataProperty"
+  },
+  "Implant à l’étonogestrel (démonstration)": {
+    "iri": "https://pharmatwin.ai/contraceptive#Implant_ETG",
+    "kind": "individual"
+  },
+  "Infection persistante par HPV à haut risque": {
+    "iri": "https://pharmatwin.ai/contraceptive#InfectionHPVPersistante",
+    "kind": "individual"
+  },
+  "Insuffisance rénale": {
+    "iri": "https://pharmatwin.ai/contraceptive#InsuffisanceRenale",
+    "kind": "individual"
+  },
+  "Interaction": {
+    "iri": "https://pharmatwin.ai/contraceptive#Interaction",
+    "kind": "class"
+  },
+  "Interaction médicamenteuse": {
+    "iri": "https://pharmatwin.ai/contraceptive#InteractionMedicamenteuse",
+    "kind": "class"
+  },
+  "Interaction rifampicine – désogestrel": {
+    "iri": "https://pharmatwin.ai/contraceptive#Interaction_Rifampicine_DSG",
+    "kind": "individual"
+  },
+  "Journal de tolérance simulé – cycle 1": {
+    "iri": "https://pharmatwin.ai/contraceptive#JournalAcne_Cycle1",
+    "kind": "individual"
+  },
+  "Kystes ovariens": {
+    "iri": "https://pharmatwin.ai/contraceptive#KystesOvariens",
+    "kind": "individual"
+  },
+  "Lithiase biliaire": {
+    "iri": "https://pharmatwin.ai/contraceptive#LithiaseBiliaire",
+    "kind": "individual"
+  },
+  "Lévonorgestrel": {
+    "iri": "https://pharmatwin.ai/contraceptive#Levonorgestrel",
+    "kind": "individual"
+  },
+  "Migraine avec aura": {
+    "iri": "https://pharmatwin.ai/contraceptive#MigraineAvecAura",
+    "kind": "individual"
+  },
+  "Modification de l’humeur": {
+    "iri": "https://pharmatwin.ai/contraceptive#ModificationHumeur",
+    "kind": "individual"
+  },
+  "Molécule": {
+    "iri": "https://pharmatwin.ai/contraceptive#Molecule",
+    "kind": "class"
+  },
+  "Monographie du CIRC – volume 100A": {
+    "iri": "https://pharmatwin.ai/contraceptive#Monographie_IARC_100A",
+    "kind": "individual"
+  },
+  "Méta-analyse sur le cancer de l’endomètre (2015)": {
+    "iri": "https://pharmatwin.ai/contraceptive#Etude_Endometre_LancetOncol2015",
+    "kind": "individual"
+  },
+  "Observation de suivi": {
+    "iri": "https://pharmatwin.ai/contraceptive#Observation",
+    "kind": "class"
+  },
+  "Obésité (IMC ≥ 30)": {
+    "iri": "https://pharmatwin.ai/contraceptive#Obesite",
+    "kind": "individual"
+  },
+  "Perte de densité minérale osseuse": {
+    "iri": "https://pharmatwin.ai/contraceptive#PerteDensiteOsseuse",
+    "kind": "individual"
+  },
+  "Pilule EE / acétate de cyprotérone (démonstration)": {
+    "iri": "https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_CPA",
+    "kind": "individual"
+  },
+  "Pilule EE / drospirénone (démonstration)": {
+    "iri": "https://pharmatwin.ai/contraceptive#PiluleCombinee_EE_DRSP",
+    "kind": "individual"
+  },
+  "Pilule combinée": {
+    "iri": "https://pharmatwin.ai/contraceptive#PiluleCombinee",
+    "kind": "class"
+  },
+  "Pilule progestative au désogestrel (démonstration)": {
+    "iri": "https://pharmatwin.ai/contraceptive#PiluleProgestative_DSG",
+    "kind": "individual"
+  },
+  "Pilule progestative seule": {
+    "iri": "https://pharmatwin.ai/contraceptive#PiluleProgestative",
+    "kind": "class"
+  },
+  "Prise de poids": {
+    "iri": "https://pharmatwin.ai/contraceptive#PriseDePoids",
+    "kind": "individual"
+  },
+  "Profil SOPK": {
+    "iri": "https://pharmatwin.ai/contraceptive#ProfilSOPK",
+    "kind": "class"
+  },
+  "Profil avec facteur de risque": {
+    "iri": "https://pharmatwin.ai/contraceptive#ProfilAvecFacteurDeRisque",
+    "kind": "class"
+  },
+  "Profil avec facteur de risque vasculaire": {
+    "iri": "https://pharmatwin.ai/contraceptive#ProfilRisqueVasculaire",
+    "kind": "class"
+  },
+  "Profil en alerte pour les œstrogènes": {
+    "iri": "https://pharmatwin.ai/contraceptive#ProfilAlerteOestrogene",
+    "kind": "class"
+  },
+  "Profil endométriose": {
+    "iri": "https://pharmatwin.ai/contraceptive#ProfilEndometriose",
+    "kind": "class"
+  },
+  "Profil patiente simulé": {
+    "iri": "https://pharmatwin.ai/contraceptive#ProfilPatiente",
+    "kind": "class"
+  },
+  "Profil simulé SYN-025": {
+    "iri": "https://pharmatwin.ai/contraceptive#Profil_025",
+    "kind": "individual"
+  },
+  "Profil simulé SYN-028": {
+    "iri": "https://pharmatwin.ai/contraceptive#Profil_028",
+    "kind": "individual"
+  },
+  "Profil simulé SYN-032": {
+    "iri": "https://pharmatwin.ai/contraceptive#Profil_032",
+    "kind": "individual"
+  },
+  "Profil simulé SYN-041": {
+    "iri": "https://pharmatwin.ai/contraceptive#Profil_041",
+    "kind": "individual"
+  },
+  "Profil simulé SYN-046": {
+    "iri": "https://pharmatwin.ai/contraceptive#Profil_046",
+    "kind": "individual"
+  },
+  "Progestatif": {
+    "iri": "https://pharmatwin.ai/contraceptive#Progestatif",
+    "kind": "class"
+  },
+  "Progestatif androgénique": {
+    "iri": "https://pharmatwin.ai/contraceptive#ProgestatifAndrogenique",
+    "kind": "class"
+  },
+  "Progestatif anti-androgénique": {
+    "iri": "https://pharmatwin.ai/contraceptive#ProgestatifAntiAndrogenique",
+    "kind": "class"
+  },
+  "Progestatif faiblement androgénique": {
+    "iri": "https://pharmatwin.ai/contraceptive#ProgestatifFaiblementAndrogenique",
+    "kind": "class"
+  },
+  "Rifampicine": {
+    "iri": "https://pharmatwin.ai/contraceptive#Rifampicine",
+    "kind": "individual"
+  },
+  "Risque cardiovasculaire": {
+    "iri": "https://pharmatwin.ai/contraceptive#RisqueCardiovasculaire",
+    "kind": "class"
+  },
+  "Risque de cancer du col utérin": {
+    "iri": "https://pharmatwin.ai/contraceptive#RisqueCancerColUterin",
+    "kind": "individual"
+  },
+  "Risque de cancer du sein": {
+    "iri": "https://pharmatwin.ai/contraceptive#RisqueCancerSein",
+    "kind": "individual"
+  },
+  "Risque de dépression": {
+    "iri": "https://pharmatwin.ai/contraceptive#RisqueDepression",
+    "kind": "individual"
+  },
+  "Risque de méningiome": {
+    "iri": "https://pharmatwin.ai/contraceptive#RisqueMeningiome",
+    "kind": "individual"
+  },
+  "Risque de tumeur hépatique": {
+    "iri": "https://pharmatwin.ai/contraceptive#RisqueTumeurHepatique",
+    "kind": "individual"
+  },
+  "Risque d’AVC ischémique": {
+    "iri": "https://pharmatwin.ai/contraceptive#RisqueAVCIschemique",
+    "kind": "individual"
+  },
+  "Risque d’hyperkaliémie": {
+    "iri": "https://pharmatwin.ai/contraceptive#RisqueHyperkaliemie",
+    "kind": "individual"
+  },
+  "Risque thromboembolique": {
+    "iri": "https://pharmatwin.ai/contraceptive#RisqueThromboembolique",
+    "kind": "individual"
+  },
+  "Risque tumoral (cancer ou tumeur)": {
+    "iri": "https://pharmatwin.ai/contraceptive#RisqueTumoral",
+    "kind": "class"
+  },
+  "Récepteur de la progestérone": {
+    "iri": "https://pharmatwin.ai/contraceptive#RecepteurProgesterone",
+    "kind": "individual"
+  },
+  "Récepteur des androgènes": {
+    "iri": "https://pharmatwin.ai/contraceptive#RecepteurAndrogene",
+    "kind": "individual"
+  },
+  "Récepteur des œstrogènes": {
+    "iri": "https://pharmatwin.ai/contraceptive#RecepteurEstrogene",
+    "kind": "individual"
+  },
+  "Récepteur hormonal": {
+    "iri": "https://pharmatwin.ai/contraceptive#RecepteurHormonal",
+    "kind": "class"
+  },
+  "Réduction du risque de cancer de l’endomètre": {
+    "iri": "https://pharmatwin.ai/contraceptive#ReductionRisqueCancerEndometre",
+    "kind": "individual"
+  },
+  "Réduction du risque de cancer de l’ovaire": {
+    "iri": "https://pharmatwin.ai/contraceptive#ReductionRisqueCancerOvaire",
+    "kind": "individual"
+  },
+  "Régularisation des saignements": {
+    "iri": "https://pharmatwin.ai/contraceptive#RegularisationSaignements",
+    "kind": "individual"
+  },
+  "Résumé des caractéristiques du produit – drospirénone": {
+    "iri": "https://pharmatwin.ai/contraceptive#Etude_RCP_Drospirenone",
+    "kind": "individual"
+  },
+  "SOPK": {
+    "iri": "https://pharmatwin.ai/contraceptive#SOPK",
+    "kind": "individual"
+  },
+  "Saignements abondants": {
+    "iri": "https://pharmatwin.ai/contraceptive#SaignementsAbondants",
+    "kind": "individual"
+  },
+  "Saignements irréguliers": {
+    "iri": "https://pharmatwin.ai/contraceptive#SaignementsIrreguliers",
+    "kind": "individual"
+  },
+  "Source de preuve": {
+    "iri": "https://pharmatwin.ai/contraceptive#Etude",
+    "kind": "class"
+  },
+  "Syndrome des ovaires polykystiques (SOPK)": {
+    "iri": "https://pharmatwin.ai/contraceptive#SOPK",
+    "kind": "individual"
+  },
+  "Tabagisme actif": {
+    "iri": "https://pharmatwin.ai/contraceptive#Tabagisme",
+    "kind": "individual"
+  },
+  "Tumeur hépatique": {
+    "iri": "https://pharmatwin.ai/contraceptive#TumeurHepatique",
+    "kind": "individual"
+  },
+  "URL de la source": {
+    "iri": "https://pharmatwin.ai/contraceptive#urlSource",
+    "kind": "dataProperty"
+  },
+  "a pour condition": {
+    "iri": "https://pharmatwin.ai/contraceptive#aCondition",
+    "kind": "objectProperty"
+  },
+  "a pour contre-indication": {
+    "iri": "https://pharmatwin.ai/contraceptive#aContreIndication",
+    "kind": "objectProperty"
+  },
+  "a pour observation": {
+    "iri": "https://pharmatwin.ai/contraceptive#aObservation",
+    "kind": "objectProperty"
+  },
+  "a une affinité pour": {
+    "iri": "https://pharmatwin.ai/contraceptive#aAffinitePour",
+    "kind": "objectProperty"
+  },
+  "catégorie MEC": {
+    "iri": "https://pharmatwin.ai/contraceptive#categorieMEC",
+    "kind": "dataProperty"
+  },
+  "concerne la condition": {
+    "iri": "https://pharmatwin.ai/contraceptive#concerneCondition",
+    "kind": "objectProperty"
+  },
+  "concerne la molécule": {
+    "iri": "https://pharmatwin.ai/contraceptive#concerneMolecule",
+    "kind": "objectProperty"
+  },
+  "concerne le contraceptif": {
+    "iri": "https://pharmatwin.ai/contraceptive#concerneContraceptif",
+    "kind": "objectProperty"
+  },
+  "contient la molécule": {
+    "iri": "https://pharmatwin.ai/contraceptive#contientMolecule",
+    "kind": "objectProperty"
+  },
+  "contient un progestatif": {
+    "iri": "https://pharmatwin.ai/contraceptive#contientProgestatif",
+    "kind": "objectProperty"
+  },
+  "contient un œstrogène": {
+    "iri": "https://pharmatwin.ai/contraceptive#contientOestrogene",
+    "kind": "objectProperty"
+  },
+  "description de l'effet": {
+    "iri": "https://pharmatwin.ai/contraceptive#descriptionEffet",
+    "kind": "dataProperty"
+  },
+  "est aggravé par": {
+    "iri": "https://pharmatwin.ai/contraceptive#aggravePar",
+    "kind": "objectProperty"
+  },
+  "est associée à l’effet": {
+    "iri": "https://pharmatwin.ai/contraceptive#estAssocieAEffet",
+    "kind": "objectProperty"
+  },
+  "est contenu dans": {
+    "iri": "https://pharmatwin.ai/contraceptive#estContenuDans",
+    "kind": "objectProperty"
+  },
+  "est justifié par": {
+    "iri": "https://pharmatwin.ai/contraceptive#justifiePar",
+    "kind": "objectProperty"
+  },
+  "est métabolisée par": {
+    "iri": "https://pharmatwin.ai/contraceptive#metabolisePar",
+    "kind": "objectProperty"
+  },
+  "forme contraceptive": {
+    "iri": "https://pharmatwin.ai/contraceptive#forme",
+    "kind": "dataProperty"
+  },
+  "formule chimique": {
+    "iri": "https://pharmatwin.ai/contraceptive#formuleChimique",
+    "kind": "dataProperty"
+  },
+  "fréquence du risque": {
+    "iri": "https://pharmatwin.ai/contraceptive#frequenceRisque",
+    "kind": "dataProperty"
+  },
+  "identifiant du profil": {
+    "iri": "https://pharmatwin.ai/contraceptive#identifiantProfil",
+    "kind": "dataProperty"
+  },
+  "interagit avec la molécule": {
+    "iri": "https://pharmatwin.ai/contraceptive#interagitAvecMolecule",
+    "kind": "objectProperty"
+  },
+  "niveau d'alerte": {
+    "iri": "https://pharmatwin.ai/contraceptive#niveauAlerte",
+    "kind": "dataProperty"
+  },
+  "niveau de gravité": {
+    "iri": "https://pharmatwin.ai/contraceptive#niveauGravite",
+    "kind": "dataProperty"
+  },
+  "niveau de preuve": {
+    "iri": "https://pharmatwin.ai/contraceptive#niveauPreuve",
+    "kind": "dataProperty"
+  },
+  "nom de la cible": {
+    "iri": "https://pharmatwin.ai/contraceptive#nomCible",
+    "kind": "dataProperty"
+  },
+  "nom de la condition": {
+    "iri": "https://pharmatwin.ai/contraceptive#nomCondition",
+    "kind": "dataProperty"
+  },
+  "nom de la molécule": {
+    "iri": "https://pharmatwin.ai/contraceptive#nomMolecule",
+    "kind": "dataProperty"
+  },
+  "nom du contraceptif": {
+    "iri": "https://pharmatwin.ai/contraceptive#nomContraceptif",
+    "kind": "dataProperty"
+  },
+  "numéro du cycle": {
+    "iri": "https://pharmatwin.ai/contraceptive#cycleNumero",
+    "kind": "dataProperty"
+  },
+  "observe l'effet": {
+    "iri": "https://pharmatwin.ai/contraceptive#observeEffet",
+    "kind": "objectProperty"
+  },
+  "peut modifier l'efficacité de": {
+    "iri": "https://pharmatwin.ai/contraceptive#modifieEfficaciteDe",
+    "kind": "objectProperty"
+  },
+  "peut procurer": {
+    "iri": "https://pharmatwin.ai/contraceptive#peutProcurer",
+    "kind": "objectProperty"
+  },
+  "peut produire l'effet": {
+    "iri": "https://pharmatwin.ai/contraceptive#peutProduire",
+    "kind": "objectProperty"
+  },
+  "pression diastolique": {
+    "iri": "https://pharmatwin.ai/contraceptive#pressionDiastolique",
+    "kind": "dataProperty"
+  },
+  "pression systolique": {
+    "iri": "https://pharmatwin.ai/contraceptive#pressionSystolique",
+    "kind": "dataProperty"
+  },
+  "profil androgénique": {
+    "iri": "https://pharmatwin.ai/contraceptive#profilAndrogenique",
+    "kind": "dataProperty"
+  },
+  "tabagisme": {
+    "iri": "https://pharmatwin.ai/contraceptive#fume",
+    "kind": "dataProperty"
+  },
+  "titre de la source": {
+    "iri": "https://pharmatwin.ai/contraceptive#titreSource",
+    "kind": "dataProperty"
+  },
+  "type d'observation": {
+    "iri": "https://pharmatwin.ai/contraceptive#typeObservation",
+    "kind": "dataProperty"
+  },
+  "utilise le contraceptif": {
+    "iri": "https://pharmatwin.ai/contraceptive#utiliseContraceptif",
+    "kind": "objectProperty"
+  },
+  "valeur observée": {
+    "iri": "https://pharmatwin.ai/contraceptive#valeurObservation",
+    "kind": "dataProperty"
+  },
+  "Élévation de la pression artérielle": {
+    "iri": "https://pharmatwin.ai/contraceptive#ElevationTension",
+    "kind": "individual"
+  },
+  "Éthinylestradiol": {
+    "iri": "https://pharmatwin.ai/contraceptive#Ethinylestradiol",
+    "kind": "individual"
+  },
+  "Étonogestrel": {
+    "iri": "https://pharmatwin.ai/contraceptive#Etonogestrel",
+    "kind": "individual"
+  },
+  "Étude Lidegaard et al. (NEJM, 2012)": {
+    "iri": "https://pharmatwin.ai/contraceptive#Etude_Lidegaard_NEJM2012",
+    "kind": "individual"
+  },
+  "Étude Mørch et al. (NEJM, 2017)": {
+    "iri": "https://pharmatwin.ai/contraceptive#Etude_Morch_NEJM2017",
+    "kind": "individual"
+  },
+  "Étude Skovlund et al. (JAMA Psychiatry, 2016)": {
+    "iri": "https://pharmatwin.ai/contraceptive#Etude_Skovlund_JAMAPsy2016",
+    "kind": "individual"
+  },
+  "Étude clinique": {
+    "iri": "https://pharmatwin.ai/contraceptive#EtudeClinique",
+    "kind": "class"
+  },
+  "Étude fictive de tolérance (démonstration)": {
+    "iri": "https://pharmatwin.ai/contraceptive#Essai_Tolerance_SYN",
+    "kind": "individual"
+  },
+  "Évaluation EMA des contraceptifs hormonaux combinés": {
+    "iri": "https://pharmatwin.ai/contraceptive#Evaluation_EMA_CHC",
+    "kind": "individual"
+  },
+  "Évaluations réglementaires – risque de méningiome": {
+    "iri": "https://pharmatwin.ai/contraceptive#Etude_PRAC_Meningiome",
+    "kind": "individual"
+  },
+  "âge": {
+    "iri": "https://pharmatwin.ai/contraceptive#age",
+    "kind": "dataProperty"
+  },
+  "évalue le contraceptif": {
+    "iri": "https://pharmatwin.ai/contraceptive#evalueContraceptif",
+    "kind": "objectProperty"
+  },
+  "Œstrogène": {
+    "iri": "https://pharmatwin.ai/contraceptive#Oestrogene",
+    "kind": "class"
+  }
+}
