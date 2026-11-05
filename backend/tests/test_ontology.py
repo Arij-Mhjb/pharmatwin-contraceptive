@@ -5,6 +5,12 @@ def test_real_counts():
 def test_defined_profile_classes():
     ids={x["id"] for x in OntologyService().classes()}
     assert {"ProfilSOPK","ProfilEndometriose","ProfilAlerteOestrogene"}<=ids
+def test_inventory_exposes_real_axioms_and_property_kinds():
+    inventory = OntologyService().inventory()
+    assert len(inventory['object_properties']) == 22
+    assert len(inventory['datatype_properties']) == 24
+    equivalent = [a for a in inventory['axioms'] if a['predicate'].endswith('#equivalentClass')]
+    assert equivalent and any(isinstance(a['expression'], dict) for a in equivalent)
 def test_api(client):
     r=client.get("/api/ontology/stats");assert r.status_code==200 and r.json()["triples"]==1228
     assert client.get("/api/ontology/class/ProfilSOPK").status_code==200

@@ -125,7 +125,7 @@ def test_frontend_origin_preflight(semantic_api):
     assert response.headers["access-control-allow-origin"] == "http://127.0.0.1:3100"
 
 
-@pytest.mark.skipif(importlib.util.find_spec("fr_core_news_md") is None, reason="Install the French NLP model to run actual-translator integration")
+@pytest.mark.skipif(importlib.util.find_spec(get_settings().spacy_model) is None, reason="Install the configured French NLP model to run actual-translator integration")
 def test_actual_translator_uses_all_named_graphs(semantic_api):
     api, _, requests = semantic_api
     created = api.post("/api/profils", json=payload())

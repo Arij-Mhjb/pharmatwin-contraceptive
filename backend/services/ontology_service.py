@@ -17,6 +17,21 @@ class OntologyService:
     def properties(self): return self._items(OWL.ObjectProperty)+self._items(OWL.DatatypeProperty)
     def individuals(self): return self._items(OWL.NamedIndividual)
     def stats(self): return {"triples":len(self.graph),"classes":len(self.classes()),"object_properties":len(self._items(OWL.ObjectProperty)),"datatype_properties":len(self._items(OWL.DatatypeProperty)),"individuals":len(self.individuals())}
+    def axioms(self):
+        from rdflib import BNode
+        def expression(node, seen=frozenset()):
+            if not isinstance(node, BNode): return str(node)
+            if node in seen: return "…"
+            return {str(p): expression(o, seen | {node}) for p, o in self.graph.predicate_objects(node)}
+        predicates = (RDFS.subClassOf, RDFS.domain, RDFS.range, OWL.equivalentClass, OWL.disjointWith, OWL.inverseOf)
+        return [{"subject": str(s), "predicate": str(p), "object": str(o),
+                 "expression": expression(o)}
+                for p in predicates for s, o in sorted(self.graph.subject_objects(p), key=lambda pair: (str(pair[0]), str(pair[1])))]
+    def inventory(self):
+        return {"stats": self.stats(), "classes": self.classes(),
+                "object_properties": self._items(OWL.ObjectProperty),
+                "datatype_properties": self._items(OWL.DatatypeProperty),
+                "individuals": self.individuals(), "axioms": self.axioms()}
     def resource(self, local_id):
         iri=URIRef(self.settings.namespace+local_id)
         if not any(True for _ in self.graph.predicate_objects(iri)): return None
