@@ -10,13 +10,19 @@ from rdflib import Literal
 from backend.config import get_settings
 from backend.nlp import ontology_map as m
 from backend.nlp.templates import iri
+from backend.routes.auth import current_user, current_session
 import json
 
 router = APIRouter(prefix="/patient", tags=["patient workspace — local demo"])
 def client(): return SparqlClient()
 def assessment(): return AssessmentService()
 
-def load(patient_id):
+def authorize(user, patient_id):
+    if user["role"] != "admin" and not store.owns_patient(user["id"], patient_id):
+        raise HTTPException(404, "Profil personnel introuvable")
+
+def load(patient_id, user):
+    authorize(user, patient_id)
     try: return store.patient(patient_id)
     except KeyError: raise HTTPException(404, "Profil personnel introuvable")
 
@@ -40,28 +46,29 @@ def sync_observations(c, data):
     if triples: c.run_update(f"INSERT DATA {{ GRAPH {graph} {{ {' '.join(triples)} }} }}")
 
 @router.get("/catalog")
-def catalog(service=Depends(assessment)): return service.catalog()
+def catalog(service=Depends(assessment), _=Depends(current_user)): return service.catalog()
 
 @router.get("/profiles")
-def patients(): return store.patients()
+def patients(user=Depends(current_user)): return store.patients(user["id"], include_unowned=user["role"] == "admin")
 
 @router.get("/profiles/{patient_id}")
-def patient(patient_id: str): return load(patient_id)
+def patient(patient_id: str, user=Depends(current_user)): return load(patient_id, user)
 
 @router.post("/profiles", status_code=201)
-def create(data: PatientInput, c=Depends(client), service=Depends(assessment)):
+def create(data: PatientInput, c=Depends(client), service=Depends(assessment), user=Depends(current_session)):
     try:
         service.validate(data)
         result = crud.create_profile(c, data.profile)
         refresh_profile_inference(c, result["iri"])
         sync_observations(c, data)
         store.save_patient(result["id"], data.model_dump(mode="json"))
+        store.claim_patient(user["id"], result["id"])
         return {"id": result["id"], "data": data.model_dump(mode="json")}
     except ValueError as e: raise HTTPException(422, str(e))
 
 @router.put("/profiles/{patient_id}")
-def update(patient_id: str, data: PatientInput, c=Depends(client), service=Depends(assessment)):
-    load(patient_id)
+def update(patient_id: str, data: PatientInput, c=Depends(client), service=Depends(assessment), user=Depends(current_session)):
+    load(patient_id, user)
     if data.profile.identifiant != patient_id: raise HTTPException(422, "L’identifiant ne peut pas être changé")
     try:
         service.validate(data)
@@ -73,8 +80,8 @@ def update(patient_id: str, data: PatientInput, c=Depends(client), service=Depen
     except (ValueError, KeyError) as e: raise HTTPException(422, str(e))
 
 @router.post("/profiles/{patient_id}/symptoms")
-def symptom(patient_id: str, data: SymptomInput, c=Depends(client)):
-    current = PatientInput.model_validate(load(patient_id))
+def symptom(patient_id: str, data: SymptomInput, c=Depends(client), user=Depends(current_session)):
+    current = PatientInput.model_validate(load(patient_id, user))
     if len(current.symptoms) >= 100: raise HTTPException(422, "Limite de 100 observations atteinte")
     current.symptoms.append(data.observation)
     sync_observations(c, current)
@@ -82,11 +89,11 @@ def symptom(patient_id: str, data: SymptomInput, c=Depends(client)):
     return current.model_dump(mode="json")
 
 @router.post("/profiles/{patient_id}/assessments", status_code=201)
-def assess(patient_id: str, service=Depends(assessment)):
-    data = PatientInput.model_validate(load(patient_id))
+def assess(patient_id: str, service=Depends(assessment), user=Depends(current_session)):
+    data = PatientInput.model_validate(load(patient_id, user))
     return store.save_report(patient_id, service.assess(data))
 
 @router.get("/profiles/{patient_id}/reports")
-def reports(patient_id: str):
-    load(patient_id)
+def reports(patient_id: str, user=Depends(current_user)):
+    load(patient_id, user)
     return store.reports(patient_id)

@@ -1,4 +1,4 @@
-# PharmaTwin Contraceptive — Semantic Backend
+# PharmaTwin Contraceptive — Secure academic platform
 
 Functional FastAPI backend for an ESPRIT Semantic Web project combining the supplied OWL 2 ontology, Apache Jena Fuseki/TDB2, controlled SPARQL, local multilingual embeddings and French NLP. It is an academic knowledge-engineering prototype, **not** a diagnosis, prescription, or personalized medical recommendation system.
 
@@ -14,6 +14,14 @@ Functional FastAPI backend for an ESPRIT Semantic Web project combining the supp
 - Optional `backend.nlp.translator.translate(question)` integration without modifying `backend/nlp/`
 - Dynamic refresh for SOPK, endometriosis and estrogen-alert classifications
 - Unit tests, security tests, Docker Compose and GitHub Actions
+- Public landing page, real sign-up/sign-in and guided onboarding
+- Opaque database sessions, HttpOnly cookies, CSRF protection and scrypt password hashing
+- User-owned simulated profiles, immutable reports and role-based administration
+- Account security settings and a unified authenticated Next.js 16 dashboard
+- Advanced client cockpit with journey metrics, recent reports and quick actions
+- Admin control center with platform KPIs, audit activity and recent scenarios
+- Persistent profile-photo upload (JPEG, PNG or WebP, validated and size-limited)
+- Responsive editorial design with attributed Unsplash photography
 
 ## Architecture
 
@@ -29,8 +37,7 @@ OWL reasoning supplies logical class membership. ML supplies similarity rankings
 ```bash
 git clone https://github.com/Arij-Mhjb/pharmatwin-contraceptive.git
 cd pharmatwin-contraceptive
-git checkout feature/complete-semantic-backend
-docker compose up -d fuseki
+docker compose up --build -d
 ```
 
 Create the environment (Windows PowerShell):
@@ -39,6 +46,7 @@ Create the environment (Windows PowerShell):
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r backend/requirements.txt
+python -m pip install -r backend/nlp/requirements.txt
 python -m spacy download fr_core_news_sm
 ```
 
@@ -52,19 +60,56 @@ python -c "from sentence_transformers import SentenceTransformer; SentenceTransf
 python -m uvicorn backend.app:app --reload --port 8000
 ```
 
+For the Docker workflow, `docker compose up --build` performs these initialization
+steps automatically: it waits for Fuseki, persists the embedding model in a named
+volume, imports the ontology idempotently, and starts the API in offline-model mode.
+Set `FUSEKI_ADMIN_PASSWORD` before launch to replace the development password.
+
+Set `PHARMATWIN_ADMIN_EMAIL` and `PHARMATWIN_ADMIN_PASSWORD` to replace the
+local bootstrap administrator. A production deployment must also set
+`PHARMATWIN_COOKIE_SECURE=true` and expose the platform through HTTPS.
+
+## Test accounts and end-to-end journey
+
+Docker Compose creates this **local development-only** administrator by default:
+
+```text
+Email: admin@pharmatwin.local
+Password: DemoAdmin2026!
+```
+
+To exercise the full journey from <http://localhost:3001>:
+
+1. Select **Créer un compte** and use an unused test address such as `etudiant@example.test`.
+2. Use a password of at least 10 characters with uppercase, lowercase and a digit, for example `Parcours2026!`.
+3. Accept the academic-use onboarding and enter the dashboard.
+4. Create a fictitious scenario. `Migraine avec aura` plus a preference for `pilule combinée` demonstrates that a clinical flag cannot be hidden by the preference score.
+5. Save it to create a report, add a follow-up observation, create a second report, then compare the immutable dated snapshots.
+6. Ask `Quels sont les effets indésirables de la pilule combinée ?` and search for `migraine`.
+7. Open **Compte & sécurité** to renew the password and revoke all sessions.
+8. Sign in with the administrator above to inspect RBAC and the technical profile workspace.
+
+Only fictitious information should be entered. This is an academic platform, not a medical device.
+
 On Windows, set `$env:PYTHONPATH='.'` before script commands. To enforce offline inference later, set `PHARMATWIN_OFFLINE_MODELS=true`. A predownloaded directory can be selected with `PHARMATWIN_MODEL_PATH`.
 
 ## URLs
 
 - Swagger: <http://localhost:8000/docs>
+- Client web: <http://localhost:3001>
 - Health: <http://localhost:8000/api/health>
-- Profiles: <http://localhost:8000/api/profils>
+- Authentication session: <http://localhost:8000/api/auth/session>
+- Profiles (administrator): <http://localhost:8000/api/profils>
 - Ontology stats: <http://localhost:8000/api/ontology/stats>
 - Contraceptives: <http://localhost:8000/api/contraceptifs>
 - Keyword search: <http://localhost:8000/api/search?q=pilule>
 - Semantic search: <http://localhost:8000/api/search/semantic?q=migraine>
 
-Example question:
+Authenticated API calls require the database session cookie. Browser mutations
+also send the CSRF cookie value in the `X-CSRF-Token` header. Use the web client
+or Swagger UI for interactive testing.
+
+Example question after signing in:
 
 ```bash
 curl -X POST http://localhost:8000/api/ask -H "Content-Type: application/json" -d '{"question":"Quels profils sont en alerte pour les œstrogènes ?"}'
@@ -77,7 +122,7 @@ The response preserves the frontend contract: `intent`, `entities`, `sparql`, `r
 ```bash
 PYTHONPATH=. python backend/scripts/inspect_ontology.py
 PYTHONPATH=. python backend/scripts/verify_reasoning.py
-PYTHONPATH=. python -m pytest backend/tests -v
+PYTHONPATH=. python -m pytest backend -v
 PYTHONPATH=. python backend/ai/evaluation.py
 ```
 

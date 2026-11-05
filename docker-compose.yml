@@ -13,16 +13,55 @@ services:
       interval: 10s
       timeout: 5s
       retries: 12
+  model-init:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    image: pharmatwin-backend:latest
+    command:
+      - python
+      - -c
+      - "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2', device='cpu')"
+    environment:
+      HF_HOME: /models/huggingface
+    volumes:
+      - model-cache:/models
   backend:
     build:
       context: .
       dockerfile: Dockerfile.backend
+    image: pharmatwin-backend:latest
     ports: ["8000:8000"]
     environment:
       PHARMATWIN_FUSEKI_BASE_URL: http://fuseki:3030
-      PHARMATWIN_OFFLINE_MODELS: "false"
+      PHARMATWIN_FUSEKI_USERNAME: admin
+      PHARMATWIN_FUSEKI_PASSWORD: ${FUSEKI_ADMIN_PASSWORD:-admin}
+      PHARMATWIN_OFFLINE_MODELS: "true"
+      PHARMATWIN_CORS_ORIGINS: http://localhost:3001,http://127.0.0.1:3001,http://localhost:3100,http://127.0.0.1:3100
+      PHARMATWIN_BOOTSTRAP_ADMIN_EMAIL: ${PHARMATWIN_ADMIN_EMAIL:-admin@pharmatwin.local}
+      PHARMATWIN_BOOTSTRAP_ADMIN_PASSWORD: ${PHARMATWIN_ADMIN_PASSWORD:-DemoAdmin2026!}
+      PHARMATWIN_BOOTSTRAP_ADMIN_NAME: Administrateur PharmaTwin
+      HF_HOME: /models/huggingface
+    volumes:
+      - model-cache:/models
+      - patient-data:/app/backend/data
     depends_on:
       fuseki:
         condition: service_healthy
+      model-init:
+        condition: service_completed_successfully
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+        NEXT_PUBLIC_MOCK: "false"
+    image: pharmatwin-frontend:latest
+    ports: ["3001:80"]
+    depends_on:
+      - backend
 volumes:
   fuseki-data:
+  model-cache:
+  patient-data:

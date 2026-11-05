@@ -97,7 +97,11 @@ def update_profile(client, local_id, p: ProfilUpdate):
 
 def delete_profile(client, local_id):
     subject = iri(_iri(local_id))
-    if not client.run_select(f"ASK FROM {iri(get_settings().profiles_graph)} {{ {subject} {iri(m.D_IDENTIFIANT)} ?id }}"):
+    profile_graph = get_settings().profiles_graph
+    if not client.run_select(
+        f"ASK {{ {subject} {iri(m.D_IDENTIFIANT)} ?id }}",
+        dataset_params=[("default-graph-uri", profile_graph)],
+    ):
         raise ValueError("Profile not found in editable user graph")
     updates = [f"WITH {iri(graph)} DELETE {{ {subject} ?p ?o }} WHERE {{ {subject} ?p ?o }}" for graph in (get_settings().profiles_graph, get_settings().inferred_graph)]
     client.run_update("; ".join(updates))

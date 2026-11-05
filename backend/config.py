@@ -10,8 +10,8 @@ class Settings(BaseSettings):
     fuseki_base_url: str = "http://localhost:3030"
     fuseki_dataset: str = "pharmatwin"
     fuseki_timeout: float = 15.0
-    fuseki_username: str | None = None
-    fuseki_password: SecretStr | None = None
+    fuseki_username: str | None = "admin"
+    fuseki_password: SecretStr | None = SecretStr("admin")
     ontology_graph: str = "https://pharmatwin.ai/graph/ontology"
     profiles_graph: str = "https://pharmatwin.ai/graph/profiles"
     inferred_graph: str = "https://pharmatwin.ai/graph/inferred"
@@ -26,6 +26,11 @@ class Settings(BaseSettings):
     max_question_length: int = 500
     result_limit: int = 100
     patient_store_path: Path = ROOT / "backend" / "data" / "patient.sqlite3"
+    session_days: int = 7
+    cookie_secure: bool = False
+    bootstrap_admin_email: str | None = None
+    bootstrap_admin_password: SecretStr | None = None
+    bootstrap_admin_name: str = "Administrateur PharmaTwin"
     model_config = SettingsConfigDict(env_file=".env", env_prefix="PHARMATWIN_", extra="ignore")
 
     @property

@@ -2,8 +2,10 @@
 import { useState } from 'react';
 import { search, type Row } from '@/lib/api';
 import { display, ErrorBox } from '@/components/ui';
-export default function Search() {
+import { Protected } from '@/components/auth';
+function SearchContent() {
   const [q, setQ] = useState(''); const [rows, setRows] = useState<Row[] | null>(null); const [busy, setBusy] = useState(false); const [error, setError] = useState('');
   async function submit() { if (q.trim().length < 2 || busy) return; setBusy(true); setError(''); setRows(null); try { setRows(await search(q.trim())); } catch (e) { setError(e instanceof Error ? e.message : 'Recherche impossible.'); } finally { setBusy(false); } }
   return <><section className="page-heading"><span className="eyebrow">PARCOURIR LES CONNAISSANCES</span><h1>Le bon mot.<br /><span>Les bons liens.</span></h1><p>Retrouvez un concept, une molécule ou une condition par mot-clé.</p></section><section className="panel"><form onSubmit={e => { e.preventDefault(); void submit(); }} className="search-form"><label className="sr-only" htmlFor="keyword">Mot-clé</label><input id="keyword" value={q} onChange={e => setQ(e.target.value)} placeholder="Ex. endométriose, pilule, rifampicine…" minLength={2} maxLength={100} required /><button className="primary" disabled={busy || q.trim().length < 2}>{busy ? 'Recherche…' : 'Rechercher ↗'}</button></form></section>{error && <ErrorBox message={error} />}<section aria-live="polite">{busy && <div className="empty">Recherche en cours…</div>}{rows && <><p className="muted my-6">{rows.length} résultat(s)</p>{rows.length ? <ul className="search-results">{rows.map((row, i) => <li className="panel" key={i}><span className="eyebrow">CONNAISSANCE {String(i + 1).padStart(2, '0')}</span>{Object.entries(row).map(([key, value]) => <p key={key}><strong>{key}</strong><span>{display(value)}</span></p>)}</li>)}</ul> : <div className="panel empty">Aucun résultat. Essayez un autre mot-clé.</div>}</>}</section></>;
 }
+export default function Search() { return <Protected><SearchContent /></Protected>; }

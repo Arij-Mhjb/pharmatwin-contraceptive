@@ -17,13 +17,15 @@ from backend.app import app
 from backend.config import get_settings
 from backend.routes import ask, profils, search, contraceptifs, health, patient
 from backend.sparql_client import SparqlClient
+from backend.services import auth_store
 
 
 @pytest.fixture
-def semantic_api(monkeypatch):
+def semantic_api(monkeypatch, tmp_path):
     import rdflib.plugins.sparql as sparql
     monkeypatch.setattr(sparql, "SPARQL_LOAD_GRAPHS", False)
     settings = get_settings()
+    monkeypatch.setattr(settings, "patient_store_path", tmp_path / "semantic.sqlite3")
     dataset = Dataset()
     dataset.graph(URIRef(settings.ontology_graph)).parse(settings.ontology_path, format="turtle")
     requests = []
@@ -53,6 +55,9 @@ def semantic_api(monkeypatch):
     monkeypatch.setenv("PHARMATWIN_LEXICON", str(Path(__file__).resolve().parents[1] / "nlp" / "lexicon.json"))
     try:
         with TestClient(app) as api:
+            auth_store.create_user("admin@semantic.local", "TestAdmin2026!", "Semantic Admin", role="admin", onboarding=True)
+            assert api.post("/api/auth/signin", json={"email": "admin@semantic.local", "password": "TestAdmin2026!"}).status_code == 200
+            api.headers.update({"X-CSRF-Token": api.cookies["pharmatwin_csrf"]})
             yield api, dataset, requests
     finally:
         app.dependency_overrides.clear()

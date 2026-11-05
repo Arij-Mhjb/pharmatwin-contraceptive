@@ -5,7 +5,7 @@ entity detection, intent scoring, all 11 SPARQL templates and the stable
 translator interface. Tasks 1–8, including the French translator regression
 suite, are implemented. The frontend is still pending. No LLM API is used.
 
-Tools to name in the presentation: Python, spaCy (`fr_core_news_md`), spaCy
+Tools to name in the presentation: Python, spaCy (`fr_core_news_sm`), spaCy
 PhraseMatcher, RapidFuzz, RDFLib. Scoring rules operate on French lemmas and
 entity kinds. Scores are rule weights, not probabilities or confidence values.
 
@@ -13,7 +13,7 @@ entity kinds. Scores are rule weights, not probabilities or confidence values.
 
 ```powershell
 python -m pip install -r backend/nlp/requirements.txt
-python -m spacy download fr_core_news_md
+python -m spacy download fr_core_news_sm
 ```
 
 ## See results

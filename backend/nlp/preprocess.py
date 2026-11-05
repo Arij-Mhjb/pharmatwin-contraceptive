@@ -15,7 +15,7 @@ if TYPE_CHECKING:
     from spacy.language import Language
     from spacy.tokens import Doc
 
-DEFAULT_MODEL = "fr_core_news_md"
+DEFAULT_MODEL = "fr_core_news_sm"
 
 
 def normalize(text: str) -> str:

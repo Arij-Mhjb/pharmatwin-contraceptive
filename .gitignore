@@ -10,3 +10,4 @@ backend/ai/index/
 *.safetensors
 fuseki-data/
 backend/data/
+.docker-codex/

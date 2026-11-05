@@ -37,7 +37,9 @@ def score_intents(question: str | PreprocessedQuestion, entities=()) -> dict[str
     words = set(data.lemmas)
     text = normalize(data.text)
     scores = {name: 0 for name in INTENTS}
-    profile = bool(words & {"profil", "patiente", "patient"})
+    # The small French model can preserve the plural form where the medium
+    # model lemmatizes it, so accept both without changing intent semantics.
+    profile = bool(words & {"profil", "profils", "patiente", "patient"})
     risk = bool(words & {"risque", "alerte", "vasculaire"})
     contraindication = ("contre-indiqu" in text or "contre indiqu" in text
                        or "contre-indication" in text or "contre indication" in text)

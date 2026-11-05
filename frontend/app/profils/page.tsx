@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { createProfile, deleteProfile, getConditions, getProfiles, updateProfile, type ConditionOption, type Profile, type ProfileInput } from '@/lib/api';
 import { ErrorBox, Modal } from '@/components/ui';
+import { Protected } from '@/components/auth';
 
-export default function Profiles() {
+function ProfilesContent() {
   const [rows, setRows] = useState<Profile[]>([]);
   const [options, setOptions] = useState<ConditionOption[]>([]);
   const [filters, setFilters] = useState({ age_min: '', age_max: '', fume: '' });
@@ -87,3 +88,5 @@ function ProfileForm({ initial, options, saving, error, save, cancel }: { initia
     <label>Conditions simulées<select multiple size={6} value={conditions} onChange={e => setConditions(Array.from(e.target.selectedOptions, option => option.value))}>{choices.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</select><small>Maintenez Ctrl (ou Cmd) pour sélectionner plusieurs conditions. Les identifiants sont transmis automatiquement.</small></label>
   </fieldset>{(error || validation) && <ErrorBox message={validation || error} />}<div className="modal-actions"><button type="button" className="secondary" disabled={saving} onClick={cancel}>Annuler</button><button className="primary" disabled={saving}>{saving ? 'Enregistrement…' : 'Enregistrer'}</button></div></form>;
 }
+
+export default function Profiles() { return <Protected admin><ProfilesContent /></Protected>; }

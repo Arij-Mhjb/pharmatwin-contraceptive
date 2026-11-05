@@ -62,8 +62,7 @@ def test_unrecognized_input_is_not_silently_scored():
     assert any("hors du vocabulaire" in gap for gap in report["gaps"])
 
 
-def test_full_patient_journey_persistence_and_immutable_reports(semantic_api, monkeypatch, tmp_path):
-    monkeypatch.setattr(get_settings(), "patient_store_path", tmp_path / "patient.sqlite3")
+def test_full_patient_journey_persistence_and_immutable_reports(semantic_api):
     api, dataset, _ = semantic_api
     catalog = api.get("/api/patient/catalog").json()
     assert len(catalog["methods"]) == 7

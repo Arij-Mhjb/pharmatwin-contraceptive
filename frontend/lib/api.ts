@@ -23,7 +23,9 @@ export async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const timeout = path === '/api/ask' || path.endsWith('/catalog') || path.endsWith('/assessments') ? 60000 : 15000;
   const timer = setTimeout(() => controller.abort(), timeout);
   try {
-    const response = await fetch(`${BASE}${path}`, { ...init, headers: { 'Content-Type': 'application/json', ...init?.headers }, signal: controller.signal });
+    const csrf = typeof document === 'undefined' ? '' : document.cookie.split('; ').find(row => row.startsWith('pharmatwin_csrf='))?.split('=')[1] ?? '';
+    const mutating = !!init?.method && !['GET', 'HEAD', 'OPTIONS'].includes(init.method.toUpperCase());
+    const response = await fetch(`${BASE}${path}`, { ...init, credentials: 'include', headers: { 'Content-Type': 'application/json', ...(mutating && csrf ? { 'X-CSRF-Token': decodeURIComponent(csrf) } : {}), ...init?.headers }, signal: controller.signal });
     if (!response.ok) {
       const payload = await response.json().catch(() => null) as { detail?: unknown } | null;
       const detail = typeof payload?.detail === 'string' ? ` ${payload.detail}` : '';
